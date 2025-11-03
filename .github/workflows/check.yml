@@ -34,7 +34,7 @@ jobs:
             buildtype: debug
             os: ubuntu-24.04
             extra_opts: -Dfrr=enabled
-            rebase: true
+            rebase: false
           - compiler: clang-15
             sanitize: none
             buildtype: debugoptimized
