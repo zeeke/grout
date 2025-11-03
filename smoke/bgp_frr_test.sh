@@ -40,6 +40,8 @@ cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
 SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1"
 EOT
 
+udevadm control --reload-rules
+
 journalctl -b
 
 find /etc -name "*.rules" -ls -exec cat {} \;
