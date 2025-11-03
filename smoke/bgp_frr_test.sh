@@ -44,6 +44,8 @@ MACAddress=none
 EOT
 fi
 
+systemctl -a || true
+
 
 create_interface p0 mac f0:0d:ac:dc:00:00
 
