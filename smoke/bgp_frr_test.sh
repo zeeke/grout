@@ -34,18 +34,13 @@
 
 . $(dirname $0)/_init_frr.sh
 
-if systemctl is-active --quiet systemd-networkd.service; then
-	mkdir -p /etc/systemd/network/
-	cat <<EOT >> /etc/systemd/network/99-gr-loop.network
-[Match]
-Name=gr-loop*
 
-[NetDev]
-MACAddress=none
+mkdir -p /etc/udev/rules.d/
+cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
+SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1"
 EOT
-	networkctl reload
-	journalctl -xeu systemd-networkd
-fi
+
+journalctl -b
 
 find /etc -name "*.rules" -ls -exec cat {} \;
 
@@ -211,3 +206,4 @@ done
 # Verify host-a can ping host-b
 ip netns exec ns-a ping -i0.01 -c3 -n 16.1.0.2
 ip netns exec ns-b ping -i0.01 -c3 -n 16.0.0.2
+
