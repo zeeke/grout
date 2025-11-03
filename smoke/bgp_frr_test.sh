@@ -34,13 +34,15 @@
 
 . $(dirname $0)/_init_frr.sh
 
-cat <<EOT >> /etc/systemd/network/
+if [ -d "/etc/systemd/network/" ]; then
+cat <<EOT >> /etc/systemd/network/99-gr-loop.network
 [Match]
 Name=gr-loop*
 
 [NetDev]
 MACAddress=none
 EOT
+fi
 
 
 create_interface p0 mac f0:0d:ac:dc:00:00
