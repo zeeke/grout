@@ -49,7 +49,7 @@ cat <<EOT >> /etc/systemd/network/99-gr-loop.link
 OriginalName=gr-loop*
 
 [Link]
-MACAddressPolicy=None
+MACAddressPolicy=none
 EOT
 
 udevadm control --reload-rules && udevadm trigger
