@@ -34,14 +34,17 @@
 
 . $(dirname $0)/_init_frr.sh
 
-if [ -d "/etc/systemd/network/" ]; then
-cat <<EOT >> /etc/systemd/network/99-gr-loop.network
+if systemctl is-active --quiet systemd-networkd.service; then
+	mkdir -p /etc/systemd/network/
+	cat <<EOT >> /etc/systemd/network/99-gr-loop.network
 [Match]
 Name=gr-loop*
 
 [NetDev]
 MACAddress=none
 EOT
+	networkctl reload
+	journalctl -xeu systemd-networkd
 fi
 
 systemctl -a || true
