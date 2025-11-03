@@ -43,11 +43,20 @@ cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
 SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1" RUN="/bin/sh -c ' ip link > /tmp/test'"
 EOT
 
+
+cat <<EOT >> /etc/systemd/network/99-gr-loop-.network
+[Match]
+Name=gr-loop*
+
+[Link]
+MACAddressPolicy=None
+EOT
+
 udevadm control --reload-rules && udevadm trigger
 SYSTEMD_LOG_LEVEL=debug udevadm test-builtin net_setup_link /sys/class/net/gr-loop0
 
-find /etc -name "*.rules" -ls -exec cat {} \;
 
+find /etc -name "*.rules" -ls -exec cat {} \;
 find /etc/systemd/network/ -ls -exec cat {} \;
 find /usr/lib/systemd/network/ -ls -exec cat {} \;
 
