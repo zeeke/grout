@@ -34,7 +34,19 @@
 
 . $(dirname $0)/_init_frr.sh
 
+cat <<EOT >> /etc/systemd/network/
+[Match]
+Name=gr-loop*
+
+[NetDev]
+MACAddress=none
+EOT
+
+
 create_interface p0 mac f0:0d:ac:dc:00:00
+
+#ip link set dev gr-loop0 address aa:bb:cc:aa:bb:cc
+
 create_interface p1 mac f0:0d:ac:dc:00:01
 
 netns_add ns-a

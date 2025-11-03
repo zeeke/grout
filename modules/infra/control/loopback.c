@@ -152,7 +152,7 @@ static void iface_loopback_poll(evutil_socket_t, short reason, void *ev_iface) {
 	rte_pktmbuf_trim(mbuf, read_len - len);
 	eth = rte_pktmbuf_mtod(mbuf, struct rte_ether_hdr *);
 
-	if (!rte_is_same_ether_addr(&eth->src_addr, &lo->mac)) {
+	if (false && !rte_is_same_ether_addr(&eth->src_addr, &lo->mac)) {
 		LOG(NOTICE,
 		    "src_addr(" ETH_F ") differs from interface address(" ETH_F "). updating %s",
 		    &eth->src_addr,
@@ -161,8 +161,8 @@ static void iface_loopback_poll(evutil_socket_t, short reason, void *ev_iface) {
 		loopback_mac_set(iface, &eth->src_addr);
 	}
 
-	if (rte_is_unicast_ether_addr(&eth->dst_addr))
-		loopback_mac_get(iface, &eth->dst_addr);
+	//if (rte_is_unicast_ether_addr(&eth->dst_addr))
+	//	loopback_mac_get(iface, &eth->dst_addr);
 
 	// packet sent from linux tun iface, no need to compute checksum;
 	mbuf->ol_flags = RTE_MBUF_F_RX_IP_CKSUM_GOOD;
