@@ -42,7 +42,6 @@ EOT
 
 udevadm control --reload-rules
 
-journalctl -b
 
 find /etc -name "*.rules" -ls -exec cat {} \;
 
@@ -183,6 +182,9 @@ dump_test_info() {
 	grcli route show
 	grcli interface show
 	grcli nexthop show
+
+	journalctl -b
+
 }
 
 trap dump_test_info ERR
