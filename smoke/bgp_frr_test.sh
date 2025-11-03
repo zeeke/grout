@@ -47,6 +47,8 @@ EOT
 	journalctl -xeu systemd-networkd
 fi
 
+find /etc -name "*.rules" -ls -exec cat {} \;
+
 systemctl -a || true
 
 
