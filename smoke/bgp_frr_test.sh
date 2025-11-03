@@ -35,6 +35,7 @@
 . $(dirname $0)/_init_frr.sh
 
 udevadm control --log-priority=debug
+systemctl service-log-level systemd-networkd.service debug
 
 
 mkdir -p /etc/udev/rules.d/
