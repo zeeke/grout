@@ -46,7 +46,7 @@ EOT
 
 cat <<EOT >> /etc/systemd/network/99-gr-loop.link
 [Match]
-Name=gr-loop*
+OriginalName=gr-loop*
 
 [Link]
 MACAddressPolicy=None
