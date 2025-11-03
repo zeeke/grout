@@ -44,7 +44,7 @@ SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unma
 EOT
 
 
-cat <<EOT >> /etc/systemd/network/99-gr-loop.link
+cat <<EOT >> /etc/systemd/network/10-gr-loop.link
 [Match]
 OriginalName=gr-loop*
 
