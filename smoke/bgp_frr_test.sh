@@ -53,7 +53,6 @@ MACAddressPolicy=None
 EOT
 
 udevadm control --reload-rules && udevadm trigger
-SYSTEMD_LOG_LEVEL=debug udevadm test-builtin net_setup_link /sys/class/net/gr-loop0
 
 
 find /etc -name "*.rules" -ls -exec cat {} \;
@@ -202,7 +201,10 @@ dump_test_info() {
 
 	journalctl -b
 
-	cat /tmp/test
+	cat /tmp/test || true
+
+	SYSTEMD_LOG_LEVEL=debug udevadm test-builtin net_setup_link /sys/class/net/gr-loop0 || true
+
 
 }
 
