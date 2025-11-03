@@ -44,7 +44,7 @@ SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unma
 EOT
 
 udevadm control --reload-rules && udevadm trigger
-
+SYSTEMD_LOG_LEVEL=debug udevadm test-builtin net_setup_link /sys/class/net/gr-loop0
 
 find /etc -name "*.rules" -ls -exec cat {} \;
 
