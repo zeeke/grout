@@ -161,8 +161,8 @@ static void iface_loopback_poll(evutil_socket_t, short reason, void *ev_iface) {
 		loopback_mac_set(iface, &eth->src_addr);
 	}
 
-	//if (rte_is_unicast_ether_addr(&eth->dst_addr))
-	//	loopback_mac_get(iface, &eth->dst_addr);
+	if (rte_is_unicast_ether_addr(&eth->dst_addr))
+		loopback_mac_get(iface, &eth->dst_addr);
 
 	// packet sent from linux tun iface, no need to compute checksum;
 	mbuf->ol_flags = RTE_MBUF_F_RX_IP_CKSUM_GOOD;
