@@ -34,10 +34,12 @@
 
 . $(dirname $0)/_init_frr.sh
 
+udevadm control --log-priority=debug
+
 
 mkdir -p /etc/udev/rules.d/
 cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
-SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1" RUN="sh -c 'echo trigger-test > /tmp/test'"
+SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1" RUN="/bin/sh -c ' ip link > /tmp/test'"
 EOT
 
 udevadm control --reload-rules && udevadm trigger
