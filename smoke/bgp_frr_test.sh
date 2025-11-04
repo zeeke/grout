@@ -52,6 +52,8 @@ OriginalName=gr-loop*
 [Link]
 MACAddressPolicy=none
 EOT
+
+systemctl force-reload systemd-networkd.service
 fi
 
 #udevadm control --reload-rules && udevadm trigger
@@ -226,5 +228,3 @@ done
 # Verify host-a can ping host-b
 ip netns exec ns-a ping -i0.01 -c3 -n 16.1.0.2
 ip netns exec ns-b ping -i0.01 -c3 -n 16.0.0.2
-
-fail "111"
