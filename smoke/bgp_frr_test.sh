@@ -57,9 +57,9 @@ fi
 #udevadm control --reload-rules && udevadm trigger
 
 
-find /etc -name "*.rules" -ls -exec cat {} \;
-find /etc/systemd/network/ -ls -exec cat {} \;
-find /usr/lib/systemd/network/ -ls -exec cat {} \;
+#find /etc -name "*.rules" -ls -exec cat {} \;
+#find /etc/systemd/network/ -ls -exec cat {} \;
+#find /usr/lib/systemd/network/ -ls -exec cat {} \;
 
 
 
