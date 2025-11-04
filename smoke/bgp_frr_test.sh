@@ -34,7 +34,7 @@
 
 . $(dirname $0)/_init_frr.sh
 
-#udevadm control --log-priority=debug
+udevadm control --log-priority=debug
 systemctl service-log-level systemd-networkd.service debug
 
 
@@ -57,9 +57,9 @@ fi
 #udevadm control --reload-rules && udevadm trigger
 
 
-#find /etc -name "*.rules" -ls -exec cat {} \;
-#find /etc/systemd/network/ -ls -exec cat {} \;
-#find /usr/lib/systemd/network/ -ls -exec cat {} \;
+find /etc -name "*.rules" -ls -exec cat {} \;
+find /etc/systemd/network/ -ls -exec cat {} \;
+find /usr/lib/systemd/network/ -ls -exec cat {} \;
 
 
 
