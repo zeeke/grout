@@ -34,40 +34,39 @@
 
 . $(dirname $0)/_init_frr.sh
 
-udevadm control --log-priority=debug
-systemctl service-log-level systemd-networkd.service debug
+#udevadm control --log-priority=debug
+#systemctl service-log-level systemd-networkd.service debug
 
 
-mkdir -p /etc/udev/rules.d/
-cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
-SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1" RUN="/bin/sh -c ' ip link > /tmp/test'"
-EOT
+#mkdir -p /etc/udev/rules.d/
+#cat <<EOT >> /etc/udev/rules.d/99-ignore-gr-loop0.rules
+#SUBSYSTEM=="net" ACTION=="add", KERNEL=="gr-loop0", ENV{ID_NET_MANAGED_BY}="unmanaged" ENV{NM_UNMANAGED}="1" RUN="/bin/sh -c ' ip link > /tmp/test'"
+#EOT
 
-
-cat <<EOT >> /etc/systemd/network/10-gr-loop.link
+# Avoid systemd-networkd to override the gr-loop0 MAC address
+if [ -d /etc/systemd/network/ ]; then
+	cat <<EOT >> /etc/systemd/network/10-gr-loop-no-mac-address.link
 [Match]
 OriginalName=gr-loop*
 
 [Link]
 MACAddressPolicy=none
 EOT
+fi
 
-udevadm control --reload-rules && udevadm trigger
-
-
-find /etc -name "*.rules" -ls -exec cat {} \;
-find /etc/systemd/network/ -ls -exec cat {} \;
-find /usr/lib/systemd/network/ -ls -exec cat {} \;
+#udevadm control --reload-rules && udevadm trigger
 
 
+#find /etc -name "*.rules" -ls -exec cat {} \;
+#find /etc/systemd/network/ -ls -exec cat {} \;
+#find /usr/lib/systemd/network/ -ls -exec cat {} \;
 
-systemctl -a || true
+
+
+#systemctl -a || true
 
 
 create_interface p0 mac f0:0d:ac:dc:00:00
-
-#ip link set dev gr-loop0 address aa:bb:cc:aa:bb:cc
-
 create_interface p1 mac f0:0d:ac:dc:00:01
 
 netns_add ns-a
@@ -198,14 +197,6 @@ dump_test_info() {
 	grcli route show
 	grcli interface show
 	grcli nexthop show
-
-	journalctl -b
-
-	cat /tmp/test || true
-
-	SYSTEMD_LOG_LEVEL=debug udevadm test-builtin net_setup_link /sys/class/net/gr-loop0 || true
-
-
 }
 
 trap dump_test_info ERR
