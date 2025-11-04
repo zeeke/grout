@@ -35,7 +35,7 @@
 . $(dirname $0)/_init_frr.sh
 
 #udevadm control --log-priority=debug
-#systemctl service-log-level systemd-networkd.service debug
+systemctl service-log-level systemd-networkd.service debug
 
 
 #mkdir -p /etc/udev/rules.d/
@@ -197,6 +197,10 @@ dump_test_info() {
 	grcli route show
 	grcli interface show
 	grcli nexthop show
+
+	journalctl -b
+
+
 }
 
 trap dump_test_info ERR
