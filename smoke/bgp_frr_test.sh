@@ -227,3 +227,4 @@ done
 ip netns exec ns-a ping -i0.01 -c3 -n 16.1.0.2
 ip netns exec ns-b ping -i0.01 -c3 -n 16.0.0.2
 
+fail "111"
