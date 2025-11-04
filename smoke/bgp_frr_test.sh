@@ -34,8 +34,7 @@
 
 . $(dirname $0)/_init_frr.sh
 
-#udevadm control --log-priority=debug
-systemctl service-log-level systemd-udevd.service debug
+udevadm control --log-priority=debug
 systemctl service-log-level systemd-networkd.service debug
 
 
