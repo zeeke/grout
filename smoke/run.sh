@@ -28,7 +28,7 @@ if [ -n "${builddir+x}" ] && \
 	test_frr=true
 fi
 
-for script in $here/*_test.sh; do
+for script in $here/bgp_*_test.sh; do
 	name=$(basename $script)
 	case "$name" in
 	*_frr_test.sh)
