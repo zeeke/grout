@@ -17,7 +17,7 @@
 # │ ┌───────────┐   ┌────────────┐ │      │ ┌────────────┐    ┌────────────┐ │
 # │ │ to-host-a │   │     p0     │ │      │ │     p0     │    │     p1     │ │
 # └─┤           ├───┤            ├─┘      └─┤            ├────┤            ├─┘
-#   │ 16.0.0.1  │   │ 172.16.0.1 │          │ 172.16.0.1 │    │ 16.1.0.1   │
+#   │ 16.0.0.1  │   │ 172.16.0.2 │          │ 172.16.0.1 │    │ 16.1.0.1   │
 #   └────┬──────┘   └─────────┬──┘          └──┬─────────┘    └────┬───────┘
 #        │                    │                │                   │
 #        │<<veth>>            │                │            <<tap>>│
@@ -55,10 +55,10 @@ netns_add ns-a
 netns_add ns-b
 
 # Configure Host-B
-ip link set p1 netns ns-b
-ip -n ns-b link set p1 address ba:d0:ca:ca:00:01
-ip -n ns-b link set p1 up
-ip -n ns-b addr add 16.1.0.2/24 dev p1
+ip link set x-p1 netns ns-b
+ip -n ns-b link set x-p1 address ba:d0:ca:ca:00:01
+ip -n ns-b link set x-p1 up
+ip -n ns-b addr add 16.1.0.2/24 dev x-p1
 ip -n ns-b route add default via 16.1.0.1
 ip -n ns-b addr show
 
@@ -68,7 +68,7 @@ set_ip_address p0 172.16.0.1/24
 # Create and start an FRR instance for the BGP peer
 frr_bgp_peer_namespace="frr-bgp-peer"
 start_frr_on_namespace $frr_bgp_peer_namespace
-ip link set p0 netns $frr_bgp_peer_namespace
+ip link set x-p0 netns $frr_bgp_peer_namespace
 
 ip -n ns-a link add eth0 type veth peer name to-host-a
 ip -n ns-a link set to-host-a up
@@ -89,7 +89,7 @@ ip -n ns-a link set to-host-a netns $frr_bgp_peer_namespace
 vtysh -N $frr_bgp_peer_namespace <<-EOF
 	configure terminal
 
-	interface p0
+	interface x-p0
 		ip address 172.16.0.2/24
 	exit
 
@@ -109,12 +109,13 @@ vtysh -N $frr_bgp_peer_namespace <<-EOF
 	exit
 EOF
 
+ ip addr
 
 # Configure Grout loopback to work with BGP
-ip addr add 172.16.0.1/32 dev gr-loop0
-ip addr add 16.1.0.1/32 dev gr-loop0
-ip route add 172.16.0.0/24 dev gr-loop0 via 172.16.0.1
-ip route add 16.1.0.0/24 dev gr-loop0 via 16.1.0.1
+#ip addr add 172.16.0.1/32 dev gr-loop0
+#ip addr add 16.1.0.1/32 dev gr-loop0
+#ip route add 172.16.0.0/24 dev gr-loop0 via 172.16.0.1
+#ip route add 16.1.0.0/24 dev gr-loop0 via 16.1.0.1
 
 # Configure Grout FRR instance
 vtysh <<-EOF
