@@ -115,6 +115,22 @@ ip route add 172.16.0.0/24 dev gr-loop0 via 172.16.0.1
 vtysh <<-EOF
 	configure terminal
 
+	debug zebra events
+	debug zebra kernel
+	debug zebra rib
+	debug zebra nht detailed
+	debug zebra pseudowires
+	debug zebra pbr
+	debug zebra vxlan
+	debug zebra nexthop
+	debug bgp keepalives
+	debug bgp neighbor-events
+	debug bgp nht
+	debug bgp updates detail
+	debug bgp updates in
+	debug bgp updates out
+	debug bgp zebra
+
 	router bgp 44
 	bgp router-id 172.16.0.1
 	no bgp ebgp-requires-policy
@@ -130,9 +146,37 @@ vtysh <<-EOF
 	exit
 EOF
 
+dump_test_info() {
+	# Debug BGP peer router
+	vtysh -N $frr_bgp_peer_namespace -c "show running-config"
+	vtysh -N $frr_bgp_peer_namespace -c "show interface"
+	vtysh -N $frr_bgp_peer_namespace -c "show ip route"
+	vtysh -N $frr_bgp_peer_namespace -c "show bgp summary"
+	vtysh -N $frr_bgp_peer_namespace -c "show bgp ipv4"
+	ip netns exec $frr_bgp_peer_namespace ip addr
+	ip netns exec $frr_bgp_peer_namespace ip route
+
+	# Debug grout+FRR router
+	vtysh -c "show running-config"
+	vtysh -c "show interface"
+	vtysh -c "show ip route"
+	vtysh -c "show bgp summary"
+	vtysh -c "show bgp ipv4"
+
+	grcli route show
+	grcli interface show
+	grcli nexthop show
+
+	ip link
+	ip addr
+	ip route
+}
+
+trap dump_test_info ERR
+
 # Wait for BGP routes to be exchanged
 SECONDS=0
-expected_route_line="16.0.0.0/24[[:space:]]+type=L3.*origin=zebra"
+expected_route_line="16.0.0.0/24[[:space:]]+bgp[[:space:]]+type=L3.*origin=zebra"
 while ! grcli route show | grep -qE "${expected_route_line}"; do
 	if [ "$SECONDS" -ge "10" ]; then
 		fail "BGP route not learned in Grout"
