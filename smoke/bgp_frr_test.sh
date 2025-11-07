@@ -48,8 +48,8 @@ EOF
 	udevadm control --reload-rules
 fi
 
-create_interface p0 mac f0:0d:ac:dc:00:00
-create_interface p1 mac f0:0d:ac:dc:00:01
+create_interface p0  mac f0:0d:ac:dc:00:00
+create_interface p1  mac f0:0d:ac:dc:00:01
 
 netns_add ns-a
 netns_add ns-b
@@ -109,13 +109,7 @@ vtysh -N $frr_bgp_peer_namespace <<-EOF
 	exit
 EOF
 
- ip addr
-
-# Configure Grout loopback to work with BGP
-#ip addr add 172.16.0.1/32 dev gr-loop0
-#ip addr add 16.1.0.1/32 dev gr-loop0
-#ip route add 172.16.0.0/24 dev gr-loop0 via 172.16.0.1
-#ip route add 16.1.0.0/24 dev gr-loop0 via 16.1.0.1
+ip route add 172.16.0.0/24 dev gr-loop0 via 172.16.0.1
 
 # Configure Grout FRR instance
 vtysh <<-EOF
@@ -129,7 +123,6 @@ vtysh <<-EOF
 	neighbor 172.16.0.2 remote-as 43
 	neighbor 172.16.0.2 update-source 172.16.0.1
 	neighbor 172.16.0.2 interface gr-loop0
-	neighbor 172.16.0.2 ip-transparent
 
 	address-family ipv4 unicast
 	network 16.1.0.0/24
