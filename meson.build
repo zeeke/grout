@@ -19,14 +19,21 @@ project(
   ],
 )
 
+compiler = meson.get_compiler('c')
+
 # additional project C flags (keep alpha sorted)
 add_project_arguments('-DALLOW_EXPERIMENTAL_API', language: 'c')
 add_project_arguments('-D_GNU_SOURCE', language: 'c')
 add_project_arguments('-Wmissing-prototypes', language: 'c')
 add_project_arguments('-Wno-microsoft', language: 'c')
-add_project_arguments('-Wstrict-aliasing=2', language: 'c')
 add_project_arguments('-fms-extensions', language: 'c')
 add_project_arguments('-fstrict-aliasing', language: 'c')
+if compiler.has_header_symbol('features.h', '__GLIBC__')
+  add_project_arguments('-Wstrict-aliasing=2', language: 'c')
+else
+  # musl's cpu_set_t macros trigger false-positive strict-aliasing warnings
+  add_project_arguments('-Wno-strict-aliasing', language: 'c')
+endif
 
 # optional project C flags (keep alpha sorted)
 optional_c_args = [
@@ -34,7 +41,6 @@ optional_c_args = [
   '-Wmissing-variable-declarations',
   '-Wno-format-truncation',
 ]
-compiler = meson.get_compiler('c')
 foreach arg : optional_c_args
   if compiler.has_argument(arg)
     add_project_arguments(arg, language: 'c')
