@@ -49,10 +49,9 @@ int worker_create(unsigned cpu_id) {
 	CPU_ZERO(&cpuset);
 	CPU_SET(cpu_id, &cpuset);
 	pthread_attr_init(&attr);
-	if (!!(ret = pthread_attr_setaffinity_np(&attr, sizeof(cpuset), &cpuset)))
-		goto end;
-
 	if (!!(ret = pthread_create(&worker->thread, &attr, gr_datapath_loop, worker)))
+		goto end;
+	if (!!(ret = pthread_setaffinity_np(worker->thread, sizeof(cpuset), &cpuset)))
 		goto end;
 
 	STAILQ_INSERT_TAIL(&workers, worker, next);
