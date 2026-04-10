@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright (c) 2024 Robin Jarry
 
+#ifdef __GLIBC__
+
 #include <gr_net_types.h>
 
 #include <arpa/inet.h>
@@ -60,3 +62,5 @@ static void __attribute__((constructor, used)) init(void) {
 	if (register_printf_specifier('p', format_pointer, check_pointer_arg) < 0)
 		abort();
 }
+
+#endif /* __GLIBC__ */
