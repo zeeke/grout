@@ -16,22 +16,26 @@
 		int ret = call;                                                                    \
 		if (errnum == 0 && ret < 0)                                                        \
 			fail_msg(                                                                  \
-				"%s failed with %s, expected success",                             \
+				"%s failed with %s (%d), expected success",                        \
 				#call,                                                             \
-				strerrorname_np(errno)                                             \
+				strerror(errno),                                                   \
+				errno                                                              \
 			);                                                                         \
 		else if (errnum != 0 && ret >= 0)                                                  \
 			fail_msg(                                                                  \
-				"%s succeeded, expected failure with %s",                          \
+				"%s succeeded, expected failure with %s (%d)",                     \
 				#call,                                                             \
-				strerrorname_np(errnum)                                            \
+				strerror(errnum),                                                  \
+				errnum                                                             \
 			);                                                                         \
 		else if (ret < 0 && errno != errnum)                                               \
 			fail_msg(                                                                  \
-				"%s failed with %s, expected %s",                                  \
+				"%s failed with %s (%d), expected %s (%d)",                        \
 				#call,                                                             \
-				strerrorname_np(errno),                                            \
-				strerrorname_np(errnum)                                            \
+				strerror(errno),                                                   \
+				errno,                                                             \
+				strerror(errnum),                                                  \
+				errnum                                                             \
 			);                                                                         \
 	} while (0)
 

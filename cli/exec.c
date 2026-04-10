@@ -178,7 +178,7 @@ print_status(exec_status_t status, const struct ec_node *cmdlist, const struct e
 		print_suggestions(cmdlist, vec);
 		break;
 	case EXEC_CMD_FAILED:
-		errorf("command failed: %s (%s)", strerrordesc_np(errno), strerrorname_np(errno));
+		errorf("command failed: %s (%d)", strerror(errno), errno);
 		break;
 	case EXEC_CB_UNDEFINED:
 		errorf("no callback defined for command");
