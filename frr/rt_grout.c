@@ -392,7 +392,11 @@ static void grout_route_change(
 			assert(nh_id == 0);
 		}
 
+#ifdef FRR_VERSION_GE_10_6
+		rib_add_multipath(afi, SAFI_UNICAST, &p, NULL, re, ng, false, false);
+#else
 		rib_add_multipath(afi, SAFI_UNICAST, &p, NULL, re, ng, false);
+#endif
 
 		if (ng)
 			nexthop_group_delete(&ng);
@@ -890,7 +894,16 @@ void grout_macfdb_change(const struct gr_fdb_entry *fdb, bool new) {
 	dplane_ctx_mac_set_ndm_state(ctx, NUD_REACHABLE);
 	dplane_ctx_mac_set_ndm_flags(ctx, NTF_MASTER);
 	dplane_ctx_mac_set_dst_present(ctx, fdb->vtep != 0);
+#ifdef FRR_VERSION_GE_10_6
+	// clang-format off
+	dplane_ctx_mac_set_vtep_ip(ctx, &(struct ipaddr) {
+		.ipa_type = IPADDR_V4,
+		.ipaddr_v4.s_addr = fdb->vtep,
+	});
+	// clang-format on
+#else
 	dplane_ctx_mac_set_vtep_ip(ctx, &(struct in_addr) {fdb->vtep});
+#endif
 	dplane_ctx_mac_set_vid(ctx, fdb->vlan_id);
 	dplane_ctx_mac_set_dp_static(ctx, fdb->flags & GR_FDB_F_STATIC);
 	dplane_ctx_mac_set_local_inactive(ctx, false);
@@ -934,7 +947,11 @@ enum zebra_dplane_result grout_macfdb_update_ctx(struct zebra_dplane_ctx *ctx) {
 		if (dplane_ctx_mac_get_dp_static(ctx))
 			add->fdb.flags |= GR_FDB_F_STATIC;
 		memcpy(&add->fdb.mac, dplane_ctx_mac_get_addr(ctx), sizeof(add->fdb.mac));
+#ifdef FRR_VERSION_GE_10_6
+		add->fdb.vtep = dplane_ctx_mac_get_vtep_ip(ctx)->ipaddr_v4.s_addr;
+#else
 		add->fdb.vtep = dplane_ctx_mac_get_vtep_ip(ctx)->s_addr;
+#endif
 		req_type = GR_FDB_ADD;
 	} else {
 		struct gr_fdb_del_req *del = req;

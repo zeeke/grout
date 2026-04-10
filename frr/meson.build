@@ -18,6 +18,18 @@ endif
 
 install_build_flag = frr_dep.get_variable('install_on_build', default_value: 'false') == 'true'
 frr_moduledir = frr_dep.get_variable('moduledir')
+
+frr_c_args = []
+frr_version = frr_dep.version()
+if frr_version == ''
+  # Built as subproject, version not exposed via declare_dependency().
+  # The wrap file pins frr-10.5.0, so default to that.
+  frr_version = '10.5.0'
+endif
+if frr_version.version_compare('>= 10.6.0')
+  frr_c_args += ['-DFRR_VERSION_GE_10_6']
+endif
+
 frr_plugin = shared_module(
   'dplane_grout',
   files(
@@ -27,6 +39,7 @@ frr_plugin = shared_module(
     'zebra_dplane_grout.c',
   ) + grout_header,
   name_prefix: '',
+  c_args: frr_c_args,
   dependencies: [frr_dep],
   include_directories: api_inc + include_directories('.'),
   install: not install_build_flag,
