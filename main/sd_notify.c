@@ -76,7 +76,7 @@ int sd_notifyf(int unset_environment, const char *format, ...) {
 	if ((fd = socket(AF_UNIX, SOCK_DGRAM | SOCK_CLOEXEC, 0)) < 0)
 		return -errno;
 
-	if (connect(fd, &sun, sizeof(sun)) != 0)
+	if (connect(fd, (const struct sockaddr *)&sun, sizeof(sun)) != 0)
 		return -errno;
 
 	if ((n = write(fd, msg, msg_len)) != (ssize_t)msg_len)
