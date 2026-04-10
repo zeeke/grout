@@ -13,7 +13,11 @@
 static void signal_cb(evutil_socket_t sig, short /*what*/, void *priv) {
 	struct event_base *base = priv;
 
+#ifdef __GLIBC__
 	LOG(NOTICE, "received signal SIG%s", sigabbrev_np(sig));
+#else
+	LOG(NOTICE, "received signal %d", sig);
+#endif
 
 	switch (sig) {
 	case SIGPIPE:
