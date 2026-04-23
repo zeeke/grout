@@ -106,7 +106,6 @@ static void iface_cp_poll(evutil_socket_t, short reason, void *ev_iface) {
 	struct rte_ether_addr src, dst;
 	struct iface_stats *stats;
 	struct rte_ether_hdr *eth;
-	struct rte_ether_addr iface_mac;
 	struct rte_vlan_hdr *vlan;
 	struct rte_mbuf *mbuf;
 	rte_be16_t ether_type;
@@ -151,8 +150,8 @@ static void iface_cp_poll(evutil_socket_t, short reason, void *ev_iface) {
 	// cannot resolve neighbors). Detect this case and re-inject the
 	// packet into the L3 datapath (like the TUN loopback does) so
 	// grout can route it and set the correct destination MAC.
-	if (iface_get_eth_addr(iface, &iface_mac) == 0
-	    && rte_is_same_ether_addr(&eth->dst_addr, &iface_mac)) {
+	if (!rte_is_zero_ether_addr(&iface->cp_mac)
+	    && rte_is_same_ether_addr(&eth->dst_addr, &iface->cp_mac)) {
 		struct eth_input_mbuf_data *e;
 		rte_be16_t ether_type = eth->ether_type;
 
@@ -439,6 +438,11 @@ static void cp_update(struct iface *iface) {
 	}
 
 	if (iface_get_eth_addr(iface, &mac) == 0) {
+		// Derive a locally-administered MAC for the control plane TAP so
+		// it differs from the DPDK port MAC sharing the same namespace.
+		mac.addr_bytes[0] |= RTE_ETHER_LOCAL_ADMIN_ADDR;
+		mac.addr_bytes[5] ^= 0x01;
+		iface->cp_mac = mac;
 		if (netlink_link_set_mac(iface->cp_id, &mac) < 0)
 			LOG(ERR,
 			    "netlink_link_set_mac(%s, " ETH_F "): %s",
