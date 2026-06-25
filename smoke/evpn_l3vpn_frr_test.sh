@@ -7,11 +7,13 @@
 # a standalone FRR+Linux peer.
 #
 # Each side has a VRF with an L3 VNI (1000) and a host connected to a local
-# port. BGP EVPN advertises IP prefixes (type-5 routes) and RMAC entries
-# (type-2 routes with GR_NH_F_REMOTE nexthops) across the VXLAN overlay.
+# port. BGP EVPN advertises IPv4 and IPv6 prefixes (type-5 routes) and RMAC
+# entries (type-2 routes with GR_NH_F_REMOTE nexthops) across the VXLAN overlay.
+# IPv6 type-5 routes use v4-mapped IPv6 nexthops (::ffff:X.X.X.X) because the
+# VTEP is always IPv4.
 #
 # Success criteria:
-#   - Both sides exchange EVPN type-5 routes (IP prefixes installed).
+#   - Both sides exchange EVPN type-5 routes (IPv4 and IPv6 prefixes installed).
 #   - Host-A and Host-B can ping each other through the L3 VXLAN overlay.
 #   - RMACs are installed as remote nexthops on the grout side.
 #
@@ -37,9 +39,10 @@
 #   '--------|---------------|------'         '----|--------------|---------'
 #            |               |                     |              |
 #            |               | <------- BGP  ----> |              |
-#        16.0.0.0/24         '---------------------'         48.0.0.0/24
-#            |                      underlay                      |
-#    .-------|-----------.         172.16.0.0/24       .----------|--------.
+#      16.0.0.0/24           '---------------------'       48.0.0.0/24
+#      fd00:16::/64                 underlay               fd00:48::/64
+#            |                    172.16.0.0/24                   |
+#    .-------|-----------.                             .----------|--------.
 #    |   +---+----+      |                             |      +---+----+   |
 #    |   |  x-p1  |      |                             |      |  x-p1  |   |
 #    |   +--------+      | <= = = = = = = = = = = = => |      +--------+   |
@@ -61,6 +64,7 @@ start_frr evpn-peer
 ip netns exec evpn-peer sysctl -qw net.ipv4.conf.all.forwarding=1
 ip netns exec evpn-peer sysctl -qw net.ipv4.conf.all.rp_filter=0
 ip netns exec evpn-peer sysctl -qw net.ipv4.conf.default.rp_filter=0
+ip netns exec evpn-peer sysctl -qw net.ipv6.conf.all.forwarding=1
 
 move_to_netns x-p0 evpn-peer
 ip -n evpn-peer addr add 172.16.0.1/24 dev x-p0
@@ -83,12 +87,15 @@ ip -n evpn-peer link add p1 type veth peer name x-p1
 ip -n evpn-peer link set p1 master tenant
 ip -n evpn-peer link set p1 up
 ip -n evpn-peer addr add 16.0.0.1/24 dev p1
+ip -n evpn-peer addr add fd00:16::1/64 dev p1
 
 netns_add host-a
 ip -n evpn-peer link set x-p1 netns host-a
 ip -n host-a link set x-p1 up
 ip -n host-a addr add 16.0.0.2/24 dev x-p1
 ip -n host-a route add default via 16.0.0.1
+ip -n host-a addr add fd00:16::2/64 dev x-p1
+ip -n host-a -6 route add default via fd00:16::1
 
 # FRR config on the Linux peer
 vtysh -N evpn-peer <<-EOF
@@ -117,8 +124,13 @@ router bgp 65000 vrf tenant
   redistribute connected
  exit-address-family
 
+ address-family ipv6 unicast
+  redistribute connected
+ exit-address-family
+
  address-family l2vpn evpn
   advertise ipv4 unicast
+  advertise ipv6 unicast
  exit-address-family
 exit
 EOF
@@ -131,12 +143,15 @@ grcli interface add vxlan vxlan-l3 vni 1000 local 172.16.0.2 vrf tenant
 
 create_interface p1 vrf tenant
 set_ip_address p1 48.0.0.1/24
+set_ip_address p1 fd00:48::1/64
 
 netns_add host-b
 move_to_netns x-p1 host-b
 ip -n host-b addr add 48.0.0.2/24 dev x-p1
 ip -n host-b addr add 10.0.0.1/24 dev lo
 ip -n host-b route add default via 48.0.0.1
+ip -n host-b addr add fd00:48::2/64 dev x-p1
+ip -n host-b -6 route add default via fd00:48::1
 
 mark_events
 
@@ -167,8 +182,13 @@ router bgp 65000 vrf tenant
   redistribute connected
  exit-address-family
 
+ address-family ipv6 unicast
+  redistribute connected
+ exit-address-family
+
  address-family l2vpn evpn
   advertise ipv4 unicast
+  advertise ipv6 unicast
  exit-address-family
 exit
 EOF
@@ -194,7 +214,7 @@ while ! vtysh -N evpn-peer -c "show evpn vni 1000" | grep -qF "L3"; do
 	attempts=$((attempts + 1))
 done
 
-# -- Wait for EVPN type-5 route exchange ---------------------------------------
+# -- Wait for EVPN type-5 route exchange (IPv4) --------------------------------
 attempts=0
 while ! vtysh -c "show bgp l2vpn evpn route type 5" | grep -qF "16.0.0.0"; do
 	if [ "$attempts" -ge 5 ]; then
@@ -217,8 +237,32 @@ while ! vtysh -N evpn-peer -c "show bgp l2vpn evpn route type 5" | grep -qF "48.
 	attempts=$((attempts + 1))
 done
 
+# -- Wait for EVPN type-5 route exchange (IPv6) --------------------------------
+attempts=0
+while ! vtysh -c "show bgp l2vpn evpn route type 5" | grep -qF "fd00:16::"; do
+	if [ "$attempts" -ge 5 ]; then
+		vtysh -c "show bgp l2vpn evpn route type 5"
+		fail "Grout FRR did not learn type-5 route for fd00:16::/64"
+	fi
+	sleep 1
+	attempts=$((attempts + 1))
+done
+
+attempts=0
+while ! vtysh -N evpn-peer -c "show bgp l2vpn evpn route type 5" | grep -qF "fd00:48::"; do
+	if [ "$attempts" -ge 5 ]; then
+		vtysh -c "show bgp vrf tenant ipv6 unicast"
+		vtysh -c "show bgp l2vpn evpn route"
+		vtysh -N evpn-peer -c "show bgp l2vpn evpn route type 5"
+		fail "Linux peer did not learn type-5 route for fd00:48::/64"
+	fi
+	sleep 1
+	attempts=$((attempts + 1))
+done
+
 # -- Wait for routes to be installed in VRF ------------------------------------
 wait_event 'route4 add: vrf=tenant 16.0.0.0/24'
+wait_event 'route6 add: vrf=tenant fd00:16::/64'
 
 attempts=0
 while ! ip -n evpn-peer route show vrf tenant | grep -qF "48.0.0.0/24"; do
@@ -230,7 +274,17 @@ while ! ip -n evpn-peer route show vrf tenant | grep -qF "48.0.0.0/24"; do
 	attempts=$((attempts + 1))
 done
 
-# -- Check RMAC is set on the route nexthop ------------------------------------
+attempts=0
+while ! ip -n evpn-peer -6 route show vrf tenant | grep -qF "fd00:48::"; do
+	if [ "$attempts" -ge 5 ]; then
+		ip -n evpn-peer -6 route show vrf tenant
+		fail "Route fd00:48::/64 not installed in peer VRF tenant"
+	fi
+	sleep 1
+	attempts=$((attempts + 1))
+done
+
+# -- Check RMAC is set on route nexthops ---------------------------------------
 rmac=$(ip netns exec evpn-peer cat /sys/class/net/vxlan-l3/address)
 
 wait_event "nh new: type=L3 id=[0-9]+ iface=vxlan-l3 vrf=tenant origin=zebra family=ipv4 addr=172.16.0.1 mac=$rmac flags=static remote"
@@ -239,13 +293,16 @@ vtysh -c "show bgp l2vpn evpn route type 5"
 grcli route show vrf tenant
 grcli nexthop show vrf tenant
 
-# -- Verify L3 connectivity through VXLAN overlay ------------------------------
+# -- Verify L3 connectivity through VXLAN overlay (IPv4) -----------------------
 ip netns exec host-b ping -i0.1 -c3 -W1 16.0.0.2
 ip netns exec host-a ping -i0.1 -c3 -W1 48.0.0.2
+
+# -- Verify L3 connectivity through VXLAN overlay (IPv6) -----------------------
+ip netns exec host-b ping -6 -i0.1 -c3 -W1 fd00:16::2
+ip netns exec host-a ping -6 -i0.1 -c3 -W1 fd00:48::2
 
 # -- Verify local nexthop uses port, not VXLAN ---------------------------------
 # Route to 10.0.0.0/24 (behind host-b) via local gateway 48.0.0.2. The nexthop
 # for 48.0.0.2 must use port p1, not the VXLAN interface.
 set_ip_route 10.0.0.0/24 48.0.0.2 tenant
-
 grcli ping 10.0.0.1 vrf tenant count 3 delay 10

@@ -117,8 +117,11 @@ ip6_output_process(struct rte_graph *graph, struct rte_node *node, void **objs, 
 			eth_data->dst = l3->mac;
 		eth_data->ether_type = RTE_BE16(RTE_ETHER_TYPE_IPV6);
 		if (iface->type == GR_IFACE_TYPE_VXLAN) {
-			eth_data->vtep.af = GR_AF_IP6;
-			eth_data->vtep.ipv6 = l3->ipv6;
+			eth_data->vtep.af = l3->af;
+			if (l3->af == GR_AF_IP4)
+				eth_data->vtep.ipv4 = l3->ipv4;
+			else
+				eth_data->vtep.ipv6 = l3->ipv6;
 		} else {
 			eth_data->vtep.af = GR_AF_UNSPEC;
 		}
