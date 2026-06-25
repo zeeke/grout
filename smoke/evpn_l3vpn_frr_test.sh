@@ -44,6 +44,7 @@
 #    |   |  x-p1  |      |                             |      |  x-p1  |   |
 #    |   +--------+      | <= = = = = = = = = = = = => |      +--------+   |
 #    |       .2          |        overlay L3VPN        |         .2        |
+#    |                   |                             |  lo:10.0.0.1/24   |
 #    |                   |                             |                   |
 #    |    host-a         |                             |       host-b      |
 #    '-------------------'                             '-------------------'
@@ -134,6 +135,7 @@ set_ip_address p1 48.0.0.1/24
 netns_add host-b
 move_to_netns x-p1 host-b
 ip -n host-b addr add 48.0.0.2/24 dev x-p1
+ip -n host-b addr add 10.0.0.1/24 dev lo
 ip -n host-b route add default via 48.0.0.1
 
 mark_events
@@ -240,3 +242,10 @@ grcli nexthop show vrf tenant
 # -- Verify L3 connectivity through VXLAN overlay ------------------------------
 ip netns exec host-b ping -i0.1 -c3 -W1 16.0.0.2
 ip netns exec host-a ping -i0.1 -c3 -W1 48.0.0.2
+
+# -- Verify local nexthop uses port, not VXLAN ---------------------------------
+# Route to 10.0.0.0/24 (behind host-b) via local gateway 48.0.0.2. The nexthop
+# for 48.0.0.2 must use port p1, not the VXLAN interface.
+set_ip_route 10.0.0.0/24 48.0.0.2 tenant
+
+grcli ping 10.0.0.1 vrf tenant count 3 delay 10
