@@ -714,8 +714,6 @@ grout_add_nexthop(uint32_t nh_id, gr_nh_origin_t origin, const struct nexthop *n
 		// the VRF (SVI in FRR's model) to the VXLAN interface. Grout
 		// routes packets directly through the VXLAN tunnel.
 		vxlan_iface_id = l3vni_get_vxlan(req->nh.vrf_id);
-		if (vxlan_iface_id != GR_IFACE_ID_UNDEF)
-			req->nh.iface_id = vxlan_iface_id;
 
 		switch (nh->type) {
 		case NEXTHOP_TYPE_IPV4:
@@ -730,6 +728,14 @@ grout_add_nexthop(uint32_t nh_id, gr_nh_origin_t origin, const struct nexthop *n
 			if (rmac != NULL) {
 				memcpy(&l3->mac, rmac, sizeof(l3->mac));
 				l3->flags |= GR_NH_F_REMOTE;
+			}
+			rmac = l3vni_rmac_get(req->nh.vrf_id, &vtep);
+			if (rmac != NULL) {
+				memcpy(&l3->mac, rmac, sizeof(l3->mac));
+				l3->flags |= GR_NH_F_REMOTE;
+				// Only redirect to VXLAN for remote nexthops
+				if (vxlan_iface_id != GR_IFACE_ID_UNDEF)
+					req->nh.iface_id = vxlan_iface_id;
 			}
 			break;
 		case NEXTHOP_TYPE_IPV6:
