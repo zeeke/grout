@@ -745,6 +745,8 @@ grout_add_nexthop(uint32_t nh_id, gr_nh_origin_t origin, const struct nexthop *n
 			if (rmac != NULL) {
 				memcpy(&l3->mac, rmac, sizeof(l3->mac));
 				l3->flags |= GR_NH_F_REMOTE;
+				if (vxlan_iface_id != GR_IFACE_ID_UNDEF)
+					req->nh.iface_id = vxlan_iface_id;
 			}
 			break;
 		case NEXTHOP_TYPE_IFINDEX:
