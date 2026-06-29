@@ -29,6 +29,8 @@ LOG_TYPE("route");
 static uint32_t route_counts[GR_MAX_IFACES][UINT_NUM_VALUES(gr_nh_origin_t)];
 static uint64_t route_prefixlens[GR_MAX_IFACES][RTE_FIB_MAXDEPTH + 1];
 
+//TO_OPTIMZE
+//static uint32_t max_routes_default = 1 << 10;
 static uint32_t max_routes_default = 1 << 16;
 
 // Derive num_tbl8 from max_routes for IPv4 DIR24_8.
