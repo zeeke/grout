@@ -33,6 +33,11 @@ static uint64_t route_prefixlens[GR_MAX_IFACES][RTE_IPV6_MAX_DEPTH + 1];
 
 static uint32_t max_routes_default = 1 << 16;
 
+// TO_OPTIMZE
+//static inline uint32_t fib6_auto_tbl8(uint32_t max_routes) {
+//	return max_routes < 256 ? 256 : max_routes *4;
+//}
+
 // Derive num_tbl8 from max_routes for IPv6 TRIE.
 // The trie uses 8-bit levels beyond the first 24 bits. IPv6 routes at
 // /48 consume up to 3 tbl8 groups each. Sharing reduces actual usage
