@@ -186,6 +186,9 @@ void grout_link_change(struct gr_iface *gr_if, bool new, bool startup) {
 			break;
 		}
 
+		if (zif_type == ZEBRA_IF_VXLAN && gr_if->mode != GR_IFACE_MODE_VRF)
+			l3vni_del_by_iface(gr_if->id);
+
 		dplane_ctx_set_ifp_bridge_ifindex(ctx, bridge_ifindex);
 		dplane_ctx_set_ifp_master_ifindex(ctx, IFINDEX_INTERNAL);
 		dplane_ctx_set_ifp_bond_ifindex(ctx, bond_ifindex);
@@ -223,8 +226,8 @@ void grout_link_change(struct gr_iface *gr_if, bool new, bool startup) {
 	} else {
 		dplane_ctx_set_op(ctx, DPLANE_OP_INTF_DELETE);
 		dplane_ctx_set_status(ctx, ZEBRA_DPLANE_REQUEST_QUEUED);
-		if (gr_vxlan != NULL && gr_if->mode == GR_IFACE_MODE_VRF)
-			l3vni_del(gr_if->base.vrf_id);
+		if (gr_vxlan != NULL)
+			l3vni_del_by_iface(gr_if->id);
 		remove_mapping_by_grout_ifindex(gr_if->id);
 	}
 

@@ -13,7 +13,7 @@
 // (grout_link_change, grout_add_nexthop, grout_neigh_update_ctx).
 // No locking required.
 
-// VRF -> VXLAN iface mapping ///////////////////////////////////////////////////
+// VRF -> VXLAN iface mapping (forward table) //////////////////////////////////
 
 PREDECL_HASH(l3vni_hash);
 
@@ -34,18 +34,48 @@ static uint32_t l3vni_hashfn(const struct l3vni_entry *e) {
 DECLARE_HASH(l3vni_hash, struct l3vni_entry, item, l3vni_cmp, l3vni_hashfn);
 static struct l3vni_hash_head l3vni_entries = INIT_HASH(l3vni_entries);
 
+// VXLAN iface -> VRF mapping (reverse table) //////////////////////////////////
+
+PREDECL_HASH(l3vni_rev);
+
+struct l3vni_rev_entry {
+	struct l3vni_rev_item item;
+	uint16_t iface_id;
+	uint16_t vrf_id;
+};
+
+static int l3vni_rev_cmp(const struct l3vni_rev_entry *a, const struct l3vni_rev_entry *b) {
+	return numcmp(a->iface_id, b->iface_id);
+}
+
+static uint32_t l3vni_rev_hashfn(const struct l3vni_rev_entry *e) {
+	return e->iface_id;
+}
+
+DECLARE_HASH(l3vni_rev, struct l3vni_rev_entry, item, l3vni_rev_cmp, l3vni_rev_hashfn);
+static struct l3vni_rev_head l3vni_rev_entries = INIT_HASH(l3vni_rev_entries);
+
 void l3vni_set(uint16_t vrf_id, uint16_t vxlan_iface_id) {
 	struct l3vni_entry *e, key = {.vrf_id = vrf_id};
 
 	e = l3vni_hash_find(&l3vni_entries, &key);
 	if (e != NULL) {
 		e->vxlan_iface_id = vxlan_iface_id;
-		return;
+	} else {
+		e = XCALLOC(MTYPE_GROUT_MEM, sizeof(*e));
+		e->vrf_id = vrf_id;
+		e->vxlan_iface_id = vxlan_iface_id;
+		l3vni_hash_add(&l3vni_entries, e);
 	}
-	e = XCALLOC(MTYPE_GROUT_MEM, sizeof(*e));
-	e->vrf_id = vrf_id;
-	e->vxlan_iface_id = vxlan_iface_id;
-	l3vni_hash_add(&l3vni_entries, e);
+
+	struct l3vni_rev_entry *r, rkey = {.iface_id = vxlan_iface_id};
+	r = l3vni_rev_find(&l3vni_rev_entries, &rkey);
+	if (r == NULL) {
+		r = XCALLOC(MTYPE_GROUT_MEM, sizeof(*r));
+		r->iface_id = vxlan_iface_id;
+		r->vrf_id = vrf_id;
+		l3vni_rev_add(&l3vni_rev_entries, r);
+	}
 }
 
 void l3vni_del(uint16_t vrf_id) {
@@ -55,6 +85,44 @@ void l3vni_del(uint16_t vrf_id) {
 	if (e != NULL) {
 		l3vni_hash_del(&l3vni_entries, e);
 		XFREE(MTYPE_GROUT_MEM, e);
+	}
+
+	struct l3vni_rev_entry *r;
+	frr_each_safe (l3vni_rev, &l3vni_rev_entries, r) {
+		if (r->vrf_id == vrf_id) {
+			l3vni_rev_del(&l3vni_rev_entries, r);
+			XFREE(MTYPE_GROUT_MEM, r);
+		}
+	}
+}
+
+void l3vni_del_by_iface(uint16_t iface_id) {
+	struct l3vni_rev_entry rkey = {.iface_id = iface_id};
+	struct l3vni_rev_entry *r = l3vni_rev_find(&l3vni_rev_entries, &rkey);
+
+	if (r == NULL)
+		return;
+
+	uint16_t vrf_id = r->vrf_id;
+	l3vni_rev_del(&l3vni_rev_entries, r);
+	XFREE(MTYPE_GROUT_MEM, r);
+
+	struct l3vni_entry fwd_key = {.vrf_id = vrf_id};
+	struct l3vni_entry *e = l3vni_hash_find(&l3vni_entries, &fwd_key);
+	if (e != NULL && e->vxlan_iface_id == iface_id) {
+		l3vni_hash_del(&l3vni_entries, e);
+		XFREE(MTYPE_GROUT_MEM, e);
+
+		// Restore forward mapping from another VXLAN in the same VRF.
+		frr_each (l3vni_rev, &l3vni_rev_entries, r) {
+			if (r->vrf_id == vrf_id) {
+				e = XCALLOC(MTYPE_GROUT_MEM, sizeof(*e));
+				e->vrf_id = vrf_id;
+				e->vxlan_iface_id = r->iface_id;
+				l3vni_hash_add(&l3vni_entries, e);
+				break;
+			}
+		}
 	}
 }
 
