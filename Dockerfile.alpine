@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+FROM alpine:3.21
+
+RUN apk add --no-cache \
+    build-base \
+    elfutils-dev \
+    git \
+    libedit-dev \
+    libevent-dev \
+    libmnl-dev \
+    linux-headers \
+    meson \
+    numactl-dev \
+    pkgconf \
+    py3-elftools \
+    python3
+
+WORKDIR /src
+COPY . .
+
+RUN meson setup build
+RUN ninja -C build grcli
