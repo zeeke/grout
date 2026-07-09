@@ -141,6 +141,30 @@ static int bond_promisc_set(struct iface *iface, bool enabled) {
 	return bond_all_members_set_flag(iface, GR_IFACE_F_PROMISC, enabled, iface_set_promisc);
 }
 
+static int bond_vlan_add(struct iface *iface, uint16_t vlan_id) {
+	struct iface_info_bond *bond = iface_info_bond(iface);
+	int ret;
+
+	for (uint8_t i = 0; i < bond->n_members; i++) {
+		if ((ret = iface_add_vlan(bond->members[i].iface, vlan_id)) < 0)
+			return ret;
+	}
+
+	return 0;
+}
+
+static int bond_vlan_del(struct iface *iface, uint16_t vlan_id) {
+	struct iface_info_bond *bond = iface_info_bond(iface);
+	int ret;
+
+	for (uint8_t i = 0; i < bond->n_members; i++) {
+		if ((ret = iface_del_vlan(bond->members[i].iface, vlan_id)) < 0)
+			return ret;
+	}
+
+	return 0;
+}
+
 static int bond_attach_member(struct iface *iface, struct iface *member) {
 	struct iface_info_bond *bond = iface_info_bond(iface);
 	static const struct rte_ether_addr zero = {0};
@@ -437,6 +461,8 @@ static const struct iface_type iface_type_bond = {
 	.del_eth_addr = bond_mac_del,
 	.set_mtu = bond_mtu_set,
 	.set_promisc = bond_promisc_set,
+	.add_vlan = bond_vlan_add,
+	.del_vlan = bond_vlan_del,
 	.to_api = bond_to_api,
 };
 

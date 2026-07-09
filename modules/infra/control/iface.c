@@ -653,6 +653,34 @@ int iface_set_up_down(struct iface *iface, bool up) {
 	return 0;
 }
 
+int iface_add_vlan(struct iface *iface, uint16_t vlan_id) {
+	const struct iface_type *type;
+
+	if (iface == NULL)
+		return errno_set(EINVAL);
+
+	type = iface_type_get(iface->type);
+	assert(type != NULL);
+	if (type->add_vlan == NULL)
+		return errno_set(EOPNOTSUPP);
+
+	return type->add_vlan(iface, vlan_id);
+}
+
+int iface_del_vlan(struct iface *iface, uint16_t vlan_id) {
+	const struct iface_type *type;
+
+	if (iface == NULL)
+		return errno_set(EINVAL);
+
+	type = iface_type_get(iface->type);
+	assert(type != NULL);
+	if (type->del_vlan == NULL)
+		return errno_set(EOPNOTSUPP);
+
+	return type->del_vlan(iface, vlan_id);
+}
+
 int iface_set_promisc(struct iface *iface, bool enabled) {
 	const struct iface_type *type;
 	int ret;

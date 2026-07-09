@@ -62,6 +62,8 @@ struct iface_type {
 	int (*set_up_down)(struct iface *, bool up);
 	int (*set_mtu)(struct iface *, uint16_t mtu);
 	int (*set_promisc)(struct iface *, bool enabled);
+	int (*add_vlan)(struct iface *, uint16_t vlan_id);
+	int (*del_vlan)(struct iface *, uint16_t vlan_id);
 	void (*to_api)(void *api_info, const struct iface *);
 	void (*metrics_collect)(struct metrics_ctx *, const struct iface *);
 };
@@ -86,6 +88,8 @@ int iface_del_eth_addr(struct iface *, const struct rte_ether_addr *);
 int iface_set_mtu(struct iface *, uint16_t mtu);
 int iface_set_up_down(struct iface *, bool up);
 int iface_set_promisc(struct iface *, bool enabled);
+int iface_add_vlan(struct iface *, uint16_t vlan_id);
+int iface_del_vlan(struct iface *, uint16_t vlan_id);
 uint16_t ifaces_count(gr_iface_type_t type_id);
 struct iface *iface_next(gr_iface_type_t type_id, const struct iface *prev);
 
