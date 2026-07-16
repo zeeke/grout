@@ -1,0 +1,23 @@
+RSS XXX -1 256
+RSS XXXallocate mempool mbuf_-1:0 reserved 256 (size 65535, mbuf_size 2048)
+RSS XXX -1 512
+RSS XXX -1 256
+RSS XXX -1 512
+RSS after start: 357260 kB
+RSS XXX 0 511
+RSS XXXallocate mempool mbuf_0:0 reserved 511 (size 65535, mbuf_size 2048)
+RSS XXX 0 256
+RSS after adding port: 881932 kB
+RSS XXX 0 511
+RSS XXX 0 256
+RSS XXX 0 256
+RSS after adding 2nd port: 881940 kB
+RSS after adding VRF: 1144092 kB
+RSS XXX 0 511
+RSS XXX 0 256
+RSS XXX 0 256
+RSS after adding port in vrf: 1144116 kB
+RSS XXX 0 256
+RSS XXX 0 256
+RSS XXX 0 256
+RSS XXX 0 256
