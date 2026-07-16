@@ -54,7 +54,7 @@ BuildRequires: pkgconf
 BuildRequires: python3-pyelftools
 BuildRequires: rdma-core-devel
 %if %{with frr} && %{without download}
-BuildRequires: frr-headers >= 10.5
+BuildRequires: frr-headers >= 10.6
 %endif
 %if %{with systemd}
 BuildRequires: systemd
