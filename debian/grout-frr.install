@@ -1,2 +1,3 @@
 /usr/share/man/man7/grout-frr.7
 /usr/lib/*/frr/modules/dplane_grout.so
+/usr/lib/systemd/system/frr.service.d/grout.conf

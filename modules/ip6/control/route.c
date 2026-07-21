@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright (c) 2024 Robin Jarry
 
+#include "config.h"
 #include "event.h"
 #include "iface.h"
 #include "ip6.h"
@@ -33,12 +34,9 @@ static uint64_t route_prefixlens[GR_MAX_IFACES][RTE_IPV6_MAX_DEPTH + 1];
 
 static uint32_t max_routes_default = 1 << 16;
 
-// Derive num_tbl8 from max_routes for IPv6 TRIE.
-// The trie uses 8-bit levels beyond the first 24 bits. IPv6 routes at
-// /48 consume up to 3 tbl8 groups each. Sharing reduces actual usage
-// but a ratio of 4x is needed to handle real-world prefix distributions
-// without exhaustion.
 static inline uint32_t fib6_auto_tbl8(uint32_t max_routes) {
+	if (gr_config.low_memory)
+		return max_routes < 64 ? 256 : max_routes * 4;
 	uint32_t n = max_routes * 4;
 	return n < 256 ? 256 : n;
 }
@@ -65,7 +63,7 @@ static struct rte_fib6 *get_fib6(uint16_t vrf_id) {
 
 static struct rte_fib6 *create_fib6(const struct iface *vrf) {
 	struct rte_fib6_conf conf = {
-		.type = RTE_FIB6_TRIE,
+		.type = gr_config.low_memory ? RTE_FIB6_DUMMY : RTE_FIB6_TRIE,
 		.default_nh = 0,
 		.max_routes = fib6_get_max_routes(vrf),
 		.rib_ext_sz = sizeof(gr_nh_origin_t),
@@ -832,9 +830,15 @@ static struct api_out fib6_info_list(const void *request, struct api_ctx *ctx) {
 	return api_out(0, 0, NULL);
 }
 
+static void route6_init(struct event_base *) {
+	if (gr_config.low_memory)
+		max_routes_default = 1 << 10;
+}
+
 static struct module route6_module = {
 	.name = "ip6_route",
 	.depends_on = "nexthop",
+	.init = route6_init,
 };
 
 static void fib6_fini(struct iface *vrf) {

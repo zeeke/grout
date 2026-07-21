@@ -36,6 +36,7 @@ LOG_TYPE("main");
 
 static void usage(void) {
 	printf("Usage: grout");
+	printf(" [-L]");
 	printf(" [-M ADDR:PORT]");
 	printf(" [-S]");
 	printf(" [-V]");
@@ -55,6 +56,7 @@ static void usage(void) {
 	printf("  Graph router version %s (%s).\n", GROUT_VERSION, rte_version());
 	puts("");
 	puts("options:");
+	puts("  -L, --low-memory                Reduce memory allocations for development.");
 	puts("  -M, --metrics unix:PATH | [tcp:]ADDR:PORT");
 	puts("                                 Serve openmetrics via HTTP on ADDR:PORT");
 	puts("                                 or create UNIX socket on PATH");
@@ -185,9 +187,10 @@ static bool parse_bool_env(const char *name) {
 static int parse_args(int argc, char **argv) {
 	int c;
 
-#define FLAGS ":M:Vhm:o:pSs:tu:vx"
+#define FLAGS ":LM:Vhm:o:pSs:tu:vx"
 	static struct option long_options[] = {
 		{"help", no_argument, NULL, 'h'},
+		{"low-memory", no_argument, NULL, 'L'},
 		{"max-mtu", required_argument, NULL, 'u'},
 		{"metrics", required_argument, NULL, 'M'},
 		{"poll-mode", no_argument, NULL, 'p'},
@@ -221,6 +224,9 @@ static int parse_args(int argc, char **argv) {
 		case 'h':
 			usage();
 			exit(EXIT_SUCCESS);
+			break;
+		case 'L':
+			gr_config.low_memory = true;
 			break;
 		case 'm':
 			if (parse_uint(&gr_config.api_sock_mode, optarg, 8, 0, 07777) < 0)

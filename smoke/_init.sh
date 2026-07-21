@@ -295,7 +295,7 @@ set -x
 if [ "$run_grout" = true ]; then
 	smoke_setenv ASAN_OPTIONS disable_coredump=0
 	if [ "$use_hardware_ports" = false ]; then
-		grout_extra_options+=" -t"
+		grout_extra_options+=" -t -L"
 	fi
 
 	: "${grout_memory:-""}"

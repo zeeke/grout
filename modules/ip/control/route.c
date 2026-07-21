@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright (c) 2024 Robin Jarry
 
+#include "config.h"
 #include "event.h"
 #include "iface.h"
 #include "ip4.h"
@@ -62,7 +63,7 @@ static struct rte_fib *get_fib(uint16_t vrf_id) {
 
 static struct rte_fib *create_fib(const struct iface *vrf) {
 	struct rte_fib_conf conf = {
-		.type = RTE_FIB_DIR24_8,
+		.type = gr_config.low_memory ? RTE_FIB_DUMMY : RTE_FIB_DIR24_8,
 		.default_nh = 0,
 		.max_routes = fib4_get_max_routes(vrf),
 		.rib_ext_sz = sizeof(gr_nh_origin_t),
@@ -76,6 +77,7 @@ static struct rte_fib *create_fib(const struct iface *vrf) {
 	char name[16];
 	int ret;
 
+	printf("RSS XXXcreate_fib\n");
 	snprintf(name, sizeof(name), "fib4_%x-%x", vrf->id, seq++);
 	fib = rte_fib_create(name, SOCKET_ID_ANY, &conf);
 	if (fib == NULL)
@@ -795,9 +797,15 @@ static struct api_out fib4_info_list(const void *request, struct api_ctx *ctx) {
 	return api_out(0, 0, NULL);
 }
 
+static void route4_init(struct event_base *) {
+	if (gr_config.low_memory)
+		max_routes_default = 1 << 10;
+}
+
 static struct module route4_module = {
 	.name = "ip_route",
 	.depends_on = "nexthop",
+	.init = route4_init,
 };
 
 static void fib4_fini(struct iface *vrf) {

@@ -17,6 +17,7 @@ struct mempool_tracker {
 
 #define MAX_MEMPOOL_PER_NUMA 32
 #define MEMPOOL_DEFAULT_SIZE (1 << 16) - 1
+#define MEMPOOL_LOW_MEM_SIZE (1 << 13) - 1
 #define ETHER_HDR_SIZE 14
 #define VLAN_HDR_SIZE 4
 
@@ -36,13 +37,19 @@ static int mt_sort(const void *p1, const void *p2) {
 // 1 mempool tracker for each numa + SOCKET_ID_ANY
 #define MT_COUNT RTE_MAX_NUMA_NODES + 1
 static struct mempool_tracker trackers[MT_COUNT][MAX_MEMPOOL_PER_NUMA];
-static uint32_t mempool_default_size = MEMPOOL_DEFAULT_SIZE;
+static uint32_t mempool_default_size;
 
 struct rte_mempool *gr_pktmbuf_pool_get(int8_t socket_id, uint32_t count) {
 	char mp_name[RTE_MEMPOOL_NAMESIZE];
 	struct rte_mempool *mp = NULL;
 	uint32_t alloc_size;
 	uint32_t mbuf_size;
+
+	if (mempool_default_size == 0) {
+		mempool_default_size = gr_config.low_memory ?
+			MEMPOOL_LOW_MEM_SIZE :
+			MEMPOOL_DEFAULT_SIZE;
+	}
 
 	if (socket_id < SOCKET_ID_ANY || socket_id >= RTE_MAX_NUMA_NODES)
 		return errno_set_null(EINVAL);
@@ -69,6 +76,13 @@ struct rte_mempool *gr_pktmbuf_pool_get(int8_t socket_id, uint32_t count) {
 			    count,
 			    alloc_size,
 			    mbuf_size);
+
+			//printf("RSS XXXallocate mempool %s reserved %u (size %u, mbuf_size %u)\n",
+			//    mp_name,
+			//    count,
+			//    alloc_size,
+			//    mbuf_size);
+
 			mt->mp = rte_pktmbuf_pool_create(
 				mp_name,
 				alloc_size,

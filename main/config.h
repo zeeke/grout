@@ -19,6 +19,7 @@ struct gr_config {
 	unsigned max_mtu;
 	bool test_mode;
 	bool poll_mode;
+	bool low_memory;
 	bool log_syslog;
 	bool log_packets;
 	bool override_default_route;

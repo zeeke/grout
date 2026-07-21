@@ -161,6 +161,7 @@ rm -rf %{buildroot}%{_sysconfdir} %{buildroot}%{_unitdir}
 %doc README.md
 %license licenses/GPL-2.0-or-later.txt
 %attr(755, root, root) %{_libdir}/frr/modules/dplane_grout.so
+%attr(644, root, root) %{_unitdir}/frr.service.d/grout.conf
 %if %{with docs}
 %attr(644, root, root) %{_mandir}/man7/grout-frr.7*
 %endif

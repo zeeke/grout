@@ -299,7 +299,16 @@ static int grout_gr_nexthop_to_frr_nexthop(
 			break;
 		}
 
-		nexthop_add_srv6_seg6(nh, (void *)sr6->seglist, sr6->n_seglist, encap_behavior);
+		nexthop_add_srv6_seg6(
+			nh,
+			(void *)sr6->seglist,
+			sr6->n_seglist,
+			encap_behavior
+#if CURRENT_FRR_VERSION >= MAKE_FRRVERSION(10, 8, 0)
+			,
+			NULL
+#endif
+		);
 		nh->type = nh->ifindex ? NEXTHOP_TYPE_IPV6_IFINDEX : NEXTHOP_TYPE_IPV6;
 		*nh_family = AF_INET6;
 		break;
@@ -1060,10 +1069,12 @@ enum zebra_dplane_result grout_neigh_update_ctx(struct zebra_dplane_ctx *ctx) {
 	bool add = dplane_ctx_get_op(ctx) != DPLANE_OP_NEIGH_DELETE;
 	uint16_t vrf_id = vrf_frr_to_grout(dplane_ctx_get_vrf(ctx));
 
+#if CURRENT_FRR_VERSION < MAKE_FRRVERSION(10, 6, 0)
 	if (addr->ipa_type != IPADDR_V4) {
 		gr_log_debug("only IPv4 VTEP addresses supported, skip");
 		return ZEBRA_DPLANE_REQUEST_SUCCESS;
 	}
+#endif
 
 	// Cache the RMAC for later use by grout_add_nexthop. We cannot
 	// create a separate nexthop here because grout's L3 nexthop hash
