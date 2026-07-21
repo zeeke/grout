@@ -11,7 +11,7 @@ rss_kb() {
 	ps -o rss= --pid "$grout_pid"
 }
 
-grcli route config set default rib4-routes 128 rib6-routes 128
+grcli route config set default rib4-routes 64 rib6-routes 64
 grcli nexthop config set max 128
 grcli fdb config set max 128
 grcli conntrack config set max 128
@@ -27,7 +27,7 @@ grcli interface add port p5 devargs net_null3,no-rx=1 qsize 64
 rss_after_port=$(rss_kb)
 echo "RSS after adding 2nd port:    ${rss_after_port} kB"
 
-grcli interface add vrf memorytestvrf rib4-routes 128 fib4-tbl8 128 rib6-routes 128 fib6-tbl8 128
+grcli interface add vrf memorytestvrf rib4-routes 64 fib4-tbl8 64 rib6-routes 64 fib6-tbl8 64
 rss_after_vrf=$(rss_kb)
 echo "RSS after adding VRF:         ${rss_after_vrf} kB"
 

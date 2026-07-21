@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright (c) 2024 Robin Jarry
 
+#include "config.h"
 #include "control_queue.h"
 #include "event.h"
 #include "id_pool.h"
@@ -18,9 +19,8 @@
 
 LOG_TYPE("nexthop");
 
-//TO_OPTIMZE
-//#define DEFAULT_MAX_COUNT (1 << 14)
 #define DEFAULT_MAX_COUNT (1 << 17)
+#define LOW_MEM_MAX_COUNT (1 << 14)
 #define DEFAULT_MAX_HELD_PKTS 256
 #define DEFAULT_LIFETIME_REACHABLE (20 * 60)
 #define DEFAULT_LIFETIME_UNREACHABLE 60
@@ -525,6 +525,8 @@ void nexthop_incref(struct nexthop *nh) {
 }
 
 static void nh_init(struct event_base *) {
+	if (gr_config.low_memory)
+		nh_conf.max_count = LOW_MEM_MAX_COUNT;
 	if (nexthop_config_allocate(&nh_conf) < 0)
 		ABORT("nexthop_config_allocate failed: %s", strerror(errno));
 }
