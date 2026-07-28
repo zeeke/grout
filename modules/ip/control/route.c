@@ -799,7 +799,7 @@ static struct api_out fib4_info_list(const void *request, struct api_ctx *ctx) {
 
 static void route4_init(struct event_base *) {
 	if (gr_config.low_memory)
-		max_routes_default = 1 << 10;
+		max_routes_default = 1 << 16;
 }
 
 static struct module route4_module = {

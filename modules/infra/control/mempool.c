@@ -17,7 +17,7 @@ struct mempool_tracker {
 
 #define MAX_MEMPOOL_PER_NUMA 32
 #define MEMPOOL_DEFAULT_SIZE (1 << 16) - 1
-#define MEMPOOL_LOW_MEM_SIZE (1 << 13) - 1
+#define MEMPOOL_LOW_MEM_SIZE (1 << 16) - 1
 #define ETHER_HDR_SIZE 14
 #define VLAN_HDR_SIZE 4
 
