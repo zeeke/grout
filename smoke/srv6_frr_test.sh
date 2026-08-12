@@ -61,3 +61,32 @@ set_srv6_localsid locator_grout fd00:202 fd00:202:100::
 ip netns exec n0 ping -i0.01 -c3 -n 192.168.60.1
 # check that sid is reachable
 ip netns exec n1 ping6 -i0.01 -c3 -n fd00:202:100::
+
+#
+# IPv6-in-SRv6 encapsulation test
+#
+# Full round-trip IPv6 ping through SRv6.  This exercises the IPv6
+# payload length calculation in srv6_output: the inner payload_len
+# excludes the 40-byte header (unlike IPv4 total_length), so the
+# encap code must add sizeof(rte_ipv6_hdr).  A wrong outer payload
+# length causes the receiving kernel to truncate the inner packet.
+#
+
+# client side: IPv6 addresses
+ip -n n0 addr add fd00:61::2/64 dev x-p0
+set_ip_address p0 fd00:61::1/64
+ip -n n0 -6 route add fd00:60::/64 via fd00:61::1 dev x-p0
+
+# grout encap: IPv6 traffic toward fd00:60::/64 goes through SRv6
+set_srv6_route fd00:60::/64 p1 fd00:202:600::
+
+# n1 decaps with End.DT6 in a VRF and replies via plain IPv6
+ip netns exec n1 sysctl -qw net.vrf.strict_mode=1
+ip -n n1 link add vrf10 type vrf table 10
+ip -n n1 link set vrf10 up
+ip -n n1 -6 route add fd00:202:600:: encap seg6local action End.DT6 vrftable 10 dev x-p1
+ip -n n1 addr add fd00:60::1/128 dev vrf10
+ip -n n1 -6 route add fd00:61::/64 via fd00:102::1 dev x-p1 table 10
+
+# test
+ip netns exec n0 ping6 -i0.01 -c3 -n fd00:60::1
