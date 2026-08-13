@@ -30,3 +30,8 @@ option(
   'dpdk_cpu', type: 'string', value: 'auto',
   description: 'Value of DPDK cpu_instruction_set when compiled as a subproject.',
 )
+
+option(
+  'cli_only', type: 'boolean', value: false,
+  description: 'Only build grcli, skip grout daemon and its dependencies (DPDK, libevent, etc.).',
+)

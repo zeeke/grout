@@ -27,7 +27,8 @@ bridge_show(struct gr_api_client *c, const struct gr_iface *iface, struct gr_obj
 		(bridge->flags & GR_BRIDGE_F_NO_LEARN) ? "no_" : ""
 	);
 	gr_object_field(o, "ageing_time", GR_DISP_INT, "%u", bridge->ageing_time);
-	gr_object_field(o, "mac", 0, ETH_F, &bridge->mac);
+	char _eth[ETH_BUFSZ];
+	gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &bridge->mac));
 	gr_object_array_open(o, "bridge_members");
 	for (uint8_t i = 0; i < bridge->n_members; i++)
 		gr_object_array_item(o, 0, "%s", iface_name_from_id(c, bridge->members[i]));

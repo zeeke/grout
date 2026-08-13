@@ -100,8 +100,9 @@ static cmd_status_t srv6_tunsrc_show(struct gr_api_client *c, const struct ec_pn
 		return CMD_ERROR;
 
 	resp = resp_ptr;
+	char _ip6[IP6_BUFSZ];
 	struct gr_object *o = gr_object_new(NULL);
-	gr_object_field(o, "tunsrc", 0, IP6_F, &resp->addr);
+	gr_object_field(o, "tunsrc", 0, "%s", ip6_format(_ip6, &resp->addr));
 	gr_object_free(o);
 
 	free(resp_ptr);
@@ -119,6 +120,7 @@ static void fill_table_srv6(struct gr_table *table, unsigned start_col, const vo
 	const struct gr_nexthop_info_srv6 *sr6 = info;
 	char buf[512] = "";
 	ssize_t n = 0;
+	char _ip6[IP6_BUFSZ];
 
 	gr_table_cell(
 		table,
@@ -127,9 +129,9 @@ static void fill_table_srv6(struct gr_table *table, unsigned start_col, const vo
 		sr6->encap_behavior == SR_H_ENCAPS_RED ? "h.encaps.red" : "h.encaps"
 	);
 	if (!rte_ipv6_addr_is_unspec(&sr6->encap_src))
-		gr_table_cell(table, start_col + 1, IP6_F, &sr6->encap_src);
+		gr_table_cell(table, start_col + 1, "%s", ip6_format(_ip6, &sr6->encap_src));
 	for (unsigned i = 0; i < sr6->n_seglist; i++) {
-		SAFE_BUF(snprintf, sizeof(buf), "%s" IP6_F, i > 0 ? " " : "", &sr6->seglist[i]);
+		SAFE_BUF(snprintf, sizeof(buf), "%s%s", i > 0 ? " " : "", ip6_format(_ip6, &sr6->seglist[i]));
 		if (sizeof(buf) - n < 50) {
 			SAFE_BUF(snprintf, sizeof(buf), " ... (%u more)", sr6->n_seglist - i - 1);
 			break;
@@ -142,6 +144,7 @@ err:
 
 static void fill_object_srv6(struct gr_object *o, const void *info) {
 	const struct gr_nexthop_info_srv6 *sr6 = info;
+	char _ip6[IP6_BUFSZ];
 
 	gr_object_field(
 		o,
@@ -151,10 +154,10 @@ static void fill_object_srv6(struct gr_object *o, const void *info) {
 		sr6->encap_behavior == SR_H_ENCAPS_RED ? "h.encaps.red" : "h.encaps"
 	);
 	if (!rte_ipv6_addr_is_unspec(&sr6->encap_src))
-		gr_object_field(o, "encap_src", 0, IP6_F, &sr6->encap_src);
+		gr_object_field(o, "encap_src", 0, "%s", ip6_format(_ip6, &sr6->encap_src));
 	gr_object_array_open(o, "seglist");
 	for (unsigned i = 0; i < sr6->n_seglist; i++)
-		gr_object_array_item(o, 0, IP6_F, &sr6->seglist[i]);
+		gr_object_array_item(o, 0, "%s", ip6_format(_ip6, &sr6->seglist[i]));
 	gr_object_array_close(o);
 }
 

@@ -124,8 +124,11 @@ static cmd_status_t fdb_show(struct gr_api_client *c, const struct ec_pnode *p) 
 	gr_table_column(table, "AGE", GR_DISP_RIGHT | GR_DISP_INT); // 6
 
 	gr_api_client_stream_foreach (fdb, ret, c, GR_FDB_LIST, sizeof(req), &req) {
+		char _eth[ETH_BUFSZ];
+		char _addr[ADDR_BUFSZ];
+
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, fdb->bridge_id));
-		gr_table_cell(table, 1, ETH_F, &fdb->mac);
+		gr_table_cell(table, 1, "%s", eth_format(_eth, &fdb->mac));
 
 		if (fdb->vlan_id != 0)
 			gr_table_cell(table, 2, "%u", fdb->vlan_id);
@@ -133,7 +136,7 @@ static cmd_status_t fdb_show(struct gr_api_client *c, const struct ec_pnode *p) 
 		gr_table_cell(table, 3, "%s", iface_name_from_id(c, fdb->iface_id));
 
 		if (fdb->vtep.af != GR_AF_UNSPEC)
-			gr_table_cell(table, 4, ADDR_F, ADDR_W(fdb->vtep.af), &fdb->vtep.addr);
+			gr_table_cell(table, 4, "%s", addr_format(_addr, ADDR_W(fdb->vtep.af), &fdb->vtep.addr));
 
 		if (fdb_format_flags(flags, sizeof(flags), fdb->flags))
 			gr_table_cell(table, 5, "%s", flags);
@@ -308,15 +311,17 @@ static void fdb_event_print(uint32_t event, const void *obj) {
 		break;
 	}
 
-	printf("fdb %s: bridge=%s " ETH_F,
+	char _eth[ETH_BUFSZ];
+	char _addr[ADDR_BUFSZ];
+	printf("fdb %s: bridge=%s %s",
 	       action,
 	       iface_name_from_id(NULL, fdb->bridge_id),
-	       &fdb->mac);
+	       eth_format(_eth, &fdb->mac));
 	if (fdb->vlan_id != 0)
 		printf(" vlan=%u", fdb->vlan_id);
 	printf(" iface=%s", iface_name_from_id(NULL, fdb->iface_id));
 	if (fdb->vtep.af != GR_AF_UNSPEC)
-		printf(" vtep=" ADDR_F, ADDR_W(fdb->vtep.af), &fdb->vtep.addr);
+		printf(" vtep=%s", addr_format(_addr, ADDR_W(fdb->vtep.af), &fdb->vtep.addr));
 	if (fdb_format_flags(flags, sizeof(flags), fdb->flags))
 		printf(" %s", flags);
 	printf("\n");

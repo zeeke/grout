@@ -32,6 +32,7 @@ static cmd_status_t icmp_send(
 ) {
 	struct gr_ip6_icmp_recv_resp *reply_resp;
 	struct gr_ip6_icmp_recv_req reply_req;
+	char _ip6[IP6_BUFSZ];
 	int i, timeout, ret, errors;
 	void *resp_ptr = NULL;
 	const char *errdesc;
@@ -81,16 +82,16 @@ static cmd_status_t icmp_send(
 			switch (reply_resp->type) {
 			case ICMP6_TYPE_ECHO_REPLY:
 				if (!mode_traceroute) {
-					printf("reply from " IP6_F ": icmp_seq=%d ttl=%d "
+					printf("reply from %s: icmp_seq=%d ttl=%d "
 					       "time=%.3f ms\n",
-					       &reply_resp->src_addr,
+					       ip6_format(_ip6, &reply_resp->src_addr),
 					       reply_resp->seq_num,
 					       reply_resp->ttl,
 					       roundtrip_ms);
 				} else {
-					printf("%2d  " IP6_F " time=%.3f ms\n",
+					printf("%2d  %s time=%.3f ms\n",
 					       i,
-					       &reply_resp->src_addr,
+					       ip6_format(_ip6, &reply_resp->src_addr),
 					       roundtrip_ms);
 					stop = true;
 					errors = 0;
@@ -117,8 +118,8 @@ static cmd_status_t icmp_send(
 			}
 			if (errno && !mode_traceroute) {
 				errors++;
-				printf("reply from " IP6_F ": icmp_seq=%d ttl=%d:%s\n",
-				       &reply_resp->src_addr,
+				printf("reply from %s: icmp_seq=%d ttl=%d:%s\n",
+				       ip6_format(_ip6, &reply_resp->src_addr),
 				       reply_resp->seq_num,
 				       reply_resp->ttl,
 				       errdesc);
@@ -126,9 +127,9 @@ static cmd_status_t icmp_send(
 				errors++;
 				if (errno == ETIMEDOUT)
 					errdesc = "";
-				printf("%2d  " IP6_F " time=%.3f ms%s\n",
+				printf("%2d  %s time=%.3f ms%s\n",
 				       i,
-				       &reply_resp->src_addr,
+				       ip6_format(_ip6, &reply_resp->src_addr),
 				       roundtrip_ms,
 				       errdesc);
 			}

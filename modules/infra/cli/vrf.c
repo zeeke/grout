@@ -21,8 +21,9 @@
 
 static void vrf_show(struct gr_api_client *, const struct gr_iface *iface, struct gr_object *o) {
 	const struct gr_iface_info_vrf *info = PAYLOAD(iface);
+	char _eth[ETH_BUFSZ];
 
-	gr_object_field(o, "mac", 0, ETH_F, &info->mac);
+	gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &info->mac));
 	gr_object_field(o, "rib4_max_routes", GR_DISP_INT, "%u", info->ipv4.max_routes);
 	gr_object_field(o, "fib4_num_tbl8", GR_DISP_INT, "%u", info->ipv4.num_tbl8);
 	gr_object_field(o, "rib6_max_routes", GR_DISP_INT, "%u", info->ipv6.max_routes);

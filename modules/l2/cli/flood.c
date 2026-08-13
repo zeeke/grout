@@ -67,10 +67,12 @@ static cmd_status_t vtep_show(struct gr_api_client *c, const struct ec_pnode *p)
 	gr_table_column(table, "ADDR", GR_DISP_LEFT); // 2
 
 	gr_api_client_stream_foreach (entry, ret, c, GR_FLOOD_LIST, sizeof(req), &req) {
+		char _addr[ADDR_BUFSZ];
+
 		gr_table_cell(table, 0, "%u", entry->vtep.vni);
 		gr_table_cell(table, 1, "%s", iface_name_from_id(c, entry->vrf_id));
 		gr_table_cell(
-			table, 2, ADDR_F, ADDR_W(entry->vtep.addr.af), &entry->vtep.addr.addr
+			table, 2, "%s", addr_format(_addr, ADDR_W(entry->vtep.addr.af), &entry->vtep.addr.addr)
 		);
 
 		if (gr_table_print_row(table) < 0)
@@ -156,11 +158,11 @@ static void flood_event_print(uint32_t event, const void *obj) {
 	       action,
 	       gr_flood_type_name(entry->type),
 	       iface_name_from_id(NULL, entry->vrf_id));
+	char _addr[ADDR_BUFSZ];
 	switch (entry->type) {
 	case GR_FLOOD_T_VTEP:
-		printf(" " ADDR_F " vni=%u",
-		       ADDR_W(entry->vtep.addr.af),
-		       &entry->vtep.addr.addr,
+		printf(" %s vni=%u",
+		       addr_format(_addr, ADDR_W(entry->vtep.addr.af), &entry->vtep.addr.addr),
 		       entry->vtep.vni);
 	}
 	printf("\n");

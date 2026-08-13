@@ -57,9 +57,11 @@ route4_list(struct gr_api_client *c, uint16_t vrf_id, struct gr_table *table, ui
 
 	num = 0;
 	gr_api_client_stream_foreach (route, ret, c, GR_IP4_ROUTE_LIST, sizeof(req), &req) {
+		char _net4[IP4_NET_BUFSZ];
+
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, route->vrf_id));
 		gr_table_cell(table, 1, "%s", gr_af_name(GR_AF_IP4));
-		gr_table_cell(table, 2, IP4_NET_F, &route->dest);
+		gr_table_cell(table, 2, "%s", ip4_net_format(_net4, &route->dest));
 		gr_table_cell(table, 3, "%s", gr_nh_origin_name(route->origin));
 		if (cli_nexthop_format(buf, sizeof(buf), c, &route->nh, true) > 0)
 			gr_table_cell(table, 4, "%s", buf);
@@ -87,8 +89,9 @@ static cmd_status_t route4_get(struct gr_api_client *c, const struct ec_pnode *p
 		return CMD_ERROR;
 
 	resp = resp_ptr;
+	char _ip4[IP4_BUFSZ];
 	struct gr_object *o = gr_object_new(NULL);
-	gr_object_field(o, "destination", 0, IP4_F, &req.dest);
+	gr_object_field(o, "destination", 0, "%s", ip4_format(_ip4, &req.dest));
 	gr_object_open(o, "nexthop");
 	cli_nexthop_fill_object(o, c, &resp->nh, true);
 	gr_object_close(o);
@@ -174,12 +177,13 @@ static void route_event_print(uint32_t event, const void *obj) {
 		break;
 	}
 
+	char _net4[IP4_NET_BUFSZ];
 	buf[0] = '\0';
 	cli_nexthop_format(buf, sizeof(buf), NULL, &r->nh, true);
-	printf("route4 %s: vrf=%s " IP4_NET_F " origin=%s via %s\n",
+	printf("route4 %s: vrf=%s %s origin=%s via %s\n",
 	       action,
 	       iface_name_from_id(NULL, r->vrf_id),
-	       &r->dest,
+	       ip4_net_format(_net4, &r->dest),
 	       gr_nh_origin_name(r->origin),
 	       buf);
 }

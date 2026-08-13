@@ -17,11 +17,12 @@
 
 static void bond_show(struct gr_api_client *c, const struct gr_iface *iface, struct gr_object *o) {
 	const struct gr_iface_info_bond *bond = PAYLOAD(iface);
+	char _eth[ETH_BUFSZ];
 
 	gr_object_field(o, "bond_mode", 0, "%s", gr_bond_mode_name(bond->mode));
 	if (bond->mode == GR_BOND_MODE_LACP)
 		gr_object_field(o, "bond_algo", 0, "%s", gr_bond_algo_name(bond->algo));
-	gr_object_field(o, "mac", 0, ETH_F, &bond->mac);
+	gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &bond->mac));
 	gr_object_array_open(o, "bond_members");
 	for (uint8_t i = 0; i < bond->n_members; i++) {
 		const struct gr_bond_member *m = &bond->members[i];
@@ -37,7 +38,7 @@ static void bond_show(struct gr_api_client *c, const struct gr_iface *iface, str
 		if (member->type == GR_IFACE_TYPE_PORT) {
 			const struct gr_iface_info_port *port;
 			port = (const struct gr_iface_info_port *)member->info;
-			gr_object_field(o, "mac", 0, ETH_F, &port->mac);
+			gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &port->mac));
 			if (member->speed == UINT32_MAX)
 				gr_object_field(o, "speed", 0, "unknown");
 			else
@@ -53,15 +54,16 @@ static void bond_show(struct gr_api_client *c, const struct gr_iface *iface, str
 static void
 bond_list_info(struct gr_api_client *c, const struct gr_iface *iface, char *buf, size_t len) {
 	const struct gr_iface_info_bond *bond = PAYLOAD(iface);
+	char _eth[ETH_BUFSZ];
 	uint16_t member_iface_id;
 	size_t n = 0;
 
 	SAFE_BUF(
 		snprintf,
 		len,
-		"mode=%s mac=" ETH_F " members=%u",
+		"mode=%s mac=%s members=%u",
 		gr_bond_mode_name(bond->mode),
-		&bond->mac,
+		eth_format(_eth, &bond->mac),
 		bond->n_members
 	);
 

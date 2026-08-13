@@ -33,13 +33,14 @@ static cmd_status_t conn_list(struct gr_api_client *c, const struct ec_pnode *) 
 
 	now = gr_clock_ns();
 
+	char _ip4[IP4_BUFSZ];
 	gr_api_client_stream_foreach (conn, ret, c, GR_CONNTRACK_LIST, 0, NULL) {
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, conn->iface_id));
 		gr_table_cell(table, 1, "0x%08x", conn->id);
 		gr_table_cell(table, 2, "%s", gr_conn_state_name(conn->state));
 		gr_table_cell(table, 3, "fwd");
-		gr_table_cell(table, 4, IP4_F, &conn->fwd_flow.src);
-		gr_table_cell(table, 5, IP4_F, &conn->fwd_flow.dst);
+		gr_table_cell(table, 4, "%s", ip4_format(_ip4, &conn->fwd_flow.src));
+		gr_table_cell(table, 5, "%s", ip4_format(_ip4, &conn->fwd_flow.dst));
 
 		switch (conn->proto) {
 		case IPPROTO_ICMP:
@@ -61,8 +62,8 @@ static cmd_status_t conn_list(struct gr_api_client *c, const struct ec_pnode *) 
 			break;
 
 		gr_table_cell(table, 3, "rev");
-		gr_table_cell(table, 4, IP4_F, &conn->rev_flow.src);
-		gr_table_cell(table, 5, IP4_F, &conn->rev_flow.dst);
+		gr_table_cell(table, 4, "%s", ip4_format(_ip4, &conn->rev_flow.src));
+		gr_table_cell(table, 5, "%s", ip4_format(_ip4, &conn->rev_flow.dst));
 		gr_table_cell(table, 7, "%u", ntohs(conn->rev_flow.src_id));
 		gr_table_cell(table, 8, "%u", ntohs(conn->rev_flow.dst_id));
 

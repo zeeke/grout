@@ -29,20 +29,24 @@ grout_header = custom_target(
   install_tag: 'man',
 )
 
-api_src = files(
-  'printf.c',
-  'string.c',
-)
+api_src = files('string.c')
+if compiler.has_function('register_printf_specifier', prefix: '#include <printf.h>')
+  api_src += files('printf.c')
+endif
 src += api_src
 cli_src += api_src
 
 api_inc += include_directories('.')
 
+if compiler.has_function('register_printf_specifier', prefix: '#include <printf.h>')
+  tests += [
+    {
+      'sources': files('printf_test.c', 'printf.c'),
+      'link_args': [],
+    },
+  ]
+endif
 tests += [
-  {
-    'sources': files('printf_test.c', 'printf.c'),
-    'link_args': [],
-  },
   {
     'sources': files('string_test.c', 'string.c'),
     'link_args': [],

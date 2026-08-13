@@ -55,10 +55,11 @@ static cmd_status_t dnat44_list(struct gr_api_client *c, const struct ec_pnode *
 	gr_table_column(table, "DESTINATION", GR_DISP_LEFT); // 1
 	gr_table_column(table, "REPLACE", GR_DISP_LEFT); // 2
 
+	char _ip4[IP4_BUFSZ];
 	gr_api_client_stream_foreach (pol, ret, c, GR_DNAT44_LIST, sizeof(req), &req) {
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, pol->iface_id));
-		gr_table_cell(table, 1, IP4_F, &pol->match);
-		gr_table_cell(table, 2, IP4_F, &pol->replace);
+		gr_table_cell(table, 1, "%s", ip4_format(_ip4, &pol->match));
+		gr_table_cell(table, 2, "%s", ip4_format(_ip4, &pol->replace));
 
 		if (gr_table_print_row(table) < 0)
 			break;
@@ -76,14 +77,16 @@ static void add_columns_dnat(struct gr_table *table) {
 
 static void fill_table_dnat(struct gr_table *table, unsigned start_col, const void *info) {
 	const struct gr_nexthop_info_dnat *dnat = info;
-	gr_table_cell(table, start_col, IP4_F, &dnat->match);
-	gr_table_cell(table, start_col + 1, IP4_F, &dnat->replace);
+	char _ip4[IP4_BUFSZ];
+	gr_table_cell(table, start_col, "%s", ip4_format(_ip4, &dnat->match));
+	gr_table_cell(table, start_col + 1, "%s", ip4_format(_ip4, &dnat->replace));
 }
 
 static void fill_object_dnat(struct gr_object *o, const void *info) {
 	const struct gr_nexthop_info_dnat *dnat = info;
-	gr_object_field(o, "match", 0, IP4_F, &dnat->match);
-	gr_object_field(o, "replace", 0, IP4_F, &dnat->replace);
+	char _ip4[IP4_BUFSZ];
+	gr_object_field(o, "match", 0, "%s", ip4_format(_ip4, &dnat->match));
+	gr_object_field(o, "replace", 0, "%s", ip4_format(_ip4, &dnat->replace));
 }
 
 static struct cli_nexthop_formatter dnat_formatter = {

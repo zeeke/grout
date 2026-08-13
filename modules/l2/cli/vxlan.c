@@ -16,24 +16,26 @@
 static void vxlan_show(struct gr_api_client *c, const struct gr_iface *iface, struct gr_object *o) {
 	const struct gr_iface_info_vxlan *vxlan = (const struct gr_iface_info_vxlan *)iface->info;
 
+	char _addr[ADDR_BUFSZ];
+	char _eth[ETH_BUFSZ];
 	gr_object_field(o, "vni", GR_DISP_INT, "%u", vxlan->vni);
-	gr_object_field(o, "local", 0, ADDR_F, ADDR_W(vxlan->local.af), &vxlan->local.addr);
+	gr_object_field(o, "local", 0, "%s", addr_format(_addr, ADDR_W(vxlan->local.af), &vxlan->local.addr));
 	gr_object_field(o, "encap_vrf", 0, "%s", iface_name_from_id(c, vxlan->encap_vrf_id));
 	gr_object_field(o, "dst_port", GR_DISP_INT, "%u", vxlan->dst_port);
-	gr_object_field(o, "mac", 0, ETH_F, &vxlan->mac);
+	gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &vxlan->mac));
 }
 
 static void
 vxlan_list_info(struct gr_api_client *c, const struct gr_iface *iface, char *buf, size_t len) {
 	const struct gr_iface_info_vxlan *vxlan = (const struct gr_iface_info_vxlan *)iface->info;
 
+	char _addr[ADDR_BUFSZ];
 	snprintf(
 		buf,
 		len,
-		"vni=%u local=" ADDR_F " encap_vrf=%s",
+		"vni=%u local=%s encap_vrf=%s",
 		vxlan->vni,
-		ADDR_W(vxlan->local.af),
-		&vxlan->local.addr,
+		addr_format(_addr, ADDR_W(vxlan->local.af), &vxlan->local.addr),
 		iface_name_from_id(c, vxlan->encap_vrf_id)
 	);
 }

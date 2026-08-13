@@ -12,7 +12,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #ifdef __GROUT_MAIN__
@@ -107,29 +106,25 @@ static inline bool ip4_addr_is_mcast(const ip4_addr_t ip) {
 
 // Parse IPv4 network string (e.g. "192.168.1.0/24") into ip4_net structure.
 static inline int ip4_net_parse(const char *s, struct ip4_net *net, bool zero_mask) {
-	char *addr = NULL;
-	int ret = -1;
+	char addr[INET_ADDRSTRLEN];
 
-	if (sscanf(s, "%m[0-9.]/%hhu%*c", &addr, &net->prefixlen) != 2) {
+	if (sscanf(s, "%15[0-9.]/%hhu%*c", addr, &net->prefixlen) != 2) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (net->prefixlen > 32) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (inet_pton(AF_INET, addr, &net->ip) != 1) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (zero_mask) {
 		// mask non network bits to zero
 		net->ip &= htonl((uint32_t)(UINT64_MAX << (32 - net->prefixlen)));
 	}
-	ret = 0;
-out:
-	free(addr);
-	return ret;
+	return 0;
 }
 
 #define IPV6_ATOM "([A-Fa-f0-9]{1,4})"
@@ -146,29 +141,25 @@ struct ip6_net {
 
 // Parse IPv6 network string (e.g. "2001:db8::/32") into ip6_net structure.
 static inline int ip6_net_parse(const char *s, struct ip6_net *net, bool zero_mask) {
-	char *addr = NULL;
-	int ret = -1;
+	char addr[INET6_ADDRSTRLEN];
 
-	if (sscanf(s, "%m[A-Fa-f0-9:.]/%hhu%*c", &addr, &net->prefixlen) != 2) {
+	if (sscanf(s, "%45[A-Fa-f0-9:.]/%hhu%*c", addr, &net->prefixlen) != 2) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (net->prefixlen > RTE_IPV6_MAX_DEPTH) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (inet_pton(AF_INET6, addr, &net->ip) != 1) {
 		errno = EINVAL;
-		goto out;
+		return -1;
 	}
 	if (zero_mask) {
 		// mask non network bits to zero
 		rte_ipv6_addr_mask(&net->ip, net->prefixlen);
 	}
-	ret = 0;
-out:
-	free(addr);
-	return ret;
+	return 0;
 }
 
 #define IP_ANY_RE "^(" __IPV4_RE "|" __IPV6_RE ")$"
@@ -197,4 +188,85 @@ static inline bool l3_addr_eq(const struct l3_addr *a, const struct l3_addr *b) 
 		break;
 	}
 	return true;
+}
+
+// Portable address formatting functions.
+// Each returns buf for inline use in printf: printf("%s", eth_format(buf, &mac));
+
+#define ETH_BUFSZ 18
+#define IP4_BUFSZ INET_ADDRSTRLEN
+#define IP6_BUFSZ INET6_ADDRSTRLEN
+#define IP4_NET_BUFSZ (INET_ADDRSTRLEN + 3)
+#define IP6_NET_BUFSZ (INET6_ADDRSTRLEN + 4)
+#define ADDR_BUFSZ IP6_NET_BUFSZ
+
+static inline const char *eth_format(char buf[static ETH_BUFSZ], const struct rte_ether_addr *mac) {
+	if (mac == NULL)
+		return "(nil)";
+	snprintf(
+		buf,
+		ETH_BUFSZ,
+		"%02hhx:%02hhx:%02hhx:%02hhx:%02hhx:%02hhx",
+		mac->addr_bytes[0],
+		mac->addr_bytes[1],
+		mac->addr_bytes[2],
+		mac->addr_bytes[3],
+		mac->addr_bytes[4],
+		mac->addr_bytes[5]
+	);
+	return buf;
+}
+
+static inline const char *ip4_format(char buf[static IP4_BUFSZ], const ip4_addr_t *ip) {
+	if (ip == NULL)
+		return "(nil)";
+	inet_ntop(AF_INET, ip, buf, IP4_BUFSZ);
+	return buf;
+}
+
+static inline const char *ip6_format(char buf[static IP6_BUFSZ], const struct rte_ipv6_addr *ip) {
+	if (ip == NULL)
+		return "(nil)";
+	inet_ntop(AF_INET6, ip, buf, IP6_BUFSZ);
+	return buf;
+}
+
+static inline const char *
+ip4_net_format(char buf[static IP4_NET_BUFSZ], const struct ip4_net *net) {
+	if (net == NULL)
+		return "(nil)";
+	char addr[INET_ADDRSTRLEN];
+	inet_ntop(AF_INET, &net->ip, addr, sizeof(addr));
+	snprintf(buf, IP4_NET_BUFSZ, "%s/%hhu", addr, net->prefixlen);
+	return buf;
+}
+
+static inline const char *
+ip6_net_format(char buf[static IP6_NET_BUFSZ], const struct ip6_net *net) {
+	if (net == NULL)
+		return "(nil)";
+	char addr[INET6_ADDRSTRLEN];
+	inet_ntop(AF_INET6, &net->ip, addr, sizeof(addr));
+	snprintf(buf, IP6_NET_BUFSZ, "%s/%hhu", addr, net->prefixlen);
+	return buf;
+}
+
+static inline const char *
+addr_format(char buf[static ADDR_BUFSZ], int width, const void *addr) {
+	if (addr == NULL)
+		return "(nil)";
+	switch (width) {
+	case 2:
+		return eth_format(buf, addr);
+	case 4:
+		return ip4_format(buf, addr);
+	case 6:
+		return ip6_format(buf, addr);
+	case 32:
+		return ip4_net_format(buf, addr);
+	case 128:
+		return ip6_net_format(buf, addr);
+	}
+	snprintf(buf, ADDR_BUFSZ, "0x%lx", (uintptr_t)addr);
+	return buf;
 }

@@ -164,6 +164,22 @@ jobs:
       - run: .github/workflows/check.sh lint
         if: ${{ ! github.event.pull_request.commits }}
 
+  build-grcli-alpine:
+    if: ${{ github.actor != 'grout-bot' }}
+    runs-on: ubuntu-24.04
+    container: alpine:latest
+    steps:
+      - run: apk add --no-cache build-base meson ninja libedit-dev git
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+      - run: git config --global --add safe.directory $PWD
+      - run: meson setup build -Dcli_only=true
+      - run: ninja -C build grcli
+      - run: ./build/grcli --help
+
   commits:
     runs-on: ubuntu-24.04
     if: ${{ github.event.pull_request.commits }}

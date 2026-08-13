@@ -55,12 +55,14 @@ static int addr_list(struct gr_api_client *c, uint16_t iface_id, struct gr_table
 	int ret;
 
 	gr_api_client_stream_foreach (addr, ret, c, GR_IP4_ADDR_LIST, sizeof(req), &req) {
+		char _net4[IP4_NET_BUFSZ];
+
 		if (iface_id != GR_IFACE_ID_UNDEF && addr->iface_id != iface_id)
 			continue;
 
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, addr->iface_id));
 		gr_table_cell(table, 1, "%s", gr_af_name(GR_AF_IP4));
-		gr_table_cell(table, 2, IP4_NET_F, &addr->addr);
+		gr_table_cell(table, 2, "%s", ip4_net_format(_net4, &addr->addr));
 
 		if (gr_table_print_row(table) < 0)
 			break;
@@ -92,10 +94,11 @@ static void addr_event_print(uint32_t event, const void *obj) {
 		action = "?";
 		break;
 	}
-	printf("addr4 %s: iface=%s " IP4_NET_F "\n",
+	char _net4[IP4_NET_BUFSZ];
+	printf("addr4 %s: iface=%s %s\n",
 	       action,
 	       iface_name_from_id(NULL, ifa->iface_id),
-	       &ifa->addr);
+	       ip4_net_format(_net4, &ifa->addr));
 }
 
 static struct cli_event_printer printer = {

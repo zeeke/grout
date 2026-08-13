@@ -146,10 +146,11 @@ static void add_columns_srv6_local(struct gr_table *table) {
 static void fill_table_srv6_local(struct gr_table *table, unsigned start_col, const void *info) {
 	const struct gr_nexthop_info_srv6_local *sr6 = info;
 	char flavors[64];
+	char _ip6[IP6_BUFSZ];
 
 	gr_table_cell(table, start_col, "%s", gr_srv6_behavior_name(sr6->behavior));
 	if (sr6->behavior == SR_BEHAVIOR_END_X)
-		gr_table_cell(table, start_col + 1, IP6_F, &sr6->endx_addr);
+		gr_table_cell(table, start_col + 1, "%s", ip6_format(_ip6, &sr6->endx_addr));
 	srv6_local_format_flavors(flavors, sizeof(flavors), sr6->flags);
 	if (flavors[0])
 		gr_table_cell(table, start_col + 2, "%s", flavors);
@@ -166,10 +167,11 @@ static void fill_table_srv6_local(struct gr_table *table, unsigned start_col, co
 static void fill_object_srv6_local(struct gr_object *o, const void *info) {
 	const struct gr_nexthop_info_srv6_local *sr6 = info;
 	char flavors[64];
+	char _ip6[IP6_BUFSZ];
 
 	gr_object_field(o, "behavior", 0, "%s", gr_srv6_behavior_name(sr6->behavior));
 	if (sr6->behavior == SR_BEHAVIOR_END_X)
-		gr_object_field(o, "endx_addr", 0, IP6_F, &sr6->endx_addr);
+		gr_object_field(o, "endx_addr", 0, "%s", ip6_format(_ip6, &sr6->endx_addr));
 	srv6_local_format_flavors(flavors, sizeof(flavors), sr6->flags);
 	if (flavors[0])
 		gr_object_field(o, "flavor", GR_DISP_STR_ARRAY, "%s", flavors);

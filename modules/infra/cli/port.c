@@ -17,10 +17,11 @@
 
 static void port_show(struct gr_api_client *, const struct gr_iface *iface, struct gr_object *o) {
 	const struct gr_iface_info_port *port = (const struct gr_iface_info_port *)iface->info;
+	char _eth[ETH_BUFSZ];
 
 	gr_object_field(o, "devargs", 0, "%s", port->devargs);
 	gr_object_field(o, "driver", 0, "%s", port->driver_name);
-	gr_object_field(o, "mac", 0, ETH_F, &port->mac);
+	gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &port->mac));
 	gr_object_field(o, "n_rxq", GR_DISP_INT, "%u", port->n_rxq);
 	gr_object_field(o, "n_txq", GR_DISP_INT, "%u", port->n_txq);
 	gr_object_field(o, "rxq_size", GR_DISP_INT, "%u", port->rxq_size);
@@ -30,7 +31,8 @@ static void port_show(struct gr_api_client *, const struct gr_iface *iface, stru
 static void
 port_list_info(struct gr_api_client *, const struct gr_iface *iface, char *buf, size_t len) {
 	const struct gr_iface_info_port *port = (const struct gr_iface_info_port *)iface->info;
-	snprintf(buf, len, "devargs=%s mac=" ETH_F, port->devargs, &port->mac);
+	char _eth[ETH_BUFSZ];
+	snprintf(buf, len, "devargs=%s mac=%s", port->devargs, eth_format(_eth, &port->mac));
 }
 
 static struct cli_iface_type port_type = {

@@ -46,6 +46,7 @@ static cmd_status_t mac_del(struct gr_api_client *c, const struct ec_pnode *p) {
 static cmd_status_t mac_list(struct gr_api_client *c, const struct ec_pnode *p) {
 	struct gr_iface_mac_list_req req = {.iface_id = GR_IFACE_ID_UNDEF};
 	const struct gr_iface_mac *mac;
+	char _eth[ETH_BUFSZ];
 	int ret;
 
 	if (arg_str(p, "IFACE") != NULL) {
@@ -60,7 +61,7 @@ static cmd_status_t mac_list(struct gr_api_client *c, const struct ec_pnode *p) 
 
 	gr_api_client_stream_foreach (mac, ret, c, GR_IFACE_MAC_LIST, sizeof(req), &req) {
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, mac->iface_id));
-		gr_table_cell(table, 1, ETH_F, &mac->mac);
+		gr_table_cell(table, 1, "%s", eth_format(_eth, &mac->mac));
 		if (mac->primary)
 			gr_table_cell(table, 2, "-");
 		else

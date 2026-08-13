@@ -131,6 +131,8 @@ err:
 
 static void fill_table_l3(struct gr_table *table, unsigned start_col, const void *info) {
 	const struct gr_nexthop_info_l3 *l3 = info;
+	char _addr[ADDR_BUFSZ];
+	char _eth[ETH_BUFSZ];
 	char flags[128];
 
 	gr_table_cell(table, start_col, "%s", gr_af_name(l3->af));
@@ -139,17 +141,21 @@ static void fill_table_l3(struct gr_table *table, unsigned start_col, const void
 			gr_table_cell(
 				table,
 				start_col + 1,
-				ADDR_F "/%hhu",
-				ADDR_W(l3->af),
-				&l3->addr,
+				"%s/%hhu",
+				addr_format(_addr, ADDR_W(l3->af), &l3->addr),
 				l3->prefixlen
 			);
 		else
-			gr_table_cell(table, start_col + 1, ADDR_F, ADDR_W(l3->af), &l3->addr);
+			gr_table_cell(
+				table,
+				start_col + 1,
+				"%s",
+				addr_format(_addr, ADDR_W(l3->af), &l3->addr)
+			);
 		if (!(l3->flags & GR_NH_F_STATIC))
 			gr_table_cell(table, start_col + 2, "%s", gr_nh_state_name(l3->state));
 		if (l3->state == GR_NH_S_REACHABLE)
-			gr_table_cell(table, start_col + 3, ETH_F, &l3->mac);
+			gr_table_cell(table, start_col + 3, "%s", eth_format(_eth, &l3->mac));
 	}
 	format_nh_flags(flags, sizeof(flags), l3->flags);
 	if (flags[0] != 0)
@@ -158,6 +164,8 @@ static void fill_table_l3(struct gr_table *table, unsigned start_col, const void
 
 static void fill_object_l3(struct gr_object *o, const void *info) {
 	const struct gr_nexthop_info_l3 *l3 = info;
+	char _addr[ADDR_BUFSZ];
+	char _eth[ETH_BUFSZ];
 	char flags[128];
 
 	gr_object_field(o, "family", 0, "%s", gr_af_name(l3->af));
@@ -167,17 +175,22 @@ static void fill_object_l3(struct gr_object *o, const void *info) {
 				o,
 				"addr",
 				0,
-				ADDR_F "/%hhu",
-				ADDR_W(l3->af),
-				&l3->addr,
+				"%s/%hhu",
+				addr_format(_addr, ADDR_W(l3->af), &l3->addr),
 				l3->prefixlen
 			);
 		else
-			gr_object_field(o, "addr", 0, ADDR_F, ADDR_W(l3->af), &l3->addr);
+			gr_object_field(
+				o,
+				"addr",
+				0,
+				"%s",
+				addr_format(_addr, ADDR_W(l3->af), &l3->addr)
+			);
 		if (!(l3->flags & GR_NH_F_STATIC))
 			gr_object_field(o, "state", 0, "%s", gr_nh_state_name(l3->state));
 		if (l3->state == GR_NH_S_REACHABLE)
-			gr_object_field(o, "mac", 0, ETH_F, &l3->mac);
+			gr_object_field(o, "mac", 0, "%s", eth_format(_eth, &l3->mac));
 	}
 	format_nh_flags(flags, sizeof(flags), l3->flags);
 	if (flags[0] != 0)

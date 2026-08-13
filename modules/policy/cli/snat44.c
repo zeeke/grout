@@ -52,10 +52,12 @@ static cmd_status_t snat44_list(struct gr_api_client *c, const struct ec_pnode *
 	gr_table_column(table, "SUBNET", GR_DISP_LEFT); // 1
 	gr_table_column(table, "REPLACE", GR_DISP_LEFT); // 2
 
+	char _net4[IP4_NET_BUFSZ];
+	char _ip4[IP4_BUFSZ];
 	gr_api_client_stream_foreach (policy, ret, c, GR_SNAT44_LIST, 0, NULL) {
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, policy->iface_id));
-		gr_table_cell(table, 1, IP4_NET_F, &policy->net);
-		gr_table_cell(table, 2, IP4_F, &policy->replace);
+		gr_table_cell(table, 1, "%s", ip4_net_format(_net4, &policy->net));
+		gr_table_cell(table, 2, "%s", ip4_format(_ip4, &policy->replace));
 
 		if (gr_table_print_row(table) < 0)
 			break;

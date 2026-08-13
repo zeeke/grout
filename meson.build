@@ -64,58 +64,63 @@ if not compiler.compiles('''
   error(compiler.get_id(), compiler.version(), 'does not support C23 __VA_OPT__ macro')
 endif
 
-dpdk_drivers = [
-  'bus/auxiliary',
-  'common/mlx5',
-  'net/bnxt',
-  'net/e1000',
-  'net/i40e',
-  'net/iavf',
-  'net/ice',
-  'net/ixgbe',
-  'net/mlx5',
-  'net/null',
-  'net/r8169',
-  'net/tap',
-  'net/vhost',
-  'net/virtio',
-  'net/vmxnet3',
-]
-dpdk_libs = [
-  'cryptodev',
-  'dmadev',
-  'fib',
-  'graph',
-  'gso',
-  'hash',
-  'pcapng',
-  'rib',
-  'security',
-  'vhost',
-]
-dpdk_dep = dependency(
-  'libdpdk',
-  version : '>= 25.11',
-  fallback: ['dpdk-' + get_option('dpdk_version'), 'dpdk_dep'],
-  default_options: [
-    'c_std=c11',
-    'werror=false',
-    'tests=false',
-    'enable_drivers=' + ','.join(dpdk_drivers),
-    'enable_libs=' + ','.join(dpdk_libs),
-    'disable_apps=*',
-    'enable_docs=false',
-    'developer_mode=disabled',
-    'cpu_instruction_set=' + get_option('dpdk_cpu'),
-  ],
-  static: true,
-)
+cli_only = get_option('cli_only')
 
-ev_core_dep = dependency('libevent_core')
-ev_extra_dep = dependency('libevent_extra')
-ev_thread_dep = dependency('libevent_pthreads')
-mnl_dep = dependency('libmnl')
-numa_dep = dependency('numa')
+if not cli_only
+  dpdk_drivers = [
+    'bus/auxiliary',
+    'common/mlx5',
+    'net/bnxt',
+    'net/e1000',
+    'net/i40e',
+    'net/iavf',
+    'net/ice',
+    'net/ixgbe',
+    'net/mlx5',
+    'net/null',
+    'net/r8169',
+    'net/tap',
+    'net/vhost',
+    'net/virtio',
+    'net/vmxnet3',
+  ]
+  dpdk_libs = [
+    'cryptodev',
+    'dmadev',
+    'fib',
+    'graph',
+    'gso',
+    'hash',
+    'pcapng',
+    'rib',
+    'security',
+    'vhost',
+  ]
+  dpdk_dep = dependency(
+    'libdpdk',
+    version : '>= 25.11',
+    fallback: ['dpdk-' + get_option('dpdk_version'), 'dpdk_dep'],
+    default_options: [
+      'c_std=c11',
+      'werror=false',
+      'tests=false',
+      'enable_drivers=' + ','.join(dpdk_drivers),
+      'enable_libs=' + ','.join(dpdk_libs),
+      'disable_apps=*',
+      'enable_docs=false',
+      'developer_mode=disabled',
+      'cpu_instruction_set=' + get_option('dpdk_cpu'),
+    ],
+    static: true,
+  )
+
+  ev_core_dep = dependency('libevent_core')
+  ev_extra_dep = dependency('libevent_extra')
+  ev_thread_dep = dependency('libevent_pthreads')
+  mnl_dep = dependency('libmnl')
+  numa_dep = dependency('numa')
+endif
+
 ecoli_dep = dependency(
   'libecoli',
   version: '>= 0.10.0',
@@ -130,20 +135,22 @@ ecoli_dep = dependency(
 )
 
 grout_cflags = []
-if dpdk_dep.type_name() == 'internal'
-  # subproject: the patch is applied, function is always available
-  grout_cflags += ['-DHAVE_RTE_FIB_TBL8_GET_STATS']
-elif compiler.has_function(
-  'rte_fib_tbl8_get_stats',
-  prefix: '#include <rte_fib.h>',
-  dependencies: [dpdk_dep],
-)
-  grout_cflags += ['-DHAVE_RTE_FIB_TBL8_GET_STATS']
-endif
+if not cli_only
+  if dpdk_dep.type_name() == 'internal'
+    # subproject: the patch is applied, function is always available
+    grout_cflags += ['-DHAVE_RTE_FIB_TBL8_GET_STATS']
+  elif compiler.has_function(
+    'rte_fib_tbl8_get_stats',
+    prefix: '#include <rte_fib.h>',
+    dependencies: [dpdk_dep],
+  )
+    grout_cflags += ['-DHAVE_RTE_FIB_TBL8_GET_STATS']
+  endif
 
-# glibc >= 2.41 provides struct sched_attr and the sched_setattr() wrapper.
-if compiler.has_header_symbol('sched.h', 'sched_setattr', args: '-D_GNU_SOURCE')
-  grout_cflags += ['-DHAVE_SCHED_SETATTR']
+  # glibc >= 2.41 provides struct sched_attr and the sched_setattr() wrapper.
+  if compiler.has_header_symbol('sched.h', 'sched_setattr', args: '-D_GNU_SOURCE')
+    grout_cflags += ['-DHAVE_SCHED_SETATTR']
+  endif
 endif
 
 src = []
@@ -156,41 +163,52 @@ cli_src = []
 cli_inc = []
 cli_cflags = []
 
+if compiler.has_function('strerrordesc_np', prefix: '#define _GNU_SOURCE\n#include <string.h>')
+  cli_cflags += ['-DHAVE_STRERRORDESC_NP']
+endif
+
 tests = []
 
-subdir('main')
+if not cli_only
+  subdir('main')
+endif
 subdir('modules')
 subdir('cli')
 subdir('api')
-subdir('frr')
-
-fs = import('fs')
-abidiff = find_program('abidiff', native: true, required: false)
-git = find_program('git', native: true, required: false)
-if abidiff.found() and git.found() and fs.is_dir('.git')
-  custom_target(
-    'api_check',
-    output: '.api_check.stamp',
-    command: [
-      files('devtools/check_api.sh'),
-      '-d', abidiff,
-      '-o', '@OUTPUT@',
-      '-s', meson.project_source_root(),
-      '-c', ' '.join(compiler.cmd_array() + ['-std=' + get_option('c_std')] + project_c_flags),
-      api_headers,
-    ],
-    depend_files: api_headers,
-    build_by_default: true,
-  )
+if not cli_only
+  subdir('frr')
 endif
 
-grout_exe = executable(
-  'grout', src,
-  include_directories: inc + api_inc,
-  dependencies: [dpdk_dep, ev_core_dep, ev_extra_dep, ev_thread_dep, mnl_dep, numa_dep],
-  c_args: ['-D__GROUT_MAIN__'] + grout_cflags,
-  install: true,
-)
+fs = import('fs')
+
+if not cli_only
+  abidiff = find_program('abidiff', native: true, required: false)
+  git = find_program('git', native: true, required: false)
+  if abidiff.found() and git.found() and fs.is_dir('.git')
+    custom_target(
+      'api_check',
+      output: '.api_check.stamp',
+      command: [
+        files('devtools/check_api.sh'),
+        '-d', abidiff,
+        '-o', '@OUTPUT@',
+        '-s', meson.project_source_root(),
+        '-c', ' '.join(compiler.cmd_array() + ['-std=' + get_option('c_std')] + project_c_flags),
+        api_headers,
+      ],
+      depend_files: api_headers,
+      build_by_default: true,
+    )
+  endif
+
+  grout_exe = executable(
+    'grout', src,
+    include_directories: inc + api_inc,
+    dependencies: [dpdk_dep, ev_core_dep, ev_extra_dep, ev_thread_dep, mnl_dep, numa_dep],
+    c_args: ['-D__GROUT_MAIN__'] + grout_cflags,
+    install: true,
+  )
+endif
 
 grcli_exe = executable(
   'grcli', cli_src + grout_header,
@@ -200,11 +218,13 @@ grcli_exe = executable(
   install: true,
 )
 
-executable(
-  'fib_inject', files('smoke/fib_inject.c') + grout_header,
-  include_directories: api_inc,
-  install: false,
-)
+if not cli_only
+  executable(
+    'fib_inject', files('smoke/fib_inject.c') + grout_header,
+    include_directories: api_inc,
+    install: false,
+  )
+endif
 
 # docs/ must come after grcli_exe since man pages are generated using grcli --man
 subdir('docs')
@@ -220,14 +240,23 @@ pkg.generate(
 
 cmocka_dep = dependency('cmocka', required: get_option('tests'))
 if cmocka_dep.found()
+  if cli_only
+    test_deps = [ecoli_dep, cmocka_dep]
+    test_inc = api_inc
+    test_cflags = ['-D__GROUT_UNIT_TEST__']
+  else
+    test_deps = [dpdk_dep, ev_core_dep, ev_thread_dep, numa_dep, ecoli_dep, cmocka_dep]
+    test_inc = inc + api_inc
+    test_cflags = ['-D__GROUT_MAIN__', '-D__GROUT_UNIT_TEST__']
+  endif
   foreach t : tests
     name = fs.replace_suffix(t['sources'].get(0), '').underscorify()
     t += {
       'sources': t['sources'] + files('api/string.c'),
-      'include_directories': inc + api_inc,
-      'c_args': ['-D__GROUT_MAIN__', '-D__GROUT_UNIT_TEST__'],
+      'include_directories': test_inc,
+      'c_args': test_cflags,
       'link_args': t['link_args'],
-      'dependencies': [dpdk_dep, ev_core_dep, ev_thread_dep, numa_dep, ecoli_dep, cmocka_dep],
+      'dependencies': test_deps,
     }
     test(name, executable(name, kwargs: t), suite: 'unit')
   endforeach

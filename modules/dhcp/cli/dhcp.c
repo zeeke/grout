@@ -45,15 +45,16 @@ static cmd_status_t dhcp_show_cmd(struct gr_api_client *c, const struct ec_pnode
 	gr_table_column(table, "SERVER", GR_DISP_LEFT); // 3
 	gr_table_column(table, "LEASE", GR_DISP_RIGHT); // 4
 
+	char _ip4[IP4_BUFSZ];
 	gr_api_client_stream_foreach (status, ret, c, GR_DHCP_LIST, 0, NULL) {
 		gr_table_cell(table, 0, "%s", iface_name_from_id(c, status->iface_id));
 		gr_table_cell(table, 1, "%s", gr_dhcp_state_name(status->state));
 
 		if (status->assigned_ip != 0)
-			gr_table_cell(table, 2, IP4_F, &status->assigned_ip);
+			gr_table_cell(table, 2, "%s", ip4_format(_ip4, &status->assigned_ip));
 
 		if (status->server_ip != 0)
-			gr_table_cell(table, 3, IP4_F, &status->server_ip);
+			gr_table_cell(table, 3, "%s", ip4_format(_ip4, &status->server_ip));
 
 		if (status->lease_time != 0)
 			gr_table_cell(table, 4, "%u", status->lease_time);
