@@ -39,6 +39,11 @@ static uint16_t arp_input_request_process(
 		}
 
 		iface = mbuf_data(mbuf)->iface;
+		if ((iface->flags & GR_IFACE_F_NEIGH_SNOOP)
+		    && arp->arp_data.arp_sip == arp->arp_data.arp_tip) {
+			// Gratuitous requests announce their sender and need no local target.
+			goto control;
+		}
 		if ((local = nh4_lookup(iface->vrf_id, arp->arp_data.arp_tip)) == NULL) {
 			// Unknown IP address
 			edge = DROP;
@@ -59,6 +64,7 @@ static uint16_t arp_input_request_process(
 			goto next;
 		}
 
+control:
 		control_output_set_cb(mbuf, arp_probe_input_cb, 0);
 		edge = CONTROL;
 next:

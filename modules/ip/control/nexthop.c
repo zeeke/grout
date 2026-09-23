@@ -199,7 +199,8 @@ void arp_probe_input_cb(void *obj, uintptr_t, const struct control_queue_drain *
 		// request was received on (strong host model), or explicitly
 		// exposed on it.
 		struct nexthop *local = nh4_lookup(iface->vrf_id, arp->arp_data.arp_tip);
-		if (local != NULL && addr4_exposed_on_iface(local, iface->id)) {
+		if (local != NULL && (nexthop_info_l3(local)->flags & GR_NH_F_LOCAL)
+		    && addr4_exposed_on_iface(local, iface->id)) {
 			struct arp_reply_mbuf_data *d = arp_reply_mbuf_data(m);
 			d->local = local;
 			d->iface = iface;
