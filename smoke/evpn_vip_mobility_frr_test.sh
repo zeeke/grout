@@ -2,16 +2,22 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # Copyright (c) 2026 Andrea Panattoni
 
-# Verify that a learned EVPN neighbor is withdrawn once it stops answering.
+# Verify that an EVPN VIP follows its owner when it moves between VTEPs.
 #
-# host-b sits behind grout. Its IP+MAC is learned by grout (neigh_snoop),
-# reported to zebra as a local neighbor and advertised as a Type-2 MAC+IP
-# route to evpn-peer.
+# A virtual IP is moved between host-a (behind evpn-peer) and host-b (behind
+# grout) the way keepalived does it: the old owner silently drops the address
+# and the new owner announces it with gratuitous ARPs.
 #
-# host-b then silently drops its address, like a keepalived VIP moving
-# to another node. The grout nexthop must age out (reachable -> stale ->
-# probes -> failed), be removed, and zebra must withdraw the Type-2 route
-# so that evpn-peer no longer has a remote neighbor for the old binding.
+# 1. host-a owns the VIP. evpn-peer learns it and advertises a Type-2 MAC+IP
+#    route. grout installs it as a remote nexthop.
+# 2. The VIP moves to host-b. grout must learn it from the gratuitous ARPs
+#    even though it currently has a remote nexthop for that address, zebra
+#    must advertise it with a higher MAC mobility sequence number and
+#    evpn-peer must install it as remote with host-b's MAC.
+# 3. The VIP moves back to host-a. evpn-peer learns it again and grout must
+#    replace its learned nexthop with the remote one.
+#
+# Each step also checks that the VIP is reachable through the overlay.
 #
 #     .-------------------------.          .-------------------------.
 #     |       evpn-peer         |          |         grout           |
@@ -21,7 +27,7 @@
 #     | +----+-----+            |          |            +-----+----+ |
 #     |      |                  |          |                  |      |
 #     |  +---+---+              |          |              +---+---+  |
-#     |  | br100 |              |          |              | br100 |  |
+#     |  | br100 | .4           |          |           .1 | br100 |  |
 #     |  +---+---+              |          |              +---+---+  |
 #     |      |           .1     |          |     .2           |      |
 #     |  +---+---+    +-------+ |          | +------+     +---+---+  |
@@ -37,8 +43,11 @@
 #     |      .2       |                               |       .3     |
 #     |    host-a     |           overlay             |    host-b    |
 #     '---------------'         10.0.0.0/24           '--------------'
+#                             VIP 10.0.0.10/24
 
 . $(dirname $0)/_init_frr.sh
+
+vip=10.0.0.10
 
 # right side -------------------------------------------------------------------
 create_interface p0
@@ -56,6 +65,7 @@ ip -n evpn-peer addr add 172.16.0.1/24 dev x-p0
 
 ip -n evpn-peer link add br100 type bridge
 ip -n evpn-peer link set br100 up
+# linux needs an IP address in order to learn neighbors
 ip -n evpn-peer addr add 10.0.0.4/24 dev br100
 
 ip -n evpn-peer link add vxlan100 type vxlan id 100 local 172.16.0.1 dstport 4789 nolearning
@@ -108,9 +118,6 @@ while ! vtysh -c "show evpn" | grep -q "L2 VNIs"; do
 	attempts=$((attempts + 1))
 done
 
-# Short lifetimes so that the test does not take 20 minutes.
-grcli nexthop config set lifetime 2 unreachable 1 ucast-probes 1 bcast-probes 1
-
 grcli interface add bridge br100 neigh_suppress on neigh_snoop on
 grcli address add 10.0.0.1/24 iface br100
 grcli interface add vxlan vxlan100 vni 100 local 172.16.0.2 domain br100
@@ -134,15 +141,17 @@ ip -n host-b addr add 10.0.0.3/24 dev x-p1
 
 wait_event -t 10 "flood add:.*172.16.0.1.*vni=100"
 
-# -- Learn host-b on grout and advertise it to evpn-peer ----------------------
-ip netns exec host-b ping -c1 -W1 10.0.0.1
-ip netns exec host-a ping -i0.1 -c3 -W1 10.0.0.3
+mac_a=$(ip netns exec host-a cat /sys/class/net/x-p1/address)
+mac_b=$(ip netns exec host-b cat /sys/class/net/x-p1/address)
 
+# -- Helpers --------------------------------------------------------------------
 dump_state() {
 	grcli nexthop show
 	vtysh -c "show evpn arp-cache vni 100"
 	vtysh -N evpn-peer -c "show evpn arp-cache vni 100"
-	ip -n evpn-peer neigh show dev br100
+	vtysh -c "show bgp l2vpn evpn route type macip"
+	ip -n evpn-peer -d neigh show $vip
+	bridge -n evpn-peer fdb show br br100 master
 }
 
 # poll <timeout_sec> <command...>: retry command every 0.5s until it succeeds
@@ -155,47 +164,84 @@ poll() {
 	done
 }
 
-grout_nh_state() {
-	grcli -j nexthop show type l3 | jq -e --arg s "$1" \
-		'.[] | select(.addr == "10.0.0.3" and .origin == "learn" and .state == $s)'
+# grout_nh_is <learn|zebra> <mac>: grout has a single nexthop for the VIP with
+# the given origin and MAC. Remote nexthops are installed by zebra.
+grout_nh_is() {
+	grcli -j nexthop show type l3 | jq -e --arg ip $vip --arg o "$1" --arg m "$2" '
+		[.[] | select(.addr == $ip)] |
+		length == 1 and .[0].origin == $o and .[0].mac == $m'
 }
 
-grout_nh_absent() {
-	! grcli -j nexthop show type l3 | jq -e '.[] | select(.addr == "10.0.0.3" and .origin == "learn")'
+# arp_cache_is <local|remote> <mac> [netns]: zebra EVPN arp-cache entry.
+arp_cache_is() {
+	vtysh ${3:+-N $3} -c 'show evpn arp-cache vni 100 json' |
+		jq -e --arg ip $vip --arg t "$1" --arg m "$2" \
+		'.[$ip] | select(.type == $t and .mac == $m and .state == "active")'
 }
 
-zebra_has() {
-	vtysh ${2:+-N $2} -c 'show evpn arp-cache vni 100 json' |
-		jq -e --arg t "$1" '."10.0.0.3" | select(.type == $t)'
+# reaches <netns> <mac>: <netns> resolves the VIP to <mac> and can ping it.
+reaches() {
+	ip -n $1 neigh flush dev x-p1
+	ip netns exec $1 ping -c1 -W1 $vip >/dev/null || return 1
+	ip -n $1 neigh show $vip dev x-p1 | grep -qi "lladdr $2"
 }
 
-zebra_absent() {
-	! vtysh ${1:+-N $1} -c 'show evpn arp-cache vni 100 json' | jq -e '."10.0.0.3"'
-}
-
-# With a 2s lifetime the entry cycles reachable/stale while host-b answers
-# the probes, only check that it exists.
-poll 10 eval '! grout_nh_absent' || { dump_state; fail "grout did not learn 10.0.0.3"; }
-poll 10 zebra_has local || { dump_state; fail "zebra did not learn 10.0.0.3 as local"; }
-poll 10 zebra_has remote evpn-peer || { dump_state; fail "evpn-peer did not install 10.0.0.3 as remote"; }
-
-# -- host-b silently drops its address ----------------------------------------
-# The link stays up and nothing is sent: grout only notices through its own
-# nexthop ageing and probing.
-ip -n host-b addr del 10.0.0.3/24 dev x-p1
-
-# lifetime (2s) + 2 probes (1s apart) + margin
-poll 10 grout_nh_state failed || { dump_state; fail "grout nexthop 10.0.0.3 did not age out to failed"; }
-grcli nexthop show
-
-# The failed nexthop must be removed after the unreachable lifetime (1s) and
-# zebra must be told so that the Type-2 route is withdrawn.
+# check <timeout_sec> <message> <command...>
 errors=()
-poll 10 grout_nh_absent || errors+=("grout did not remove failed learned nexthop 10.0.0.3")
-poll 5 zebra_absent || errors+=("zebra still has 10.0.0.3 in its arp-cache")
-poll 5 zebra_absent evpn-peer || errors+=("evpn-peer still has 10.0.0.3 as remote neighbor")
+check() {
+	local timeout=$1 msg=$2
+	shift 2
+	poll $timeout "$@" || errors+=("$msg")
+}
 
-if [ "${#errors[@]}" -gt 0 ]; then
-	dump_state
-	fail "$(printf '%s; ' "${errors[@]}")"
-fi
+check_errors() {
+	if [ "${#errors[@]}" -gt 0 ]; then
+		dump_state
+		fail "$(printf '%s; ' "${errors[@]}")"
+	fi
+}
+
+# vip_add <netns>: take ownership of the VIP like keepalived does.
+vip_add() {
+	ip -n $1 addr add $vip/24 dev x-p1
+	ip netns exec $1 arping -q -U -c3 -i0.2 -I x-p1 $vip || :
+}
+
+# vip_del <netns>: silently drop the VIP.
+vip_del() {
+	ip -n $1 addr del $vip/24 dev x-p1
+}
+
+# -- Initial state: host-a owns the VIP ---------------------------------------
+vip_add host-a
+# Linux does not learn neighbors from gratuitous ARPs unless arp_accept is set.
+# Make host-a talk to its gateway using the VIP as source address.
+ip netns exec host-a arping -q -c1 -w2 -s $vip -I x-p1 10.0.0.4 || :
+
+check 10 "evpn-peer did not learn $vip as local" arp_cache_is local $mac_a evpn-peer
+check 10 "zebra did not learn $vip as remote" arp_cache_is remote $mac_a
+check 10 "grout did not install $vip as remote" grout_nh_is zebra $mac_a
+check 5 "host-b cannot reach $vip on host-a" reaches host-b $mac_a
+check_errors
+
+# -- Move the VIP to host-b -----------------------------------------------------
+# grout must learn the VIP from the gratuitous ARPs only.
+vip_del host-a
+vip_add host-b
+
+check 10 "grout did not learn $vip from host-b" grout_nh_is learn $mac_b
+check 10 "zebra did not learn $vip as local" arp_cache_is local $mac_b
+check 10 "evpn-peer did not install $vip as remote" arp_cache_is remote $mac_b evpn-peer
+check 5 "host-a cannot reach $vip on host-b" reaches host-a $mac_b
+check_errors
+
+# -- Move the VIP back to host-a ------------------------------------------------
+vip_del host-b
+vip_add host-a
+ip netns exec host-a arping -q -c1 -w2 -s $vip -I x-p1 10.0.0.4 || :
+
+check 10 "evpn-peer did not learn $vip back as local" arp_cache_is local $mac_a evpn-peer
+check 10 "zebra did not learn $vip back as remote" arp_cache_is remote $mac_a
+check 10 "grout did not replace learned $vip with remote" grout_nh_is zebra $mac_a
+check 5 "host-b cannot reach $vip back on host-a" reaches host-b $mac_a
+check_errors
