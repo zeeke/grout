@@ -3,6 +3,7 @@
 
 #include "clock.h"
 #include "config.h"
+#include "event.h"
 #include "iface.h"
 #include "log.h"
 #include "mbuf.h"
@@ -359,7 +360,14 @@ static void l3_age(struct nexthop *nh) {
 				atomic_load_explicit(&l3->held_pkts, memory_order_relaxed),
 				gr_nh_state_name(l3->state)
 			);
+			// Keep the nexthop and the routes referencing it, but tell
+			// listeners that a neighbor they knew about is gone. FRR then
+			// withdraws its EVPN MAC/IP route, which lets the address
+			// be learned behind another VTEP.
+			bool notify = l3->state == GR_NH_S_STALE;
 			l3->state = GR_NH_S_FAILED;
+			if (notify)
+				event_push(GR_EVENT_NEXTHOP_UPDATE, nh);
 		} else {
 			if (ops->solicit(nh) < 0)
 				LOG_RATELIMIT(

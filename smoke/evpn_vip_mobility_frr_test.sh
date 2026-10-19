@@ -229,7 +229,7 @@ check_errors
 vip_del host-a
 vip_add host-b
 
-check 10 "grout did not learn $vip from host-b" grout_nh_is learn $mac_b
+check 60 "grout did not learn $vip from host-b" grout_nh_is learn $mac_b
 check 10 "zebra did not learn $vip as local" arp_cache_is local $mac_b
 check 10 "evpn-peer did not install $vip as remote" arp_cache_is remote $mac_b evpn-peer
 check 5 "host-a cannot reach $vip on host-b" reaches host-a $mac_b

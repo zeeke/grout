@@ -962,6 +962,10 @@ static void grout_neigh_notify(bool new, const struct gr_nexthop *gr_nh) {
 		return;
 	if (l3->flags & (GR_NH_F_LOCAL | GR_NH_F_LINK | GR_NH_F_MCAST | GR_NH_F_REMOTE))
 		return;
+	// Like a kernel neighbor in NUD_FAILED state: the nexthop still exists
+	// but the neighbor is no longer reachable.
+	if (l3->state == GR_NH_S_FAILED)
+		new = false;
 	if (new && memcmp(&l3->mac, &zero_mac, sizeof(zero_mac)) == 0)
 		return;
 

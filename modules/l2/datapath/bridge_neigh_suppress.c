@@ -51,6 +51,13 @@ suppress_arp_req(struct rte_mbuf *m, struct rte_ether_hdr *eth, const struct ifa
 	if (arp->arp_opcode != RTE_BE16(RTE_ARP_OP_REQUEST))
 		return FLOOD;
 
+	// Never answer a gratuitous ARP or an address probe (RFC 5227): the
+	// sender is announcing or checking its own address. Replying with a
+	// remote MAC would claim that address for another host. Linux behaves
+	// the same way.
+	if (arp->arp_data.arp_sip == arp->arp_data.arp_tip || arp->arp_data.arp_sip == 0)
+		return FLOOD;
+
 	nh = nh4_lookup(bridge->vrf_id, arp->arp_data.arp_tip);
 	if (!nexthop_is_suppressable(nh))
 		return FLOOD;
@@ -98,6 +105,11 @@ suppress_ndp_ns(struct rte_mbuf *m, struct rte_ether_hdr *eth, const struct ifac
 
 	icmp6 = PAYLOAD(ip6);
 	if (icmp6->type != ICMP6_TYPE_NEIGH_SOLICIT)
+		return FLOOD;
+
+	// Never answer duplicate address detection (RFC 4862): the sender is
+	// checking its own tentative address.
+	if (rte_ipv6_addr_is_unspec(&ip6->src_addr))
 		return FLOOD;
 
 	ns = PAYLOAD(icmp6);
