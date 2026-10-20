@@ -1,0 +1,6 @@
+$ arping -c3 -I enp8s0 192.168.110.10
+ARPING 192.168.110.10 from 192.168.110.5 enp8s0
+Unicast reply from 192.168.110.10 [52:54:00:00:50:29]  0.636ms
+Sent 3 probes (1 broadcast(s))
+Received 1 response(s)
+

@@ -1,0 +1,36 @@
+$ date -u; hostname; uptime
+Tue Oct 20 14:02:22 UTC 2026
+master-0
+ 14:02:22 up  1:11,  0 users,  load average: 0.60, 0.72, 0.97
+
+$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp1s0           UP             
+enp3s0           UP             192.168.150.20/24 
+enp8s0           UP             192.168.110.2/24 fd00:110::2/64 fe80::5054:ff:fe00:5029/64 
+podman0          UP             10.88.0.1/16 fe80::24ad:41ff:fe31:fe5a/64 
+veth0@if2        UP             fe80::88f4:75ff:fee2:1ae3/64 
+nodeidx          UNKNOWN        192.0.2.2/24 
+veth1@if2        UP             fe80::fc88:a8ff:fe8a:dca0/64 
+
+$ ip -4 addr | grep -c 192.168.110.10 || true
+0
+
+$ ip neigh show
+192.168.110.10 dev enp8s0 FAILED 
+192.168.110.6 dev enp8s0 lladdr 52:54:00:c2:3d:13 REACHABLE 
+192.168.110.1 dev enp8s0 lladdr 00:f3:00:00:00:d3 DELAY 
+192.168.110.5 dev enp8s0 lladdr 52:54:00:63:cf:d0 REACHABLE 
+192.168.150.24 dev enp3s0 lladdr 00:fb:7c:be:b9:51 STALE 
+192.168.110.4 dev enp8s0 lladdr 52:54:00:a4:3e:78 REACHABLE 
+192.168.150.1 dev enp3s0 lladdr 52:54:00:7e:5a:7f REACHABLE 
+192.168.110.3 dev enp8s0 lladdr 52:54:00:f5:d6:c9 REACHABLE 
+fd00:110::3 dev enp8s0 router FAILED 
+fd00:110::4 dev enp8s0 lladdr 52:54:00:a4:3e:78 router STALE 
+fe80::5054:ff:fea4:3e78 dev enp8s0 lladdr 52:54:00:a4:3e:78 router STALE 
+fd00:110::1 dev enp8s0 lladdr 00:f3:00:00:00:d3 router REACHABLE 
+fd00:110::5 dev enp8s0 lladdr 52:54:00:63:cf:d0 STALE 
+fe80::5054:ff:fef5:d6c9 dev enp8s0 lladdr 52:54:00:f5:d6:c9 router STALE 
+fd00:110::6 dev enp8s0 lladdr 52:54:00:c2:3d:13 STALE 
+fe80::1c20:7fff:fe1d:65fb dev enp8s0 lladdr 00:f3:00:00:00:d3 router REACHABLE 
+

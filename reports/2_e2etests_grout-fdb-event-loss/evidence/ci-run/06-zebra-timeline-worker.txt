@@ -1,0 +1,75 @@
+# zebra (dplane_grout) log on pe-kind-worker, from the L2VNI setup of the
+# failing test until the first curl retries.
+#
+# - GR_EVENT_FDB_ADD/DEL and grout_macfdb_change: FDB events received from grout.
+#   The last one is at 10:08:18.650; there is none for f6:ce:79:73:0c:48.
+# - GR_NH_DEL: zebra's own nexthop deletions, each of which drains grout's
+#   control queue while zebra's request is being processed.
+# - The first event about 192.171.24.3 is a NEXTHOP_UPDATE (the NEXTHOP_NEW is
+#   missing too). zebra gets neighbor updates but never sends 'MACIP Add'
+#   to bgpd, because it has no local MAC for f6:ce:79:73:0c:48.
+
+2026/10/20 10:08:14.231 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+2026/10/20 10:08:14.505 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+2026/10/20 10:08:14.505 ZEBRA: GROUT: grout_macfdb_change: add bridge=8 iface=9 mac=9e:1a:2b:1c:13:42 vlan=0 vtep=(null)
+2026/10/20 10:08:14.506 BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 9e:1a:2b:1c:13:42 IP (null) VNI 110 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:14.572 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:14.572 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+2026/10/20 10:08:14.648 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+2026/10/20 10:08:14.648 ZEBRA: GROUT: grout_macfdb_change: add bridge=8 iface=9 mac=6e:5e:13:0a:47:34 vlan=0 vtep=(null)
+2026/10/20 10:08:14.649 BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 6e:5e:13:0a:47:34 IP (null) VNI 110 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:16.495 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 6e:5e:13:0a:47:34 IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:16.495 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 4e:c3:14:06:72:45 IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:16.581 BGP: [JSYCM-MV07M] 0:Recv MACIP Del f 0x0 MAC 6e:5e:13:0a:47:34 IP (null) VNI 110 seq 0 state 1 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:16.582 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 3e:55:8e:cf:70:4c IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.2 esi -
+2026/10/20 10:08:17.254 BGP: [PY8JJ-TE0HM] Tx DEL MACIP, VNI 110 MAC 3e:55:8e:cf:70:4c IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.2 esi -
+2026/10/20 10:08:17.254 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 6e:5e:13:0a:47:34 IP (null) flags 0x0 seq 1 remote VTEP 100.65.0.2 esi -
+2026/10/20 10:08:17.258 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:17.258 ZEBRA: GROUT: grout_macfdb_change: del bridge=8 iface=7 mac=3e:55:8e:cf:70:4c vlan=0 vtep=100.65.0.2
+2026/10/20 10:08:17.259 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:17.259 ZEBRA: GROUT: grout_macfdb_change: del bridge=8 iface=7 mac=4e:c3:14:06:72:45 vlan=0 vtep=100.65.0.0
+2026/10/20 10:08:17.259 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:17.259 ZEBRA: GROUT: grout_macfdb_change: del bridge=8 iface=7 mac=6e:5e:13:0a:47:34 vlan=0 vtep=100.65.0.0
+2026/10/20 10:08:17.338 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:17.338 ZEBRA: GROUT: grout_macfdb_change: del bridge=8 iface=9 mac=9e:1a:2b:1c:13:42 vlan=0 vtep=(null)
+2026/10/20 10:08:17.338 BGP: [JSYCM-MV07M] 0:Recv MACIP Del f 0x0 MAC 9e:1a:2b:1c:13:42 IP (null) VNI 110 seq 0 state 1 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:17.358 BGP: [PY8JJ-TE0HM] Tx DEL MACIP, VNI 110 MAC 4e:c3:14:06:72:45 IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:18.650 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_DEL
+2026/10/20 10:08:18.650 ZEBRA: GROUT: grout_macfdb_change: del bridge=8 iface=7 mac=6e:5e:13:0a:47:34 vlan=0 vtep=100.65.0.2
+2026/10/20 10:08:18.677 BGP: [PY8JJ-TE0HM] Tx DEL MACIP, VNI 110 MAC 6e:5e:13:0a:47:34 IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.2 esi -
+2026/10/20 10:08:22.608 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:22.628 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:23.332 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:23.354 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:30.092 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.2 46:cd:e2:e6:d1:6c
+2026/10/20 10:08:30.194 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 46:cd:e2:e6:d1:6c IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:30.195 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 46:cd:e2:e6:d1:6c IP 192.171.24.2 flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:32.029 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 46:cd:e2:e6:d1:6c IP (null) flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:32.029 BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 110 MAC 46:cd:e2:e6:d1:6c IP fe80::44cd:e2ff:fee6:d16c flags 0x0 seq 0 remote VTEP 100.65.0.0 esi -
+2026/10/20 10:08:32.625 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:32.639 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:33.343 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:33.360 ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+2026/10/20 10:08:34.179 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 f6:ce:79:73:0c:48
+2026/10/20 10:08:34.464 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 f6:ce:79:73:0c:48
+2026/10/20 10:08:35.179 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 f6:ce:79:73:0c:48
+2026/10/20 10:08:35.464 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 f6:ce:79:73:0c:48
+
+# First grout event about pod2 (192.171.24.3 f6:ce:79:73:0c:48): a NEXTHOP_UPDATE;
+# the NEXTHOP_NEW and the FDB_ADD were never received.
+2026/10/20 10:08:33.360 ZEBRA: GROUT: grout_client_send_recv: GR_NH_ADD: success
+2026/10/20 10:08:34.179 ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+2026/10/20 10:08:34.179 ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+2026/10/20 10:08:34.179 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 f6:ce:79:73:0c:48
+
+# Contrast: a pod of an earlier test with the same IP on the same node, at 10:05:19:
+# FDB_ADD (grout_macfdb_change) and NEXTHOP_NEW were both received.
+2026/10/20 10:05:19.757 ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+2026/10/20 10:05:19.757 ZEBRA: GROUT: grout_macfdb_change: add bridge=8 iface=9 mac=1a:9f:ce:81:15:53 vlan=0 vtep=(null)
+2026/10/20 10:05:19.757 ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_NEW
+2026/10/20 10:05:19.757 ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+2026/10/20 10:05:19.757 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.3 1a:9f:ce:81:15:53
+
+# Every message about f6:ce:79:73:0c:48 in the whole log (no FDB event, no MACIP):
+total lines: 81
+lines other than grout_neigh_notify: 0

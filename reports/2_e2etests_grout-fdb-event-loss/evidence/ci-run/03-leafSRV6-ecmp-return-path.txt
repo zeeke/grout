@@ -1,0 +1,22 @@
+# leafSRV6: the return route to the L2VNI subnet 192.171.24.0/24 is ECMP
+# over the SRv6 SIDs of all three nodes (fd00:0:32/33/34).
+
+192.171.24.0/24 nhid 134 table 1100 proto bgp metric 20 
+	nexthop  encap seg6 mode encap.red segs 1 [ fd00:0:32:e006:: ] via inet6 fe80::a8c1:abff:fe31:4c8a dev eth1 weight 1 
+	nexthop  encap seg6 mode encap.red segs 1 [ fd00:0:33:e006:: ] via inet6 fe80::a8c1:abff:fe31:4c8a dev eth1 weight 1 
+	nexthop  encap seg6 mode encap.red segs 1 [ fd00:0:34:e006:: ] via inet6 fe80::a8c1:abff:fe31:4c8a dev eth1 weight 1 
+
+    UN=2001:db8:1234:5678:: EC{11111:100 64514:100} label=917600 sid=fd00:0:32:: sid_structure=[32,16,16,0] type=bgp, subtype=0
+ *>  192.171.24.0/24  2001:db8:1234:5678::
+                                               0             0 64514 i
+    UN=2001:db8:1234:5678:: EC{11111:100 64514:100} label=917600 sid=fd00:0:32:: sid_structure=[32,16,16,0] type=bgp, subtype=0
+--
+    UN=2001:db8:1234:5678::1 EC{11111:100 64514:100} label=917600 sid=fd00:0:33:: sid_structure=[32,16,16,0] type=bgp, subtype=0
+ *>  192.171.24.0/24  2001:db8:1234:5678::1
+                                               0             0 64514 i
+    UN=2001:db8:1234:5678::1 EC{11111:100 64514:100} label=917600 sid=fd00:0:33:: sid_structure=[32,16,16,0] type=bgp, subtype=0
+--
+    UN=2001:db8:1234:5678::2 EC{11111:100 64514:100} label=917600 sid=fd00:0:34:: sid_structure=[32,16,16,0] type=bgp, subtype=0
+ *>  192.171.24.0/24  2001:db8:1234:5678::2
+                                               0             0 64514 i
+    UN=2001:db8:1234:5678::2 EC{11111:100 64514:100} label=917600 sid=fd00:0:34:: sid_structure=[32,16,16,0] type=bgp, subtype=0

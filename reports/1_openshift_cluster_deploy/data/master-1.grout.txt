@@ -1,0 +1,47 @@
+$ podman exec grout grcli nexthop show | grep -E 'VRF|br-pe-210'
+VRF   ID  ORIGIN  IFACE      TYPE        INFO
+red   6   zebra   br-pe-210  L3          family=unspec flags=link
+red   19  zebra   br-pe-210  L3          family=unspec flags=link
+red       learn   br-pe-210  L3          family=ipv6 addr=fd00:110::3 state=reachable mac=52:54:00:f5:d6:c9 flags=neigh
+red       learn   br-pe-210  L3          family=ipv4 addr=192.168.110.3 state=reachable mac=52:54:00:f5:d6:c9 flags=neigh
+red   3   zebra   br-pe-210  L3          family=ipv6 addr=fe80::5054:ff:fe00:5029 state=reachable mac=52:54:00:00:50:29 flags=remote neigh
+red   5   zebra   br-pe-210  L3          family=ipv6 addr=fd00:110::2 state=reachable mac=52:54:00:00:50:29 flags=remote neigh
+red   7   zebra   br-pe-210  L3          family=ipv4 addr=192.168.110.10 state=reachable mac=52:54:00:00:50:29 flags=remote neigh
+red   8   zebra   br-pe-210  L3          family=ipv4 addr=192.168.110.2 state=reachable mac=52:54:00:00:50:29 flags=remote neigh
+red   9   zebra   br-pe-210  L3          family=ipv6 addr=fe80::5054:ff:fea4:3e78 state=reachable mac=52:54:00:a4:3e:78 flags=remote neigh
+red   13  zebra   br-pe-210  L3          family=ipv6 addr=fd00:110::10 state=reachable mac=52:54:00:a4:3e:78 flags=remote neigh
+red   14  zebra   br-pe-210  L3          family=ipv6 addr=fd00:110::4 state=reachable mac=52:54:00:a4:3e:78 flags=remote neigh
+red   15  zebra   br-pe-210  L3          family=ipv4 addr=192.168.110.4 state=reachable mac=52:54:00:a4:3e:78 flags=remote neigh
+red   16  zebra   br-pe-210  L3          family=ipv6 addr=fe80::5054:ff:fe63:cfd0 state=reachable mac=52:54:00:63:cf:d0 flags=remote neigh
+red   17  zebra   br-pe-210  L3          family=ipv6 addr=fd00:110::5 state=reachable mac=52:54:00:63:cf:d0 flags=remote neigh
+red   18  zebra   br-pe-210  L3          family=ipv4 addr=192.168.110.5 state=reachable mac=52:54:00:63:cf:d0 flags=remote neigh
+red   25  zebra   br-pe-210  L3          family=ipv6 addr=fe80::5054:ff:fec2:3d13 state=reachable mac=52:54:00:c2:3d:13 flags=remote neigh
+red   26  zebra   br-pe-210  L3          family=ipv6 addr=fd00:110::6 state=reachable mac=52:54:00:c2:3d:13 flags=remote neigh
+red   27  zebra   br-pe-210  L3          family=ipv4 addr=192.168.110.6 state=reachable mac=52:54:00:c2:3d:13 flags=remote neigh
+red       learn   br-pe-210  L3          family=ipv6 addr=fe80::5054:ff:fef5:d6c9 state=reachable mac=52:54:00:f5:d6:c9 flags=neigh
+
+$ podman exec grout grcli nexthop config show
+used: 74
+used_percent: 0.1
+max: 131072
+lifetime: 30
+unreachable: 60
+held_packets: 32
+ucast_probes: 3
+bcast_probes: 3
+
+$ podman exec grout grcli interface show
+NAME         ID  FLAGS                        MODE    DOMAIN     TYPE    INFO
+main          1  up running                   VRF     main       vrf     ip4 routes=65536 tbl8=256 ip6 routes=65536 tbl8=262144
+u_enp2s0      2  up running allmulti          VRF     main       port    devargs=0000:02:00.0 mac=00:fb:7c:be:b9:46
+tunnel-ep     3  up running allmulti          VRF     main       port    devargs=net_null_tunnel_ep,no-rx=1 mac=ba:a3:26:a9:ef:d2
+red           4  up running                   VRF     red        vrf     ip4 routes=65536 tbl8=256 ip6 routes=65536 tbl8=262144
+vni210        5  up running                   bridge  br-pe-210  vxlan   vni=210 local=fd00::3 encap_vrf=main
+br-pe-210     6  up running                   VRF     red        bridge  members=2 flood learn neigh_suppress
+t_enp7s0      7  up running promisc allmulti  VRF     main       port    devargs=0000:07:00.0 mac=52:54:00:59:7d:b4
+t_enp7s0.42   8  up promisc                   bridge  br-pe-210  vlan    parent=t_enp7s0 vlan_id=42
+
+$ podman exec grout grcli --version; podman exec frr vtysh -c "show version" | head -1
+grcli 0.19.3-1.el10fdp
+FRRouting 10.7.1 (routerpod) on Linux(5.14.0-687.17.1.el9_8.x86_64).
+

@@ -1,0 +1,29 @@
+$ date -u; hostname; uptime
+Tue Oct 20 14:04:50 UTC 2026
+worker-1
+ 14:04:50 up  1:13,  0 users,  load average: 0.11, 0.14, 0.16
+
+$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp1s0           UP             
+enp3s0           UP             192.168.150.24/24 
+enp8s0           UP             192.168.110.6/24 fd00:110::6/64 fe80::5054:ff:fec2:3d13/64 
+podman0          UP             10.88.0.1/16 fe80::30c2:a7ff:fea0:634b/64 
+veth0@if2        UP             fe80::8065:5fff:fe48:f37/64 
+nodeidx          UNKNOWN        192.0.2.6/24 
+
+$ ip -4 addr | grep -c 192.168.110.10 || true
+0
+
+$ ip neigh show
+192.168.110.10 dev enp8s0 lladdr 52:54:00:00:50:29 REACHABLE 
+192.168.110.1 dev enp8s0 lladdr 00:f3:00:00:00:d3 STALE 
+192.168.150.1 dev enp3s0 lladdr 52:54:00:7e:5a:7f REACHABLE 
+192.168.110.2 dev enp8s0 lladdr 52:54:00:00:50:29 REACHABLE 
+fd00:110::5 dev enp8s0 lladdr 52:54:00:63:cf:d0 STALE 
+fd00:110::4 dev enp8s0 lladdr 52:54:00:a4:3e:78 STALE 
+fe80::3459:78ff:fe4e:c50f dev enp8s0 lladdr 00:f3:00:00:00:d3 router STALE 
+fd00:110::3 dev enp8s0 lladdr 52:54:00:f5:d6:c9 STALE 
+fd00:110::2 dev enp8s0 lladdr 52:54:00:00:50:29 STALE 
+fd00:110::1 dev enp8s0 lladdr 00:f3:00:00:00:d3 router STALE 
+

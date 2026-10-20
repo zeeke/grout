@@ -1,0 +1,29 @@
+# For each MAC reported missing in zebra by the shell reproducer (unpatched grout):
+#   grcli_events = GR_EVENT_FDB_ADD lines received by the smoke harness's 'grcli events'
+#                  subscriber (suppress_self_events=false, separate process)
+#   zebra        = grout_macfdb_change add lines in zebra's log (suppress_self_events=true)
+# grout emitted every event; only zebra's copy was suppressed.
+#
+# Generated with:
+#   for mac in $(zcat LOG | sed -n 's/^learned by grout, unknown to zebra: //p'); do
+#     zcat LOG | grep -c "fdb add: bridge=br100 $mac"; zcat LOG | grep -c "grout_macfdb_change: add.*$mac"
+#   done
+
+run1 02:00:5e:10:00:14 grcli_events=1 zebra=0
+run1 02:00:5e:10:00:15 grcli_events=1 zebra=0
+run1 02:00:5e:10:00:1d grcli_events=1 zebra=0
+run1 02:00:5e:10:00:24 grcli_events=1 zebra=0
+run2 02:00:5e:10:00:18 grcli_events=1 zebra=0
+run2 02:00:5e:10:00:1e grcli_events=1 zebra=0
+run2 02:00:5e:10:00:28 grcli_events=1 zebra=0
+run2 02:00:5e:10:00:2a grcli_events=1 zebra=0
+run2 02:00:5e:10:00:2d grcli_events=1 zebra=0
+run3 02:00:5e:10:00:1a grcli_events=1 zebra=0
+run3 02:00:5e:10:00:1b grcli_events=1 zebra=0
+run3 02:00:5e:10:00:23 grcli_events=1 zebra=0
+run3 02:00:5e:10:00:40 grcli_events=1 zebra=0
+run4 02:00:5e:10:00:2f grcli_events=1 zebra=0
+run4 02:00:5e:10:00:4d grcli_events=1 zebra=0
+run4 02:00:5e:10:00:52 grcli_events=1 zebra=0
+run5 02:00:5e:10:00:24 grcli_events=1 zebra=0
+run5 02:00:5e:10:00:53 grcli_events=1 zebra=0

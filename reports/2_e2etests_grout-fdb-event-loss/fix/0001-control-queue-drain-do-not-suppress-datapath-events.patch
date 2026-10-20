@@ -1,0 +1,60 @@
+diff --git a/main/api.c b/main/api.c
+index fd8fd9fb..feb2d3f9 100644
+--- a/main/api.c
++++ b/main/api.c
+@@ -94,6 +94,12 @@ void api_disconnect_register(api_disconnect_cb cb) {
+ 	vec_add(disconnect_cbs, cb);
+ }
+ 
++pid_t api_req_pid_swap(pid_t pid) {
++	pid_t old = cur_req_pid;
++	cur_req_pid = pid;
++	return old;
++}
++
+ void api_send_notifications(uint32_t ev_type, const void *obj) {
+ 	struct subscription *ev_subs = NULL;
+ 	struct module_subscribers *subs;
+diff --git a/main/api.h b/main/api.h
+index 8ff80113..0cec23ee 100644
+--- a/main/api.h
++++ b/main/api.h
+@@ -5,6 +5,13 @@
+ 
+ #include <event2/event.h>
+ 
++#include <sys/types.h>
++
+ int api_socket_start(struct event_base *);
+ void api_socket_stop(struct event_base *);
+ void api_send_notifications(uint32_t ev_type, const void *obj);
++
++// Replace the PID of the API client whose request is being processed and
++// return the previous one. Events emitted while it is set are suppressed for
++// subscribers of that client that requested suppress_self_events.
++pid_t api_req_pid_swap(pid_t pid);
+diff --git a/main/control_queue.c b/main/control_queue.c
+index 6bb5fdb5..ba075e1a 100644
+--- a/main/control_queue.c
++++ b/main/control_queue.c
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause
+ // Copyright (c) 2024 Christophe Fontaine
+ 
++#include "api.h"
+ #include "control_queue.h"
+ #include "log.h"
+ #include "metrics.h"
+@@ -100,7 +101,12 @@ static void *sem_wait_to_event(void *) {
+ 
+ void control_queue_drain(uint32_t event, const void *obj) {
+ 	struct control_queue_drain drain = {event, obj};
++	// Queued items were pushed by datapath workers. They are not caused by
++	// the API request that may be triggering this drain, so their events
++	// must not be suppressed for the requesting client.
++	pid_t req_pid = api_req_pid_swap(0);
+ 	control_queue_poll(0, 0, &drain);
++	api_req_pid_swap(req_pid);
+ }
+ 
+ METRIC_COUNTER(m_cqueue_fail, "control_queue_fail", "Total number of enqueue failures");

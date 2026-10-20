@@ -1,0 +1,519 @@
+$ crictl logs $(crictl ps -q --name "^keepalived$") 2>&1 | grep -vE "Printing (parent|VRRP) data|Interface [0-9a-f]+ (deleted|added)"
++ declare -r keepalived_sock=/var/run/keepalived/keepalived.sock
++ export -f msg_handler
++ export -f reload_keepalived
++ export -f stop_keepalived
++ '[' -s /var/run/keepalived/stopped ']'
++ '[' -s /etc/keepalived/keepalived.conf ']'
++ rm -f /var/run/keepalived/keepalived.sock
++ socat UNIX-LISTEN:/var/run/keepalived/keepalived.sock,fork 'system:bash -c msg_handler'
+The client sent: reload
+Tue Oct 20 12:59:38 2026: Starting Keepalived v2.2.8 (04/04,2023), git commit v2.2.7-154-g292b299e+
+Tue Oct 20 12:59:38 2026: Running on Linux 5.14.0-687.11.1.el9_8.x86_64 #1 SMP PREEMPT_DYNAMIC Tue May 19 09:30:57 EDT 2026 (built for Linux 5.14.0)
+Tue Oct 20 12:59:38 2026: Command line: '/usr/sbin/keepalived' '-f' '/etc/keepalived/keepalived.conf' '--dont-fork' '--vrrp'
+Tue Oct 20 12:59:38 2026:               '--log-detail' '--log-console'
+Tue Oct 20 12:59:38 2026: Opening file '/etc/keepalived/keepalived.conf'.
+Tue Oct 20 12:59:38 2026: Configuration file /etc/keepalived/keepalived.conf
+Tue Oct 20 12:59:46 2026: NOTICE: setting config option max_auto_priority should result in better keepalived performance
+Tue Oct 20 12:59:46 2026: Starting VRRP child process, pid=18
+Tue Oct 20 12:59:46 2026: Registering Kernel netlink reflector
+Tue Oct 20 12:59:46 2026: Registering Kernel netlink command channel
+Tue Oct 20 12:59:46 2026: (/etc/keepalived/keepalived.conf: Line 22) Truncating auth_pass to 8 characters
+Tue Oct 20 12:59:46 2026: (/etc/keepalived/keepalived.conf: Line 43) Truncating auth_pass to 8 characters
+Tue Oct 20 12:59:46 2026: (/etc/keepalived/keepalived.conf: Line 46) Cannot specify label for IPv6 addresses (fd00:110::10/128) - ignoring label
+Tue Oct 20 12:59:46 2026: (sno-lab_API_0) A unicast keyword has been specified without any unicast peers. Defaulting to multicast. This usage is deprecated - please update your configuration.
+Tue Oct 20 12:59:46 2026: Assigned address 192.168.110.2 for interface enp8s0
+Tue Oct 20 12:59:46 2026: Assigned address fe80::5054:ff:fe00:5029 for interface enp8s0
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) A unicast keyword has been specified without any unicast peers. Defaulting to multicast. This usage is deprecated - please update your configuration.
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) the first IPv6 VIP address should be link local
+Tue Oct 20 12:59:46 2026: Registering gratuitous ARP shared channel
+Tue Oct 20 12:59:46 2026: Registering gratuitous NDISC shared channel
+Tue Oct 20 12:59:46 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 12:59:46 2026: Startup complete
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 12:59:46 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 12:59:46 2026: (sno-lab_API_0) Entering BACKUP STATE (init)
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 12:59:46 2026: (sno-lab_API_1) Entering BACKUP STATE (init)
+Tue Oct 20 12:59:46 2026: VRRP sockpool: [ifindex(  6), family(IPv4), proto(112), fd(14,15) multicast, address(224.0.0.18)]
+Tue Oct 20 12:59:46 2026: VRRP sockpool: [ifindex(  6), family(IPv6), proto(112), fd(16,17) multicast, address(ff02::12)]
+Tue Oct 20 12:59:49 2026: (sno-lab_API_0) Receive advertisement timeout
+Tue Oct 20 12:59:49 2026: (sno-lab_API_0) Entering MASTER STATE
+Tue Oct 20 12:59:49 2026: (sno-lab_API_0) setting VIPs.
+Tue Oct 20 12:59:49 2026: (sno-lab_API_0) Sending/queueing gratuitous ARPs on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:49 2026: (sno-lab_API_1) Receive advertisement timeout
+Tue Oct 20 12:59:49 2026: (sno-lab_API_1) Entering MASTER STATE
+Tue Oct 20 12:59:49 2026: (sno-lab_API_1) setting VIPs.
+Tue Oct 20 12:59:49 2026: (sno-lab_API_1) Sending/queueing Unsolicited Neighbour Adverts on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:49 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:49 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:49 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:49 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:49 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: (sno-lab_API_0) Sending/queueing gratuitous ARPs on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 12:59:54 2026: (sno-lab_API_1) Sending/queueing Unsolicited Neighbour Adverts on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 12:59:54 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+The client sent: reload
+Tue Oct 20 13:14:00 2026: Reloading ...
+Tue Oct 20 13:14:00 2026: Opening file '/etc/keepalived/keepalived.conf'.
+Tue Oct 20 13:14:00 2026: Configuration file /etc/keepalived/keepalived.conf
+Tue Oct 20 13:14:00 2026: Reloading
+Tue Oct 20 13:14:00 2026: (/etc/keepalived/keepalived.conf: Line 23) Truncating auth_pass to 8 characters
+Tue Oct 20 13:14:00 2026: (/etc/keepalived/keepalived.conf: Line 45) Truncating auth_pass to 8 characters
+Tue Oct 20 13:14:00 2026: (/etc/keepalived/keepalived.conf: Line 48) Cannot specify label for IPv6 addresses (fd00:110::10/128) - ignoring label
+Tue Oct 20 13:14:00 2026: Assigned address 192.168.110.2 for interface enp8s0
+Tue Oct 20 13:14:00 2026: Assigned address fe80::5054:ff:fe00:5029 for interface enp8s0
+Tue Oct 20 13:14:00 2026: (sno-lab_API_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:14:00 2026: Reload complete
+Tue Oct 20 13:14:00 2026: (sno-lab_API_0) sent 0 priority
+Tue Oct 20 13:14:00 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:14:00 2026: (sno-lab_API_1) sent 0 priority
+Tue Oct 20 13:14:00 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:14:00 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:14:00 2026: (sno-lab_API_0) Entering BACKUP STATE (init)
+Tue Oct 20 13:14:00 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:14:00 2026: (sno-lab_API_1) Entering BACKUP STATE (init)
+Tue Oct 20 13:14:00 2026: VRRP sockpool: [ifindex(  6), family(IPv4), proto(112), fd(14,15) , unicast, address(192.168.110.2)]
+Tue Oct 20 13:14:00 2026: VRRP sockpool: [ifindex(  6), family(IPv6), proto(112), fd(16,17) , unicast, address(fd00:110::2)]
+Tue Oct 20 13:14:04 2026: (sno-lab_API_0) Receive advertisement timeout
+Tue Oct 20 13:14:04 2026: (sno-lab_API_0) Entering MASTER STATE
+Tue Oct 20 13:14:04 2026: (sno-lab_API_0) setting VIPs.
+Tue Oct 20 13:14:04 2026: (sno-lab_API_0) Sending/queueing gratuitous ARPs on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:04 2026: (sno-lab_API_1) Receive advertisement timeout
+Tue Oct 20 13:14:04 2026: (sno-lab_API_1) Entering MASTER STATE
+Tue Oct 20 13:14:04 2026: (sno-lab_API_1) setting VIPs.
+Tue Oct 20 13:14:04 2026: (sno-lab_API_1) Sending/queueing Unsolicited Neighbour Adverts on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:04 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:04 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:04 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:04 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:04 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: (sno-lab_API_0) Sending/queueing gratuitous ARPs on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: Sending gratuitous ARP on enp8s0 for 192.168.110.10
+Tue Oct 20 13:14:09 2026: (sno-lab_API_1) Sending/queueing Unsolicited Neighbour Adverts on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+Tue Oct 20 13:14:09 2026: Sending unsolicited Neighbour Advert on enp8s0 for fd00:110::10
+The client sent: reload
+Tue Oct 20 13:14:41 2026: Reloading ...
+Tue Oct 20 13:14:41 2026: Opening file '/etc/keepalived/keepalived.conf'.
+Tue Oct 20 13:14:41 2026: Configuration file /etc/keepalived/keepalived.conf
+Tue Oct 20 13:14:41 2026: Reloading
+Tue Oct 20 13:14:41 2026: (/etc/keepalived/keepalived.conf: Line 24) Truncating auth_pass to 8 characters
+Tue Oct 20 13:14:41 2026: (/etc/keepalived/keepalived.conf: Line 47) Truncating auth_pass to 8 characters
+Tue Oct 20 13:14:41 2026: (/etc/keepalived/keepalived.conf: Line 50) Cannot specify label for IPv6 addresses (fd00:110::10/128) - ignoring label
+Tue Oct 20 13:14:41 2026: Assigned address 192.168.110.2 for interface enp8s0
+Tue Oct 20 13:14:41 2026: Assigned address fe80::5054:ff:fe00:5029 for interface enp8s0
+Tue Oct 20 13:14:41 2026: (sno-lab_API_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:14:41 2026: (sno-lab_API_0) setting VIPs.
+Tue Oct 20 13:14:41 2026: Reload complete
+Tue Oct 20 13:14:41 2026: (sno-lab_API_1) setting VIPs.
+Tue Oct 20 13:14:41 2026: VRRP sockpool: [ifindex(  6), family(IPv4), proto(112), fd(14,15) , unicast, address(192.168.110.2)]
+Tue Oct 20 13:14:41 2026: VRRP sockpool: [ifindex(  6), family(IPv6), proto(112), fd(16,17) , unicast, address(fd00:110::2)]
+The client sent: stop
+Tue Oct 20 13:34:28 2026: Stopping
+Tue Oct 20 13:34:28 2026: (sno-lab_API_0) sent 0 priority
+Tue Oct 20 13:34:28 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:34:28 2026: (sno-lab_API_1) sent 0 priority
+Tue Oct 20 13:34:28 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:34:29 2026: Stopped - used 0.023694 user time, 0.100193 system time
+Tue Oct 20 13:34:29 2026: CPU usage (self/children) user: 0.005066/0.023694 system: 0.004081/0.101073
+Tue Oct 20 13:34:29 2026: Stopped Keepalived v2.2.8 (04/04,2023), git commit v2.2.7-154-g292b299e+
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+The client sent: stop
+

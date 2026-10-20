@@ -1,0 +1,12 @@
+# Test pods (raw/test-pods.yaml)
+
+    name: pod1
+    nodeName: pe-kind-control-plane
+    podIP: 10.244.0.25
+    name: pod2
+    nodeName: pe-kind-worker
+    podIP: 10.244.2.18
+
+# The pods' L2VNI addresses/MACs come from the grout neighbor tables below:
+#   pod1 192.171.24.2 46:cd:e2:e6:d1:6c on pe-kind-control-plane
+#   pod2 192.171.24.3 f6:ce:79:73:0c:48 on pe-kind-worker

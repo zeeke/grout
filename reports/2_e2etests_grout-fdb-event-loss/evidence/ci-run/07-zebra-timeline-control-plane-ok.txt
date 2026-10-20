@@ -1,0 +1,10 @@
+# Contrast: on pe-kind-control-plane, pod1's MAC is notified by grout
+# (grout_macfdb_change add) and zebra hands it to bgpd (MACIP Add), which
+# advertises the type-2 routes.
+
+2026/10/20 10:08:30.091 ZEBRA: GROUT: grout_macfdb_change: add bridge=8 iface=9 mac=46:cd:e2:e6:d1:6c vlan=0 vtep=(null)
+2026/10/20 10:08:30.091 ZEBRA: GROUT: grout_neigh_notify: add neigh iface=8 192.171.24.2 46:cd:e2:e6:d1:6c
+2026/10/20 10:08:30.091 BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 46:cd:e2:e6:d1:6c IP (null) VNI 110 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:30.092 BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 46:cd:e2:e6:d1:6c IP 192.171.24.2 VNI 110 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+2026/10/20 10:08:30.142 BGP: [HVRWP-5R9NQ] u111:s185 send UPDATE RD 10.0.0.0:3 [2]:[0]:[48]:[46:cd:e2:e6:d1:6c] label 110 l2vpn evpn
+2026/10/20 10:08:30.142 BGP: [HVRWP-5R9NQ] u111:s185 send UPDATE RD 10.0.0.0:3 [2]:[0]:[48]:[46:cd:e2:e6:d1:6c]:[32]:[192.171.24.2] label 110 l2vpn evpn

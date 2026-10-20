@@ -1,0 +1,15 @@
+$ ping -c3 -W1 192.168.110.10 | tail -2
+3 packets transmitted, 0 received, +3 errors, 100% packet loss, time 2031ms
+pipe 3
+
+$ for ip in 192.168.110.2 192.168.110.3 192.168.110.4; do echo -n "$ip: "; ping -c1 -W1 $ip >/dev/null && echo ok || echo FAIL; done
+192.168.110.2: ok
+192.168.110.3: ok
+192.168.110.4: ok
+
+$ curl -sk -m5 -o /dev/null -w 'VIP      192.168.110.10:6443/readyz -> %{http_code}\n' https://192.168.110.10:6443/readyz
+VIP      192.168.110.10:6443/readyz -> 000
+
+$ curl -sk -m5 -o /dev/null -w 'master-2 192.168.110.4:6443/readyz -> %{http_code}\n' https://192.168.110.4:6443/readyz
+master-2 192.168.110.4:6443/readyz -> 200
+

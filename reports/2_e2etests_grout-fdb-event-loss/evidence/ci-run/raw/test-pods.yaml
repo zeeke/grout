@@ -1,0 +1,511 @@
+Dumping pod YAMLs for namespace test-namespace
+- metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "kindnet",
+            "interface": "eth0",
+            "ips": [
+                "10.244.0.25",
+                "fd00:10:244::19"
+            ],
+            "mac": "ee:ea:b6:ce:e1:bf",
+            "default": true,
+            "dns": {},
+            "gateway": [
+                "\u003cnil\u003e",
+                "\u003cnil\u003e"
+            ]
+        },{
+            "name": "test-namespace/110",
+            "interface": "net1",
+            "ips": [
+                "192.171.24.2"
+            ],
+            "mac": "46:cd:e2:e6:d1:6c",
+            "dns": {},
+            "gateway": [
+                "192.171.24.1"
+            ]
+        }]
+      k8s.v1.cni.cncf.io/networks: '[{"name":"110","namespace":"test-namespace","ips":["192.171.24.2/24"]}]'
+    creationTimestamp: "2026-10-20T10:08:12Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:k8s.v1.cni.cncf.io/networks: {}
+        f:spec:
+          f:containers:
+            k:{"name":"agnhost"}:
+              .: {}
+              f:args: {}
+              f:command: {}
+              f:image: {}
+              f:imagePullPolicy: {}
+              f:name: {}
+              f:ports:
+                .: {}
+                k:{"containerPort":8090,"protocol":"TCP"}:
+                  .: {}
+                  f:containerPort: {}
+                  f:name: {}
+                  f:protocol: {}
+              f:resources: {}
+              f:securityContext:
+                .: {}
+                f:capabilities:
+                  .: {}
+                  f:add: {}
+              f:terminationMessagePath: {}
+              f:terminationMessagePolicy: {}
+          f:dnsPolicy: {}
+          f:enableServiceLinks: {}
+          f:nodeName: {}
+          f:restartPolicy: {}
+          f:schedulerName: {}
+          f:securityContext: {}
+          f:terminationGracePeriodSeconds: {}
+      manager: suite.test
+      operation: Update
+      time: "2026-10-20T10:08:12Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:conditions:
+            .: {}
+            k:{"type":"ContainersReady"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Initialized"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"PodReadyToStartContainers"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"PodScheduled"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Ready"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+          f:containerStatuses: {}
+          f:hostIP: {}
+          f:hostIPs: {}
+          f:phase: {}
+          f:podIP: {}
+          f:podIPs:
+            .: {}
+            k:{"ip":"10.244.0.25"}:
+              .: {}
+              f:ip: {}
+            k:{"ip":"fd00:10:244::19"}:
+              .: {}
+              f:ip: {}
+          f:startTime: {}
+      manager: kubelet
+      operation: Update
+      subresource: status
+      time: "2026-10-20T10:08:30Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:k8s.v1.cni.cncf.io/network-status: {}
+      manager: multus
+      operation: Update
+      subresource: status
+      time: "2026-10-20T10:08:30Z"
+    name: pod1
+    namespace: test-namespace
+    resourceVersion: "4718"
+    uid: a54e49b0-fd78-49a6-8264-b63f22ed3ffc
+  spec:
+    containers:
+    - args:
+      - netexec
+      - --http-port=8090
+      command:
+      - /agnhost
+      image: k8s.gcr.io/e2e-test-images/agnhost:2.40
+      imagePullPolicy: IfNotPresent
+      name: agnhost
+      ports:
+      - containerPort: 8090
+        name: http
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-59zlq
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: pe-kind-control-plane
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-59zlq
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:30Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:12Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:30Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:30Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:12Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://00d50dc1bfa2c2dc3e272b095c712bad0630fc44f7583fabba9f73a20c2f4ab5
+      image: k8s.gcr.io/e2e-test-images/agnhost:2.40
+      imageID: k8s.gcr.io/e2e-test-images/agnhost@sha256:af7e3857d87770ddb40f5ea4f89b5a2709504ab1ee31f9ea4ab5823c045f2146
+      lastState: {}
+      name: agnhost
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-20T10:08:30Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-59zlq
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.3
+    hostIPs:
+    - ip: 172.18.0.3
+    - ip: fc00:f853:ccd:e793::3
+    phase: Running
+    podIP: 10.244.0.25
+    podIPs:
+    - ip: 10.244.0.25
+    - ip: fd00:10:244::19
+    qosClass: BestEffort
+    startTime: "2026-10-20T10:08:12Z"
+- metadata:
+    annotations:
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "kindnet",
+            "interface": "eth0",
+            "ips": [
+                "10.244.2.18",
+                "fd00:10:244:2::12"
+            ],
+            "mac": "52:06:de:f8:d7:7c",
+            "default": true,
+            "dns": {},
+            "gateway": [
+                "\u003cnil\u003e",
+                "\u003cnil\u003e"
+            ]
+        },{
+            "name": "test-namespace/110",
+            "interface": "net1",
+            "ips": [
+                "192.171.24.3"
+            ],
+            "mac": "f6:ce:79:73:0c:48",
+            "dns": {},
+            "gateway": [
+                "192.171.24.1"
+            ]
+        }]
+      k8s.v1.cni.cncf.io/networks: '[{"name":"110","namespace":"test-namespace","ips":["192.171.24.3/24"]}]'
+    creationTimestamp: "2026-10-20T10:08:31Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:k8s.v1.cni.cncf.io/networks: {}
+        f:spec:
+          f:containers:
+            k:{"name":"agnhost"}:
+              .: {}
+              f:args: {}
+              f:command: {}
+              f:image: {}
+              f:imagePullPolicy: {}
+              f:name: {}
+              f:ports:
+                .: {}
+                k:{"containerPort":8090,"protocol":"TCP"}:
+                  .: {}
+                  f:containerPort: {}
+                  f:name: {}
+                  f:protocol: {}
+              f:resources: {}
+              f:securityContext:
+                .: {}
+                f:capabilities:
+                  .: {}
+                  f:add: {}
+              f:terminationMessagePath: {}
+              f:terminationMessagePolicy: {}
+          f:dnsPolicy: {}
+          f:enableServiceLinks: {}
+          f:nodeName: {}
+          f:restartPolicy: {}
+          f:schedulerName: {}
+          f:securityContext: {}
+          f:terminationGracePeriodSeconds: {}
+      manager: suite.test
+      operation: Update
+      time: "2026-10-20T10:08:31Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:k8s.v1.cni.cncf.io/network-status: {}
+      manager: multus
+      operation: Update
+      subresource: status
+      time: "2026-10-20T10:08:32Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:conditions:
+            .: {}
+            k:{"type":"ContainersReady"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Initialized"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"PodReadyToStartContainers"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"PodScheduled"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Ready"}:
+              .: {}
+              f:lastProbeTime: {}
+              f:lastTransitionTime: {}
+              f:status: {}
+              f:type: {}
+          f:containerStatuses: {}
+          f:hostIP: {}
+          f:hostIPs: {}
+          f:phase: {}
+          f:podIP: {}
+          f:podIPs:
+            .: {}
+            k:{"ip":"10.244.2.18"}:
+              .: {}
+              f:ip: {}
+            k:{"ip":"fd00:10:244:2::12"}:
+              .: {}
+              f:ip: {}
+          f:startTime: {}
+      manager: kubelet
+      operation: Update
+      subresource: status
+      time: "2026-10-20T10:08:33Z"
+    name: pod2
+    namespace: test-namespace
+    resourceVersion: "4733"
+    uid: 545f1535-0059-41a8-8284-1c054d2483af
+  spec:
+    containers:
+    - args:
+      - netexec
+      - --http-port=8090
+      command:
+      - /agnhost
+      image: k8s.gcr.io/e2e-test-images/agnhost:2.40
+      imagePullPolicy: IfNotPresent
+      name: agnhost
+      ports:
+      - containerPort: 8090
+        name: http
+        protocol: TCP
+      resources: {}
+      securityContext:
+        capabilities:
+          add:
+          - NET_ADMIN
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-ps5tq
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: pe-kind-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-ps5tq
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:33Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:31Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:33Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:33Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-20T10:08:31Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://b9f8b1d0e1d170fc24fb153b095f5e583a5ef49fbb289c421900969a1590fe7f
+      image: k8s.gcr.io/e2e-test-images/agnhost:2.40
+      imageID: k8s.gcr.io/e2e-test-images/agnhost@sha256:af7e3857d87770ddb40f5ea4f89b5a2709504ab1ee31f9ea4ab5823c045f2146
+      lastState: {}
+      name: agnhost
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-20T10:08:32Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-ps5tq
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    - ip: fc00:f853:ccd:e793::2
+    phase: Running
+    podIP: 10.244.2.18
+    podIPs:
+    - ip: 10.244.2.18
+    - ip: fd00:10:244:2::12
+    qosClass: BestEffort
+    startTime: "2026-10-20T10:08:31Z"

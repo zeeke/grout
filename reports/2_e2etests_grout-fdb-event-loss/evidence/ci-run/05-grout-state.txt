@@ -1,0 +1,47 @@
+# grout state on each node at dump time (2026-10-20 10:10:22.815193089+00:00).
+# On pe-kind-worker grout has learned pod2's MAC on pe-110 and its neighbor
+# entry, but zebra/BGP never got to know them (see 04 and 06).
+
+================ pe-kind-control-plane: grcli fdb show
+######## grcli fdb show
+
+BRIDGE     MAC                VLAN  IFACE      VTEP  FLAGS  AGE
+br-pe-110  00:f3:00:00:00:6f        br-pe-110        local    2
+br-pe-110  46:cd:e2:e6:d1:6c        pe-110           learn    6
+
+================ pe-kind-control-plane: grcli nexthop show (L2VNI bridge neighbors)
+red        learn   br-pe-110    L3          family=ipv4 addr=192.171.24.2 state=reachable mac=46:cd:e2:e6:d1:6c flags=neigh
+red        learn   br-pe-110    L3          family=ipv4 addr=192.171.24.3 state=failed flags=neigh
+
+================ pe-kind-worker: grcli fdb show
+######## grcli fdb show
+
+BRIDGE     MAC                VLAN  IFACE      VTEP        FLAGS   AGE
+br-pe-110  00:f3:00:00:00:6f        br-pe-110              local     6
+br-pe-110  f6:ce:79:73:0c:48        pe-110                 learn     2
+br-pe-110  46:cd:e2:e6:d1:6c        vni110     100.65.0.0  extern  104
+
+================ pe-kind-worker: grcli nexthop show (L2VNI bridge neighbors)
+red   5    zebra   br-pe-110    L3          family=ipv4 addr=192.171.24.2 state=reachable mac=46:cd:e2:e6:d1:6c flags=remote neigh
+red        learn   br-pe-110    L3          family=ipv4 addr=192.171.24.3 state=reachable mac=f6:ce:79:73:0c:48 flags=neigh
+
+================ pe-kind-worker2: grcli fdb show
+######## grcli fdb show
+
+BRIDGE     MAC                VLAN  IFACE      VTEP        FLAGS   AGE
+br-pe-110  00:f3:00:00:00:6f        br-pe-110              local    10
+br-pe-110  46:cd:e2:e6:d1:6c        vni110     100.65.0.0  extern  108
+
+================ pe-kind-worker2: grcli nexthop show (L2VNI bridge neighbors)
+red   8    zebra   br-pe-110    L3          family=ipv4 addr=192.171.24.2 state=reachable mac=46:cd:e2:e6:d1:6c flags=remote neigh
+red        learn   br-pe-110    L3          family=ipv4 addr=192.171.24.3 state=failed flags=neigh
+
+================ pe-kind-worker: grcli stats show (selected)
+NODE                          BATCHES  PACKETS  PKTS/BATCH  CYCLES/BATCH  CYCLES/PKT
+bridge_input                      341      396         1.2        4709.9      4055.8
+bridge_flood                      143      346         2.4        2586.6      1069.0
+vxlan_flood                        33       50         1.5        1097.4       724.3
+bridge_input_hairpin               33       36         1.1        1017.8       933.0
+vxlan_flood_drop                   12       13         1.1         797.3       736.0
+ctlplane.tx_write_failed            0       56         0.0           0.0         0.0
+nexthop.neigh_unresponsive          0        6         0.0           0.0         0.0

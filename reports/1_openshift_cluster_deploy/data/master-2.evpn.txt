@@ -1,0 +1,135 @@
+$ podman exec frr vtysh -c "show evpn arp-cache vni all"
+
+VNI 210 #ARP (IPv4 and IPv6, local and remote) 18
+
+Flags: I=local-inactive, P=peer-active, X=peer-proxy
+Neighbor                  Type   Flags State    MAC               Remote ES/VTEP                           Seq #'s
+fe80::e867:8fff:fe78:f96d local        inactive 00:f3:00:00:00:d3                                          0/0
+fd00:110::10              local        active   52:54:00:a4:3e:78                                          0/0
+fd00:110::3               remote       active   52:54:00:f5:d6:c9 fd00::3                                  0/0
+fe80::5054:ff:fea4:3e78   local        active   52:54:00:a4:3e:78                                          0/0
+192.168.110.3             remote       active   52:54:00:f5:d6:c9 fd00::3                                  0/0
+fe80::5054:ff:fef5:d6c9   remote       active   52:54:00:f5:d6:c9 fd00::3                                  0/0
+fe80::5054:ff:fe63:cfd0   remote       active   52:54:00:63:cf:d0 fd00::5                                  0/0
+192.168.110.10            remote       active   52:54:00:00:50:29 fd00::2                                  0/0
+fd00:110::4               local        active   52:54:00:a4:3e:78                                          0/0
+192.168.110.6             remote       active   52:54:00:c2:3d:13 fd00::6                                  0/0
+fe80::5054:ff:fec2:3d13   remote       active   52:54:00:c2:3d:13 fd00::6                                  0/0
+fe80::5054:ff:fe00:5029   remote       active   52:54:00:00:50:29 fd00::2                                  0/0
+fd00:110::2               remote       active   52:54:00:00:50:29 fd00::2                                  0/0
+fd00:110::6               remote       active   52:54:00:c2:3d:13 fd00::6                                  0/0
+192.168.110.4             local        active   52:54:00:a4:3e:78                                          0/0
+fd00:110::5               remote       active   52:54:00:63:cf:d0 fd00::5                                  0/0
+192.168.110.5             remote       active   52:54:00:63:cf:d0 fd00::5                                  0/0
+192.168.110.2             remote       active   52:54:00:00:50:29 fd00::2                                  0/0
+
+$ podman exec frr vtysh -c "show evpn mac vni all"
+
+VNI 210 #MACs (local and remote) 5
+
+Flags: N=sync-neighs, I=local-inactive, P=peer-active, X=peer-proxy
+MAC               Type   Flags Intf/Remote ES/VTEP                     VLAN  Seq #'s
+52:54:00:f5:d6:c9 remote       fd00::3                                       0/0
+52:54:00:00:50:29 remote       fd00::2                                       0/0
+52:54:00:a4:3e:78 local        t_enp7s0.42                                   0/0
+52:54:00:c2:3d:13 remote       fd00::6                                       0/0
+52:54:00:63:cf:d0 remote       fd00::5                                       0/0
+
+$ podman exec frr vtysh -c 'show evpn arp-cache vni 210 ip 192.168.110.10'
+IP: 192.168.110.10
+ Type: remote
+ State: active
+ Uptime: 00:35:56
+ MAC: 52:54:00:00:50:29
+ VLAN: 0
+ Sync-info: -
+ Remote VTEP: fd00::2
+ Local Seq: 0 Remote Seq: 0
+
+$ podman exec frr vtysh -c "show bgp l2vpn evpn route type macip"
+BGP table version is 8, local router ID is 10.0.0.4
+Status codes:  s suppressed, d damped, h history, u unsorted, * valid, > best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+EVPN type-1 prefix: [1]:[EthTag]:[ESI]:[IPlen]:[VTEP-IP]:[Frag-id]
+EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
+EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
+EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
+EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
+
+   Network          Next Hop            Metric LocPrf Weight Path
+                    Extended Community
+Route Distinguisher: 10.0.0.2:3
+ *>i [2]:[0]:[48]:[52:54:00:00:50:29] RD 10.0.0.2:3
+                    fd00::2                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:00:50:29]:[32]:[192.168.110.2] RD 10.0.0.2:3
+                    fd00::2                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:00:50:29]:[32]:[192.168.110.10] RD 10.0.0.2:3
+                    fd00::2                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:00:50:29]:[128]:[fd00:110::2] RD 10.0.0.2:3
+                    fd00::2                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:00:50:29]:[128]:[fe80::5054:ff:fe00:5029] RD 10.0.0.2:3
+                    fd00::2                       100      0 i
+                    RT:65500:210 ET:8
+Route Distinguisher: 10.0.0.3:3
+ *>i [2]:[0]:[48]:[52:54:00:f5:d6:c9] RD 10.0.0.3:3
+                    fd00::3                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:f5:d6:c9]:[32]:[192.168.110.3] RD 10.0.0.3:3
+                    fd00::3                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:f5:d6:c9]:[128]:[fd00:110::3] RD 10.0.0.3:3
+                    fd00::3                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:f5:d6:c9]:[128]:[fe80::5054:ff:fef5:d6c9] RD 10.0.0.3:3
+                    fd00::3                       100      0 i
+                    RT:65500:210 ET:8
+Route Distinguisher: 10.0.0.4:3
+ *>  [2]:[0]:[48]:[52:54:00:a4:3e:78] RD 10.0.0.4:3
+                    fd00::4                            32768 i
+                    ET:8 RT:65500:210
+ *>  [2]:[0]:[48]:[52:54:00:a4:3e:78]:[32]:[192.168.110.4] RD 10.0.0.4:3
+                    fd00::4                            32768 i
+                    ET:8 RT:65500:210
+ *>  [2]:[0]:[48]:[52:54:00:a4:3e:78]:[128]:[fd00:110::4] RD 10.0.0.4:3
+                    fd00::4                            32768 i
+                    ET:8 RT:65500:210
+ *>  [2]:[0]:[48]:[52:54:00:a4:3e:78]:[128]:[fd00:110::10] RD 10.0.0.4:3
+                    fd00::4                            32768 i
+                    ET:8 RT:65500:210
+ *>  [2]:[0]:[48]:[52:54:00:a4:3e:78]:[128]:[fe80::5054:ff:fea4:3e78] RD 10.0.0.4:3
+                    fd00::4                            32768 i
+                    ET:8 RT:65500:210
+Route Distinguisher: 10.0.0.5:3
+ *>i [2]:[0]:[48]:[52:54:00:63:cf:d0] RD 10.0.0.5:3
+                    fd00::5                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:63:cf:d0]:[32]:[192.168.110.5] RD 10.0.0.5:3
+                    fd00::5                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:63:cf:d0]:[128]:[fd00:110::5] RD 10.0.0.5:3
+                    fd00::5                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:63:cf:d0]:[128]:[fe80::5054:ff:fe63:cfd0] RD 10.0.0.5:3
+                    fd00::5                       100      0 i
+                    RT:65500:210 ET:8
+Route Distinguisher: 10.0.0.6:3
+ *>i [2]:[0]:[48]:[52:54:00:c2:3d:13] RD 10.0.0.6:3
+                    fd00::6                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:c2:3d:13]:[32]:[192.168.110.6] RD 10.0.0.6:3
+                    fd00::6                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:c2:3d:13]:[128]:[fd00:110::6] RD 10.0.0.6:3
+                    fd00::6                       100      0 i
+                    RT:65500:210 ET:8
+ *>i [2]:[0]:[48]:[52:54:00:c2:3d:13]:[128]:[fe80::5054:ff:fec2:3d13] RD 10.0.0.6:3
+                    fd00::6                       100      0 i
+                    RT:65500:210 ET:8
+
+Displayed 22 prefixes (22 paths) (of requested type)
+

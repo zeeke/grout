@@ -1,0 +1,136 @@
+$ crictl logs $(crictl ps -q --name "^keepalived$") 2>&1 | grep -vE "Printing (parent|VRRP) data|Interface [0-9a-f]+ (deleted|added)"
++ remove_vip 192.168.110.10
++ address=192.168.110.10
+++ ip -o a
+++ awk '/\s192.168.110.10\// {print $2}'
++ interface=
+++ ip -o a
+++ awk '/\s192.168.110.10\// {print $4}'
++ cidr=
++ '[' -n '' ']'
++ remove_vip fd00:110::10
++ address=fd00:110::10
+++ ip -o a
+++ awk '/\sfd00:110::10\// {print $2}'
++ interface=
+++ ip -o a
+++ awk '/\sfd00:110::10\// {print $4}'
++ cidr=
++ '[' -n '' ']'
++ remove_vip 192.168.110.11
++ address=192.168.110.11
+++ ip -o a
+++ awk '/\s192.168.110.11\// {print $2}'
++ interface=
+++ ip -o a
+++ awk '/\s192.168.110.11\// {print $4}'
++ cidr=
++ '[' -n '' ']'
++ remove_vip fd00:110::11
++ address=fd00:110::11
+++ ip -o a
+++ awk '/\sfd00:110::11\// {print $2}'
++ interface=
+++ ip -o a
+++ awk '/\sfd00:110::11\// {print $4}'
++ cidr=
++ '[' -n '' ']'
++ declare -r keepalived_sock=/var/run/keepalived/keepalived.sock
++ export -f msg_handler
++ export -f reload_keepalived
++ export -f sigterm_handler
++ '[' -f /run/nodeip-configuration/remote-worker ']'
++ trap sigterm_handler SIGTERM
++ '[' -s /etc/keepalived/keepalived.conf ']'
++ rm -f /var/run/keepalived/keepalived.sock
++ /usr/sbin/keepalived -f /etc/keepalived/keepalived.conf --dont-fork --vrrp --log-detail --log-console
++ wait
++ socat UNIX-LISTEN:/var/run/keepalived/keepalived.sock,fork 'system:bash -c msg_handler'
+Tue Oct 20 13:37:17 2026: Starting Keepalived v2.2.8 (04/04,2023), git commit v2.2.7-154-g292b299e+
+Tue Oct 20 13:37:17 2026: Running on Linux 5.14.0-687.17.1.el9_8.x86_64 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 13:44:59 EDT 2026 (built for Linux 5.14.0)
+Tue Oct 20 13:37:17 2026: Command line: '/usr/sbin/keepalived' '-f' '/etc/keepalived/keepalived.conf' '--dont-fork' '--vrrp'
+Tue Oct 20 13:37:17 2026:               '--log-detail' '--log-console'
+Tue Oct 20 13:37:17 2026: Opening file '/etc/keepalived/keepalived.conf'.
+Tue Oct 20 13:37:17 2026: Configuration file /etc/keepalived/keepalived.conf
+Tue Oct 20 13:37:33 2026: Starting VRRP child process, pid=42
+Tue Oct 20 13:37:33 2026: Registering Kernel netlink reflector
+Tue Oct 20 13:37:33 2026: Registering Kernel netlink command channel
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 89) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 120) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 153) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 156) Cannot specify label for IPv6 addresses (fd00:110::10/128) - ignoring label
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 184) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:33 2026: (/etc/keepalived/keepalived.conf: Line 187) Cannot specify label for IPv6 addresses (fd00:110::11/128) - ignoring label
+Tue Oct 20 13:37:33 2026: Assigned address 192.168.110.3 for interface br-ex
+Tue Oct 20 13:37:33 2026: Assigned address fe80::5054:ff:fef5:d6c9 for interface br-ex
+Tue Oct 20 13:37:33 2026: (sno-lab_API_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:37:33 2026: (sno-lab_INGRESS_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:37:33 2026: Registering gratuitous ARP shared channel
+Tue Oct 20 13:37:33 2026: Registering gratuitous NDISC shared channel
+Tue Oct 20 13:37:33 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_INGRESS_0) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_INGRESS_1) removing VIPs.
+Tue Oct 20 13:37:33 2026: Startup complete
+Tue Oct 20 13:37:33 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_API_0) Entering BACKUP STATE (init)
+Tue Oct 20 13:37:33 2026: (sno-lab_INGRESS_0) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:37:33 2026: (sno-lab_API_1) Entering BACKUP STATE (init)
+Tue Oct 20 13:37:33 2026: (sno-lab_INGRESS_1) removing VIPs.
+Tue Oct 20 13:37:33 2026: VRRP sockpool: [ifindex( 14), family(IPv4), proto(112), fd(12,13) , unicast, address(192.168.110.3)]
+Tue Oct 20 13:37:33 2026: VRRP sockpool: [ifindex( 14), family(IPv6), proto(112), fd(14,15) , unicast, address(fd00:110::3)]
+Tue Oct 20 13:37:33 2026: Script `chk_ingress` now returning 7
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_ingress) failed (exited with status 7)
+Tue Oct 20 13:37:33 2026: Script `chk_ingress_ready` now returning 7
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_ingress_ready) failed (exited with status 7)
+Tue Oct 20 13:37:33 2026: Script `chk_ocp_lb` now returning 1
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_ocp_lb) failed (exited with status 1)
+Tue Oct 20 13:37:33 2026: Script `chk_ocp_both` now returning 22
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_ocp_both) failed (exited with status 22)
+Tue Oct 20 13:37:33 2026: Script `chk_default_ingress` now returning 1
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_default_ingress) failed (exited with status 1)
+Tue Oct 20 13:37:33 2026: VRRP_Script(chk_mcs) succeeded
+Tue Oct 20 13:37:33 2026: (sno-lab_API_0) Changing effective priority from 40 to 43
+Tue Oct 20 13:37:33 2026: (sno-lab_API_1) Changing effective priority from 40 to 43
+Tue Oct 20 13:37:35 2026: Script `chk_ocp_both` now returning 0
+Tue Oct 20 13:37:39 2026: VRRP_Script(chk_ocp_both) succeeded
+Tue Oct 20 13:37:39 2026: (sno-lab_API_0) Changing effective priority from 43 to 48
+Tue Oct 20 13:37:39 2026: (sno-lab_API_1) Changing effective priority from 43 to 48
+Tue Oct 20 13:37:39 2026: Script `chk_ocp_lb` now returning 0
+Tue Oct 20 13:37:43 2026: VRRP_Script(chk_ocp_lb) succeeded
+Tue Oct 20 13:37:43 2026: (sno-lab_API_0) Changing effective priority from 48 to 68
+Tue Oct 20 13:37:43 2026: (sno-lab_API_1) Changing effective priority from 48 to 68
+The client sent: reload
+Tue Oct 20 13:37:47 2026: Reloading ...
+Tue Oct 20 13:37:47 2026: Opening file '/etc/keepalived/keepalived.conf'.
+Tue Oct 20 13:37:47 2026: Configuration file /etc/keepalived/keepalived.conf
+Tue Oct 20 13:37:47 2026: Reloading
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 89) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 120) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 153) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 156) Cannot specify label for IPv6 addresses (fd00:110::10/128) - ignoring label
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 184) Truncating auth_pass to 8 characters
+Tue Oct 20 13:37:47 2026: (/etc/keepalived/keepalived.conf: Line 187) Cannot specify label for IPv6 addresses (fd00:110::11/128) - ignoring label
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_ocp_lb) considered successful on reload
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_ocp_both) considered successful on reload
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_mcs) considered successful on reload
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_ingress_ready) considered unsuccessful on reload
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_ingress) considered unsuccessful on reload
+Tue Oct 20 13:37:47 2026: VRRP_Script(chk_default_ingress) considered unsuccessful on reload
+Tue Oct 20 13:37:47 2026: Assigned address 192.168.110.3 for interface br-ex
+Tue Oct 20 13:37:47 2026: Assigned address fe80::5054:ff:fef5:d6c9 for interface br-ex
+Tue Oct 20 13:37:47 2026: (sno-lab_API_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:37:47 2026: (sno-lab_INGRESS_1) VRRP version 3 does not support authentication. Ignoring.
+Tue Oct 20 13:37:47 2026: (sno-lab_API_0) Changing effective priority from 40 to 68
+Tue Oct 20 13:37:47 2026: (sno-lab_INGRESS_0): entering FAULT state due to script chk_ingress
+Tue Oct 20 13:37:47 2026: (sno-lab_API_1) Changing effective priority from 40 to 68
+Tue Oct 20 13:37:47 2026: (sno-lab_INGRESS_1): entering FAULT state due to script chk_ingress
+Tue Oct 20 13:37:47 2026: Reload complete
+Tue Oct 20 13:37:47 2026: (sno-lab_API_0) removing VIPs.
+Tue Oct 20 13:37:47 2026: (sno-lab_INGRESS_0) removing VIPs.
+Tue Oct 20 13:37:47 2026: (sno-lab_API_1) removing VIPs.
+Tue Oct 20 13:37:47 2026: (sno-lab_INGRESS_1) removing VIPs.
+Tue Oct 20 13:37:47 2026: VRRP sockpool: [ifindex( 14), family(IPv4), proto(112), fd(12,13) , unicast, address(192.168.110.3)]
+Tue Oct 20 13:37:47 2026: VRRP sockpool: [ifindex( 14), family(IPv6), proto(112), fd(14,15) , unicast, address(fd00:110::3)]
+

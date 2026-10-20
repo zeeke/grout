@@ -1,0 +1,54 @@
+# e2e failure (job log tail, raw/e2e-job-log-tail.txt.gz)
+
+2026-10-20T10:08:10.9563873Z   STEP: setting redistribute connected on leaves @ 10/20/26 10:08:10.955
+2026-10-20T10:08:11.6757372Z   STEP: cleaning all but the underlay @ 10/20/26 10:08:11.674
+2026-10-20T10:08:11.6962024Z   STEP: configuring FRR to peer with OpenPERouter @ 10/20/26 10:08:11.695
+2026-10-20T10:08:11.6970035Z   STEP: creating L3VPN and L2VNI @ 10/20/26 10:08:11.696
+2026-10-20T10:08:12.0185541Z   STEP: creating the namespace @ 10/20/26 10:08:12.017
+2026-10-20T10:08:12.0349933Z   STEP: creating the MacVLAN Network Attachment Definition @ 10/20/26 10:08:12.029
+2026-10-20T10:08:12.0369481Z   STEP: creating the pods @ 10/20/26 10:08:12.036
+2026-10-20T10:08:33.5519146Z   STEP: removing the default gateway via the primary interface @ 10/20/26 10:08:33.551
+2026-10-20T10:08:34.0863159Z   STEP: Getting the pod's node @ 10/20/26 10:08:34.086
+2026-10-20T10:08:34.0901056Z   STEP: Getting the HostIP address on CIDRs 192.169.10.0/24 and 2001:db8:1::/64 @ 10/20/26 10:08:34.089
+2026-10-20T10:08:34.0901844Z   STEP: checking reachability from firstPod to secondPod @ 10/20/26 10:08:34.089
+2026-10-20T10:08:34.0902569Z   STEP: trying to hit 192.171.24.3 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:34.089
+2026-10-20T10:08:34.1748105Z   STEP: checking reachability from secondPod to firstPod @ 10/20/26 10:08:34.174
+2026-10-20T10:08:34.1749917Z   STEP: trying to hit 192.171.24.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:08:34.174
+2026-10-20T10:08:34.2785969Z   STEP: checking reachability from firstPod to hostSRV6Red @ 10/20/26 10:08:34.278
+2026-10-20T10:08:34.2787497Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:34.278
+2026-10-20T10:08:35.3741079Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:35.373
+2026-10-20T10:08:36.4538882Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:36.453
+2026-10-20T10:08:37.5648832Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:37.564
+2026-10-20T10:08:38.6638685Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:38.663
+2026-10-20T10:08:39.7568765Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:39.756
+2026-10-20T10:08:40.8361519Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:40.835
+2026-10-20T10:08:41.9639021Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:41.963
+2026-10-20T10:08:43.0469485Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:43.046
+2026-10-20T10:08:44.1239285Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:44.123
+2026-10-20T10:08:45.2117065Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:45.211
+2026-10-20T10:08:46.3094734Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:46.309
+2026-10-20T10:08:47.4013816Z   STEP: trying to hit 192.170.20.2 from 192.171.24.2 and expecting to see 192.171.24.2 @ 10/20/26 10:08:47.401
+2026-10-20T10:08:47.4861077Z   STEP: checking reachability from secondPod to hostSRV6Red @ 10/20/26 10:08:47.485
+2026-10-20T10:08:47.4862059Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:08:47.485
+2026-10-20T10:08:53.5775436Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:08:53.577
+2026-10-20T10:08:59.6670919Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:08:59.666
+2026-10-20T10:09:05.7477984Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:05.747
+2026-10-20T10:09:11.8331906Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:11.832
+2026-10-20T10:09:17.9117344Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:17.911
+2026-10-20T10:09:23.9915548Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:23.991
+2026-10-20T10:09:30.0908959Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:30.09
+2026-10-20T10:09:36.2122649Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:36.212
+2026-10-20T10:09:42.3058072Z   STEP: trying to hit 192.170.20.2 from 192.171.24.3 and expecting to see 192.171.24.3 @ 10/20/26 10:09:42.305
+2026-10-20T10:09:47.4867398Z   [FAILED] in [It] - /home/runner/work/openperouter/openperouter/e2etests/tests/l3vpn_l2.go:375 @ 10/20/26 10:09:47.486
+2026-10-20T10:10:59.6800683Z   STEP: deleting bridge br-ovs-test from node pe-kind-control-plane @ 10/20/26 10:10:59.679
+2026-10-20T10:10:59.8113963Z   STEP: deleting bridge br-ovs-test from node pe-kind-worker @ 10/20/26 10:10:59.811
+2026-10-20T10:10:59.9510986Z   STEP: deleting bridge br-ovs-test from node pe-kind-worker2 @ 10/20/26 10:10:59.95
+2026-10-20T10:11:00.0857571Z   STEP: cleaning all resources @ 10/20/26 10:11:00.085
+2026-10-20T10:11:00.1016169Z   STEP: waiting for all router pods to be ready after removing the underlay @ 10/20/26 10:11:00.101
+2026-10-20T10:11:00.1052700Z • [FAILED] [169.150 seconds]
+2026-10-20T10:11:00.1056983Z   [FAILED] Timed out after 60.000s.
+2026-10-20T10:11:00.1058365Z   The function passed to Eventually failed at /home/runner/work/openperouter/openperouter/e2etests/tests/validate_pods.go:32 with:
+2026-10-20T10:11:00.1059291Z   curl 192.170.20.2:8090 failed: curl: (28) Connection timed out after 5000 milliseconds
+2026-10-20T10:11:00.1061851Z       exec in pod test-namespace/pod2 container agnhost failed: exit status 28. Output: curl: (28) Connection timed out after 5000 milliseconds
+2026-10-20T10:11:00.1064757Z           msg: "exec in pod test-namespace/pod2 container agnhost failed: exit status 28. Output: curl: (28) Connection timed out after 5000 milliseconds\ncommand terminated with exit code 28\n",
+2026-10-20T10:11:00.1440425Z   STEP: configuring the kind leaves for the underlay flavor @ 10/20/26 10:11:00.143

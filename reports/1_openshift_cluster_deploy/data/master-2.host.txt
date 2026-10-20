@@ -1,0 +1,235 @@
+$ date -u; hostname; uptime
+Tue Oct 20 14:03:45 UTC 2026
+master-2
+ 14:03:45 up 37 min,  0 users,  load average: 1.39, 1.42, 1.62
+
+$ ip -br addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp1s0           UP             
+enp3s0           UP             192.168.150.22/24 
+enp8s0           UP             
+ovs-system       DOWN           
+ovn-k8s-mp0      UNKNOWN        10.128.0.2/23 fd01:0:0:1::2/64 fe80::858:aff:fe80:2/64 
+br-int           DOWN           
+genev_sys_6081   UNKNOWN        fe80::cf7:77ff:fe2b:c1f0/64 
+nodeidx          UNKNOWN        192.0.2.4/24 
+podman0          UP             10.88.0.1/16 fe80::78f5:5eff:fe29:f4d4/64 
+veth0@if2        UP             fe80::e8d0:eaff:fee2:e19/64 
+br-ex            UNKNOWN        192.168.110.4/24 169.254.0.2/17 192.168.110.10/32 fd00:110::10/128 fd69::2/112 fd00:110::4/64 fe80::5054:ff:fea4:3e78/64 
+594b890a791bb97@if2 UP             fe80::ec9d:5ff:fe4c:1d3c/64 
+b93b090b9919ddb@if2 UP             fe80::803f:6eff:fea1:5c6e/64 
+69cb18526d3f54a@if2 UP             fe80::61:65ff:fe11:7e76/64 
+2e1cd554b30e5d3@if2 UP             fe80::145d:45ff:feff:658f/64 
+f446fb80964c4af@if2 UP             fe80::7077:78ff:fefa:c3ff/64 
+f337497e3eb6d75@if2 UP             fe80::5ce4:91ff:feee:f1b9/64 
+ae9a9b4e59c6cdb@if2 UP             fe80::101f:20ff:fedd:8feb/64 
+6359ae9d921685f@if2 UP             fe80::709e:bbff:fe56:b15/64 
+ffa53c96ed33277@if2 UP             fe80::3029:9ff:fea1:2a38/64 
+26b176ac4886088@if2 UP             fe80::cc10:99ff:fe7a:2415/64 
+13c0aded149ad36@if2 UP             fe80::9820:f9ff:fe91:5aee/64 
+1f31bd8d4bba439@if2 UP             fe80::8c57:24ff:fee4:aeb5/64 
+32953cce6473d6a@if2 UP             fe80::20a9:faff:fef7:bae9/64 
+489797dac04c6d2@if2 UP             fe80::8c58:7aff:fe81:6a9/64 
+259cc34b437824e@if2 UP             fe80::78a4:fcff:fe4a:6f56/64 
+e414e33d7b8a931@if2 UP             fe80::5857:2ff:fedc:4c40/64 
+4f0d5d36ce00af6@if2 UP             fe80::e8ab:2dff:feaf:b1b6/64 
+1cf3e6a02b57415@if2 UP             fe80::587c:8cff:fef0:c18/64 
+8a87da27bbd07d8@if2 UP             fe80::cf1:8ff:fe8a:2d68/64 
+ccd4019bd9ac9fd@if2 UP             fe80::20c0:c8ff:fe54:d40a/64 
+b4ebd95a38eadb7@if2 UP             fe80::44f2:5aff:fe5f:5524/64 
+d0d4ed512f750a6@if2 UP             fe80::705b:8ff:fe93:420/64 
+b2ff67e241e99c9@if2 UP             fe80::1008:ddff:fecf:cfc/64 
+d9fe544373b85f9@if2 UP             fe80::b87e:dcff:fe67:715b/64 
+1672d9605430f94@if2 UP             fe80::1c82:b6ff:fef8:180f/64 
+f9764f55779f894@if2 UP             fe80::448:a9ff:fe95:527c/64 
+1ea9ed9ddaa7594@if2 UP             fe80::7421:93ff:fed2:4dbc/64 
+b8f09a5224d48c7@if2 UP             fe80::c0da:77ff:fed7:4109/64 
+60ba55abe6e7f16@if2 UP             fe80::9856:ccff:fe12:a649/64 
+d588f8e2b231939@if2 UP             fe80::e4c6:2aff:febf:61dd/64 
+81ec64e300b9b7a@if2 UP             fe80::1079:aaff:fe28:ad92/64 
+52646009abb1e4e@if2 UP             fe80::c0b5:9ff:fe61:27d7/64 
+ef9aba837c9c914@if2 UP             fe80::f4b0:a2ff:fe6d:129d/64 
+15c99c2babcfe17@if2 UP             fe80::a004:fcff:fe7e:ed34/64 
+99bccf90669950b@if2 UP             fe80::d066:f8ff:fe31:4037/64 
+0cd9b1da343d349@if2 UP             fe80::5465:99ff:fe0c:c9d5/64 
+a6d5cbd5cf885bd@if2 UP             fe80::2015:21ff:fea8:6b0a/64 
+8bde656e19b72ab@if2 UP             fe80::f40a:26ff:fec0:90ba/64 
+c0c5409d7360587@if2 UP             fe80::6477:57ff:fe9b:3415/64 
+36c768129834d4d@if2 UP             fe80::d0f9:77ff:fe49:40b4/64 
+d51e4de7f4e1584@if2 UP             fe80::d056:caff:fe3f:8181/64 
+a4e4b7d56bdcb4a@if2 UP             fe80::dc7a:84ff:fefa:b1f6/64 
+03d70c587cc2542@if2 UP             fe80::b463:3bff:fe77:e58c/64 
+6aa04e494a15e9d@if2 UP             fe80::9c27:1eff:fe3e:df9/64 
+a83a516a2b145d5@if2 UP             fe80::7088:12ff:fe78:f47c/64 
+dc61c80119d316e@if2 UP             fe80::50d0:50ff:fe55:f954/64 
+f0e248a62774ae8@if2 UP             fe80::6079:87ff:fe30:67eb/64 
+efc4d9a5fc90efe@if2 UP             fe80::7cd4:48ff:fec6:6fda/64 
+f9ed09db79b3116@if2 UP             fe80::9446:a5ff:fe0d:7bde/64 
+3671ba294cc18c7@if2 UP             fe80::3c0b:49ff:fe35:30e6/64 
+66197e65e0396fe@if2 UP             fe80::70a9:6cff:fe26:135/64 
+67bc0303fcb4261@if2 UP             fe80::ac0c:86ff:fe6a:59fb/64 
+91f05ac36c8bf1c@if2 UP             fe80::94fb:3fff:fefc:ba41/64 
+b4053f3c7161545@if2 UP             fe80::e814:57ff:fef4:798d/64 
+a07c063fabd74e1@if2 UP             fe80::7c50:cbff:fe86:e48/64 
+1fc862243cc7344@if2 UP             fe80::70df:c0ff:fe0c:90c1/64 
+46116b730a20ba1@if2 UP             fe80::f49c:b8ff:fed6:e148/64 
+ecbc1aebcb5ac42@if2 UP             fe80::4864:c7ff:fe0e:c77/64 
+dcaecf4c523d4e2@if2 UP             fe80::e823:eff:fe72:6d08/64 
+
+$ ip -4 addr | grep -c 192.168.110.10 || true
+1
+
+$ ip neigh show
+169.254.0.4 dev br-ex lladdr 0a:58:a9:fe:00:04 PERMANENT 
+10.128.0.60 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3c REACHABLE 
+10.128.0.19 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:13 REACHABLE 
+10.128.0.57 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:39 STALE 
+10.128.0.40 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:28 REACHABLE 
+192.168.110.5 dev br-ex lladdr 52:54:00:63:cf:d0 STALE 
+10.128.0.54 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:36 REACHABLE 
+10.128.0.31 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1f STALE 
+10.128.0.73 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:49 STALE 
+10.128.0.51 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:33 REACHABLE 
+10.128.0.20 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:14 REACHABLE 
+10.128.0.70 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:46 REACHABLE 
+10.128.0.34 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:22 STALE 
+10.128.0.11 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0b REACHABLE 
+10.128.0.17 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:11 STALE 
+192.168.110.2 dev br-ex lladdr 52:54:00:00:50:29 REACHABLE 
+10.128.0.67 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:43 STALE 
+10.128.0.46 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2e STALE 
+10.128.0.52 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:34 STALE 
+10.128.0.29 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1d REACHABLE 
+10.128.0.43 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2b STALE 
+10.128.0.12 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0c REACHABLE 
+10.128.0.49 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:31 STALE 
+10.128.0.26 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1a STALE 
+10.128.0.68 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:44 STALE 
+10.128.0.32 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:20 STALE 
+10.128.0.9 dev ovn-k8s-mp0 lladdr 0a:58:a9:fe:01:01 STALE 
+10.128.0.23 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:17 STALE 
+10.128.0.61 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3d REACHABLE 
+10.128.0.44 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2c STALE 
+192.168.110.1 dev br-ex lladdr 00:f3:00:00:00:d3 REACHABLE 
+10.128.0.58 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3a STALE 
+10.128.0.3 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:03 REACHABLE 
+10.128.0.41 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:29 STALE 
+10.128.0.55 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:37 REACHABLE 
+10.128.0.24 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:18 STALE 
+10.128.0.74 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:4a STALE 
+10.128.0.38 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:26 STALE 
+10.128.0.21 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:15 REACHABLE 
+10.128.0.71 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:47 STALE 
+10.128.0.35 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:23 STALE 
+10.128.0.4 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:04 STALE 
+10.128.0.18 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:12 STALE 
+192.168.110.3 dev br-ex lladdr 52:54:00:f5:d6:c9 REACHABLE 
+10.128.0.56 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:38 STALE 
+10.128.0.1 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:01 PERMANENT 
+10.128.0.47 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2f REACHABLE 
+10.128.0.53 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:35 REACHABLE 
+10.128.0.30 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1e REACHABLE 
+10.128.0.72 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:48 STALE 
+10.128.0.36 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:24 STALE 
+10.128.0.13 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0d STALE 
+10.128.0.50 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:32 STALE 
+10.128.0.27 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1b STALE 
+169.254.0.1 dev br-ex lladdr 0a:58:a9:fe:00:01 PERMANENT 
+10.128.0.69 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:45 REACHABLE 
+10.128.0.33 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:21 REACHABLE 
+10.128.0.10 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0a REACHABLE 
+10.128.0.62 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3e STALE 
+10.128.0.7 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:07 REACHABLE 
+192.168.150.1 dev enp3s0 lladdr 52:54:00:7e:5a:7f REACHABLE 
+10.128.0.45 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2d STALE 
+10.128.0.59 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3b STALE 
+10.128.0.28 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1c STALE 
+10.128.0.42 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2a STALE 
+10.128.0.48 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:30 REACHABLE 
+10.128.0.25 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:19 STALE 
+192.168.110.10 dev br-ex lladdr 52:54:00:00:50:29 REACHABLE 
+10.128.0.8 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:08 REACHABLE 
+10.128.0.22 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:16 STALE 
+fe80::858:aff:fe80:30 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:30 STALE 
+fe80::5054:ff:fe00:5029 dev br-ex lladdr 52:54:00:00:50:29 STALE 
+fd69::1 dev br-ex lladdr 0a:58:37:85:74:a5 PERMANENT 
+fd01:0:0:1::1 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:01 PERMANENT 
+fe80::858:aff:fe80:15 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:15 STALE 
+fe80::858:aff:fe80:38 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:38 STALE 
+fd00:110::10 dev br-ex lladdr 52:54:00:00:50:29 STALE 
+fe80::858:aff:fe80:1d dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1d STALE 
+fe80::858:aff:fe80:40 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:40 STALE 
+fe80::858:aff:fe80:48 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:48 STALE 
+fe80::858:aff:fe80:a dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0a STALE 
+fe80::858:aff:fe80:2d dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2d STALE 
+fe80::858:aff:fe80:12 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:12 STALE 
+fe80::858:aff:fe80:35 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:35 STALE 
+fe80::858:aff:fe80:1a dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1a STALE 
+fe80::858:aff:fe80:3d dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3d STALE 
+fe80::858:aff:fe80:22 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:22 STALE 
+fe80::858:aff:fe80:45 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:45 STALE 
+fe80::858:aff:fe80:7 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:07 STALE 
+fe80::858:aff:fe80:2a dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2a STALE 
+fd00:110::2 dev br-ex lladdr 52:54:00:00:50:29 STALE 
+fe80::858:aff:fe80:f dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0f STALE 
+fe80::858:aff:fe80:32 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:32 STALE 
+fe80::858:aff:fe80:17 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:17 STALE 
+fe80::858:aff:fe80:3a dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3a STALE 
+fe80::858:aff:fe80:1f dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1f STALE 
+fe80::858:aff:fe80:42 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:42 STALE 
+fe80::858:aff:fe80:4 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:04 STALE 
+fe80::858:aff:fe80:27 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:27 STALE 
+fe80::858:aff:fe80:4a dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:4a STALE 
+fe80::858:aff:fe80:c dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0c STALE 
+fe80::858:aff:fe80:2f dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2f STALE 
+fe80::5054:ff:fef5:d6c9 dev br-ex lladdr 52:54:00:f5:d6:c9 STALE 
+fe80::858:aff:fe80:14 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:14 STALE 
+fe80::858:aff:fe80:37 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:37 STALE 
+fe80::858:aff:fe80:1c dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1c STALE 
+fe80::858:aff:fe80:3f dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3f STALE 
+fe80::858:aff:fe80:24 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:24 STALE 
+fe80::858:aff:fe80:47 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:47 STALE 
+fe80::858:aff:fe80:9 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:09 STALE 
+fe80::858:aff:fe80:2c dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2c STALE 
+fe80::858:aff:fe80:11 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:11 STALE 
+fe80::858:aff:fe80:34 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:34 STALE 
+fe80::858:aff:fe80:19 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:19 STALE 
+fe80::858:aff:fe80:3c dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3c STALE 
+fe80::858:aff:fe80:21 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:21 STALE 
+fe80::858:aff:fe80:44 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:44 STALE 
+fe80::858:aff:fe80:6 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:06 STALE 
+fe80::858:aff:fe80:29 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:29 STALE 
+fd00:110::1 dev br-ex lladdr 00:f3:00:00:00:d3 router REACHABLE 
+fe80::858:aff:fe80:e dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0e STALE 
+fe80::4c2c:b3ff:fe42:154c dev br-ex lladdr 00:f3:00:00:00:d3 router STALE 
+fe80::858:aff:fe80:31 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:31 STALE 
+fe80::858:aff:fe80:16 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:16 STALE 
+fe80::858:aff:fe80:39 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:39 STALE 
+fe80::58a6:25ff:fe72:6c71 dev podman0 lladdr 5a:a6:25:72:6c:71 STALE 
+fe80::858:aff:fe80:1e dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1e STALE 
+fe80::858:aff:fe80:41 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:41 STALE 
+fe80::858:aff:fe80:3 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:03 STALE 
+fe80::858:aff:fe80:26 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:26 STALE 
+fe80::858:aff:fe80:49 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:49 STALE 
+fe80::858:aff:fe80:b dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0b STALE 
+fe80::858:aff:fe80:2e dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2e STALE 
+fe80::858:aff:fe80:13 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:13 STALE 
+fe80::858:aff:fe80:36 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:36 STALE 
+fe80::858:aff:fe80:1b dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:1b STALE 
+fe80::858:aff:fe80:3e dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3e STALE 
+fe80::858:aff:fe80:23 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:23 STALE 
+fe80::858:aff:fe80:46 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:46 STALE 
+fe80::858:aff:fe80:8 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:08 STALE 
+fe80::858:aff:fe80:2b dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:2b STALE 
+fd00:110::3 dev br-ex lladdr 52:54:00:f5:d6:c9 REACHABLE 
+fe80::858:aff:fe80:10 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:10 STALE 
+fe80::858:aff:fe80:33 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:33 STALE 
+fd69::4 dev br-ex lladdr 0a:58:1b:ac:71:41 PERMANENT 
+fe80::858:aff:fe80:18 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:18 STALE 
+fe80::858:aff:fe80:3b dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:3b STALE 
+fe80::858:aff:fe80:20 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:20 STALE 
+fe80::858:aff:fe80:43 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:43 STALE 
+fe80::858:aff:fe80:5 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:05 STALE 
+fe80::858:aff:fe80:28 dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:28 STALE 
+fe80::858:aff:fe80:d dev ovn-k8s-mp0 lladdr 0a:58:0a:80:00:0d STALE 
+
