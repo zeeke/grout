@@ -28,6 +28,7 @@ struct gr_config {
 	bool override_rp_filter;
 	bool flush_routes_on_iface_down;
 	bool skip_route_events_on_iface_down;
+	bool vlan_filter; // register vlan sub-interfaces in port hardware filters
 	vec char **eal_extra_args;
 	cpu_set_t control_cpus; // control plane threads allowed CPUs
 	cpu_set_t datapath_cpus; // datapath threads allowed CPUs

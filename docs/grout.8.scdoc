@@ -179,6 +179,17 @@ enable and _0_, _false_, _off_, _no_ to disable.
 
 	Default: _false_.
 
+*GROUT_VLAN_FILTER*
+	When set to _1_, _true_, _on_, or _yes_ (case insensitive), enable the
+	hardware VLAN filter offload on ports which support it and register the
+	VLAN ID of each VLAN sub-interface in its parent port filter. Some NICs
+	(e.g. SR-IOV virtual functions) do not deliver tagged traffic for VLANs
+	which have not been registered. Depending on the driver, enabling this
+	may cause untagged traffic or traffic tagged with other VLAN IDs to be
+	dropped.
+
+	Default: _false_.
+
 ## Sizing
 
 These variables control the size of internal data structures. Reducing them
