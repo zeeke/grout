@@ -51,6 +51,13 @@ suppress_arp_req(struct rte_mbuf *m, struct rte_ether_hdr *eth, const struct ifa
 	if (arp->arp_opcode != RTE_BE16(RTE_ARP_OP_REQUEST))
 		return FLOOD;
 
+	// Never answer a gratuitous ARP or an address probe (RFC 5227): the
+	// sender announces or checks its own address. Answering with the cached
+	// MAC would claim that address for another host and keep the
+	// announcement from reaching the VTEP that still advertises it.
+	if (arp->arp_data.arp_sip == arp->arp_data.arp_tip || arp->arp_data.arp_sip == 0)
+		return FLOOD;
+
 	nh = nh4_lookup(bridge->vrf_id, arp->arp_data.arp_tip);
 	if (!nexthop_is_suppressable(nh))
 		return FLOOD;

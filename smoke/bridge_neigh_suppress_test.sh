@@ -60,3 +60,14 @@ if ! grep -qi 'ba:d0:ca:ca:99:99' $tmp/arping.out; then
 	cat $tmp/arping.out
 	fail "ARP reply did not contain expected MAC ba:d0:ca:ca:99:99"
 fi
+
+# Gratuitous ARPs (sip == tip) and probes (sip == 0) for the suppressed IP
+# must be flooded, not answered with the cached remote MAC.
+ip -n host-b addr add 10.0.0.99/32 dev x-p1
+for flag in -U -D; do
+	ip netns exec host-b arping $flag -c2 -w3 -I x-p1 10.0.0.99 &
+	ip netns exec host-a timeout 3 \
+		tcpdump -c1 -tlpnn -i x-p0 'ether broadcast and arp and arp[24:4] = 0x0a000063' ||
+		fail "arping $flag for 10.0.0.99 was not broadcast to host-a"
+	wait $! || true
+done

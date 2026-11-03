@@ -1,0 +1,1167 @@
+13:06:51.308 [vtep-a grout] NOTICE: MAIN: main: starting grout version v0.19.3-2-g5ed0acc9-dirty
+13:06:51.308 [vtep-a grout] NOTICE: MAIN: main: License available at https://git.dpdk.org/apps/grout/plain/licenses/BSD-3-clause.txt
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_SOCK_PATH=/run/grout.sock
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_SOCK_MODE=666
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_SOCK_OWNER=0:0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_MTU=1800
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_TEST_MODE=1
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_POLL_MODE=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_ADAPTIVE_IRQ=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_SYSLOG=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_TRACE_PACKETS=1
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_LOG_MAX_RATE=10
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_OVERRIDE_DEFAULT_ROUTE=1
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_OVERRIDE_RP_FILTER=1
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_FLUSH_ROUTES_ON_IFACE_DOWN=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_SKIP_ROUTE_EVENTS_ON_IFACE_DOWN=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_IFACES=1024
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MEMPOOL_CHUNK_SIZE=65535
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_NEXTHOPS=131072
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_ROUTES=65536
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_FDB_ENTRIES=4096
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_CONNTRACKS=16384
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_PORT_QUEUE_SIZE=0
+13:06:51.309 [vtep-a grout] INFO: CONFIG: config_print: GROUT_CP_MEMPOOL_SIZE=256
+13:06:51.310 [vtep-a grout] INFO: CONFIG: config_print: GROUT_MAX_HELD_PACKETS=2048
+13:06:51.310 [vtep-a grout] INFO: CONFIG: config_print: GROUT_FIB4_ALGORITHM=DIR24_8
+13:06:51.310 [vtep-a grout] INFO: CONFIG: config_print: GROUT_FIB6_ALGORITHM=TRIE
+13:06:51.310 [vtep-a grout] INFO: MAIN: dpdk_init: DPDK 25.11.4
+13:06:51.310 [vtep-a grout] INFO: MAIN: dpdk_init: EAL arguments: -l 0 --no-telemetry -a pci:0000:00:00.0 --no-shconf --no-huge -m 2048
+13:06:51.349 [vtep-a grout] INFO: MAIN: dpdk_init: running control plane on CPU 0
+13:06:51.350 [vtep-a grout] INFO: MAIN: dpdk_init: datapath workers allowed on CPUs 1-13
+13:06:51.358 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 1] starting tid=6
+13:06:51.358 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 1] lcore_id = 1
+13:06:51.358 [vtep-a grout] INFO: WORKER: worker_create: worker 1 started
+13:06:51.359 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 2] starting tid=7
+13:06:51.359 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 2] lcore_id = 2
+13:06:51.359 [vtep-a grout] INFO: WORKER: worker_create: worker 2 started
+13:06:51.359 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 3] starting tid=8
+13:06:51.359 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 3] lcore_id = 3
+13:06:51.360 [vtep-a grout] INFO: WORKER: worker_create: worker 3 started
+13:06:51.360 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 4] starting tid=9
+13:06:51.360 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 4] lcore_id = 4
+13:06:51.360 [vtep-a grout] INFO: WORKER: worker_create: worker 4 started
+13:06:51.361 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 5] starting tid=10
+13:06:51.361 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 5] lcore_id = 5
+13:06:51.361 [vtep-a grout] INFO: WORKER: worker_create: worker 5 started
+13:06:51.361 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 6] starting tid=11
+13:06:51.361 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 6] lcore_id = 6
+13:06:51.362 [vtep-a grout] INFO: WORKER: worker_create: worker 6 started
+13:06:51.362 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 7] starting tid=12
+13:06:51.362 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 7] lcore_id = 7
+13:06:51.362 [vtep-a grout] INFO: WORKER: worker_create: worker 7 started
+13:06:51.362 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 8] starting tid=13
+13:06:51.363 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 8] lcore_id = 8
+13:06:51.363 [vtep-a grout] INFO: WORKER: worker_create: worker 8 started
+13:06:51.363 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 9] starting tid=14
+13:06:51.363 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 9] lcore_id = 9
+13:06:51.364 [vtep-a grout] INFO: WORKER: worker_create: worker 9 started
+13:06:51.364 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 10] starting tid=15
+13:06:51.364 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 10] lcore_id = 10
+13:06:51.364 [vtep-a grout] INFO: WORKER: worker_create: worker 10 started
+13:06:51.364 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 11] starting tid=16
+13:06:51.364 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 11] lcore_id = 11
+13:06:51.365 [vtep-a grout] INFO: WORKER: worker_create: worker 11 started
+13:06:51.365 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 12] starting tid=17
+13:06:51.365 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 12] lcore_id = 12
+13:06:51.365 [vtep-a grout] INFO: WORKER: worker_create: worker 12 started
+13:06:51.366 [vtep-a grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 13] starting tid=18
+13:06:51.366 [vtep-a grout] INFO: GRAPH: gr_datapath_loop: [CPU 13] lcore_id = 13
+13:06:51.366 [vtep-a grout] INFO: WORKER: worker_create: worker 13 started
+13:06:51.381 [vtep-a grout] INFO: NEXTHOP: nexthop_config_allocate: 131072 nexthops
+13:06:51.394 [vtep-a grout] INFO: NEXTHOP: nexthop_config_allocate: L3: 131072 nexthops
+13:06:51.394 [vtep-a grout] INFO: NEXTHOP: nexthop_config_allocate: SRv6-local: 131072 nexthops
+13:06:51.505 [vtep-a grout] INFO: API: api_socket_start: listening on API socket /run/grout.sock
+13:06:51.506 [vtep-a grout] NOTICE: MAIN: metrics_thread: openmetrics exporter listening on tcp: :::9111
+13:06:52.094 [vtep-a grout] INFO: ROUTE: fib4_init: creating IPv4 FIB for VRF main(1) max_routes=65536 num_tbl8=256
+13:06:52.155 [vtep-a grout] INFO: ROUTE: fib6_init: creating IPv6 FIB for VRF main(1) max_routes=65536 num_tbl8=262144
+13:06:52.215 [vtep-a grout] NOTICE: PORT: port_configure: port net_tap0,iface=x-p0 TX queues limited to 1
+13:06:52.230 [vtep-a grout] INFO: WORKER: port_plug: port 0 plugged
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::1:ff4e:2a11
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff01::1
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::1
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff01::2
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::2
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff05::2
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::5
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::6
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::8
+13:06:52.247 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::16
+13:06:52.248 [script]       Created interface 2
+13:06:52.251 [vtep-a grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:52.252 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:52.357 [vtep-a grout] INFO: PORT: link_event_cb: p0: link status up
+13:06:52.357 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 1] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 2] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 3] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 4] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > ff:ff:ff:ff:ff:ff / ARP announce 172.16.0.1 is at 32:96:30:4e:2a:11, (pkt_len=42)
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 5] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 6] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 7] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 8] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 9] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 10] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 11] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 12] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] INFO: PORT: link_event_cb: [CPU 13] worker max sleep 1000us
+13:06:52.358 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:01 / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 neigh advert fe80::3096:30ff:fe4e:2a11 is at (solicited=0) / Option target_lladdr=32:96:30:4e:2a:11, (pkt_len=86)
+13:06:52.470 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:52.471 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:52.585 [vtep-b grout] NOTICE: MAIN: main: starting grout version v0.19.3-2-g5ed0acc9-dirty
+13:06:52.585 [vtep-b grout] NOTICE: MAIN: main: License available at https://git.dpdk.org/apps/grout/plain/licenses/BSD-3-clause.txt
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_SOCK_PATH=/run/grout.sock
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_SOCK_MODE=666
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_SOCK_OWNER=0:0
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_MTU=1800
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_TEST_MODE=1
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_POLL_MODE=0
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_ADAPTIVE_IRQ=0
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_SYSLOG=0
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_TRACE_PACKETS=1
+13:06:52.585 [vtep-b grout] INFO: CONFIG: config_print: GROUT_LOG_MAX_RATE=10
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_OVERRIDE_DEFAULT_ROUTE=1
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_OVERRIDE_RP_FILTER=1
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_FLUSH_ROUTES_ON_IFACE_DOWN=0
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_SKIP_ROUTE_EVENTS_ON_IFACE_DOWN=0
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_IFACES=1024
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MEMPOOL_CHUNK_SIZE=65535
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_NEXTHOPS=131072
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_ROUTES=65536
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_FDB_ENTRIES=4096
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_CONNTRACKS=16384
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_PORT_QUEUE_SIZE=0
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_CP_MEMPOOL_SIZE=256
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_MAX_HELD_PACKETS=2048
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_FIB4_ALGORITHM=DIR24_8
+13:06:52.586 [vtep-b grout] INFO: CONFIG: config_print: GROUT_FIB6_ALGORITHM=TRIE
+13:06:52.586 [vtep-b grout] INFO: MAIN: dpdk_init: DPDK 25.11.4
+13:06:52.586 [vtep-b grout] INFO: MAIN: dpdk_init: EAL arguments: -l 0 --no-telemetry -a pci:0000:00:00.0 --no-shconf --no-huge -m 2048
+13:06:52.622 [vtep-b grout] INFO: MAIN: dpdk_init: running control plane on CPU 0
+13:06:52.622 [vtep-b grout] INFO: MAIN: dpdk_init: datapath workers allowed on CPUs 1-13
+13:06:52.631 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:ff:00:ff:01 / IPv6 :: > ff02::1:ff00:ff01 ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:ff01? / Option type=14 len=8(1), (pkt_len=86)
+13:06:52.632 [vtep-a grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:52.633 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 1] starting tid=6
+13:06:52.633 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 1] lcore_id = 1
+13:06:52.634 [vtep-b grout] INFO: WORKER: worker_create: worker 1 started
+13:06:52.634 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 2] starting tid=7
+13:06:52.634 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 2] lcore_id = 2
+13:06:52.634 [vtep-b grout] INFO: WORKER: worker_create: worker 2 started
+13:06:52.634 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 3] starting tid=8
+13:06:52.634 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 3] lcore_id = 3
+13:06:52.635 [vtep-b grout] INFO: WORKER: worker_create: worker 3 started
+13:06:52.635 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 4] starting tid=9
+13:06:52.635 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 4] lcore_id = 4
+13:06:52.635 [vtep-b grout] INFO: WORKER: worker_create: worker 4 started
+13:06:52.636 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 5] starting tid=10
+13:06:52.636 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 5] lcore_id = 5
+13:06:52.636 [vtep-b grout] INFO: WORKER: worker_create: worker 5 started
+13:06:52.636 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 6] starting tid=11
+13:06:52.636 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 6] lcore_id = 6
+13:06:52.637 [vtep-b grout] INFO: WORKER: worker_create: worker 6 started
+13:06:52.637 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 7] starting tid=12
+13:06:52.637 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 7] lcore_id = 7
+13:06:52.637 [vtep-b grout] INFO: WORKER: worker_create: worker 7 started
+13:06:52.637 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 8] starting tid=13
+13:06:52.637 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 8] lcore_id = 8
+13:06:52.638 [vtep-b grout] INFO: WORKER: worker_create: worker 8 started
+13:06:52.638 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 9] starting tid=14
+13:06:52.638 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 9] lcore_id = 9
+13:06:52.638 [vtep-b grout] INFO: WORKER: worker_create: worker 9 started
+13:06:52.638 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 10] starting tid=15
+13:06:52.639 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 10] lcore_id = 10
+13:06:52.639 [vtep-b grout] INFO: WORKER: worker_create: worker 10 started
+13:06:52.639 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 11] starting tid=16
+13:06:52.639 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 11] lcore_id = 11
+13:06:52.640 [vtep-b grout] INFO: WORKER: worker_create: worker 11 started
+13:06:52.640 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 12] starting tid=17
+13:06:52.640 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 12] lcore_id = 12
+13:06:52.640 [vtep-b grout] INFO: WORKER: worker_create: worker 12 started
+13:06:52.640 [vtep-b grout] NOTICE: GRAPH: gr_datapath_loop: [CPU 13] starting tid=18
+13:06:52.640 [vtep-b grout] INFO: GRAPH: gr_datapath_loop: [CPU 13] lcore_id = 13
+13:06:52.641 [vtep-b grout] INFO: WORKER: worker_create: worker 13 started
+13:06:52.655 [vtep-b grout] INFO: NEXTHOP: nexthop_config_allocate: 131072 nexthops
+13:06:52.669 [vtep-b grout] INFO: NEXTHOP: nexthop_config_allocate: L3: 131072 nexthops
+13:06:52.669 [vtep-b grout] INFO: NEXTHOP: nexthop_config_allocate: SRv6-local: 131072 nexthops
+13:06:52.770 [vtep-b grout] INFO: API: api_socket_start: listening on API socket /run/grout.sock
+13:06:52.770 [vtep-b grout] NOTICE: MAIN: metrics_thread: openmetrics exporter listening on tcp: :::9111
+13:06:52.904 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ecd5:c0ff:fe9e:d671 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=110)
+13:06:52.905 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:02 / IPv6 fe80::ecd5:c0ff:fe9e:d671 > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:ff:01, (pkt_len=70)
+13:06:52.905 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:52.905 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:01 / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=32:96:30:4e:2a:11, (pkt_len=78)
+13:06:53.291 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ecd5:c0ff:fe9e:d671 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=110)
+13:06:53.291 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.336 [vtep-b grout] INFO: ROUTE: fib4_init: creating IPv4 FIB for VRF main(1) max_routes=65536 num_tbl8=256
+13:06:53.351 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:53.351 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.385 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ecd5:c0ff:fe9e:d671 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=110)
+13:06:53.385 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.407 [vtep-b grout] INFO: ROUTE: fib6_init: creating IPv6 FIB for VRF main(1) max_routes=65536 num_tbl8=262144
+13:06:53.440 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ecd5:c0ff:fe9e:d671 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=110)
+13:06:53.440 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.477 [vtep-b grout] NOTICE: PORT: port_configure: port net_tap0,iface=x-p0 TX queues limited to 1
+13:06:53.492 [vtep-b grout] INFO: WORKER: port_plug: port 0 plugged
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::1:ffca:962f
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff01::1
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::1
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff01::2
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::2
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff05::2
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::5
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::6
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::8
+13:06:53.508 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: p0: joining multicast group ff02::16
+13:06:53.509 [script]       Created interface 2
+13:06:53.511 [vtep-b grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:53.511 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.632 [vtep-b grout] INFO: PORT: link_event_cb: p0: link status up
+13:06:53.632 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 1] worker max sleep 1000us
+13:06:53.632 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 2] worker max sleep 1000us
+13:06:53.632 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 3] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 4] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 5] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 6] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 7] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 8] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 9] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 10] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 11] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 12] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] INFO: PORT: link_event_cb: [CPU 13] worker max sleep 1000us
+13:06:53.633 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > ff:ff:ff:ff:ff:ff / ARP announce 172.16.0.2 is at 96:70:b3:ca:96:2f, (pkt_len=42)
+13:06:53.633 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:01 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 neigh advert fe80::9470:b3ff:feca:962f is at (solicited=0) / Option target_lladdr=96:70:b3:ca:96:2f, (pkt_len=86)
+13:06:53.672 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:ff01 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:53.672 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:ff01 > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:ff:01, (pkt_len=70)
+13:06:53.672 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.672 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:01 / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=32:96:30:4e:2a:11, (pkt_len=78)
+13:06:53.722 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:ff01 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:53.722 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.734 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:53.734 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:53.836 [script]       grout v0.19.3-2-g5ed0acc9-dirty (DPDK 25.11.4)
+13:06:53.900 [script]       ==> setting up EVPN
+13:06:54.104 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:54.104 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:54.695 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:ff:00:ff:02 / IPv6 :: > ff02::1:ff00:ff02 ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:ff02? / Option type=14 len=8(1), (pkt_len=86)
+13:06:54.695 [vtep-b grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:55.119 [vtep-b frr]   MGMTD: [T83RR-8SM5G] mgmtd 10.7.1 starting: vty@2623
+13:06:55.119 [vtep-b frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//zebra.conf: No such file or directory, checking backup
+13:06:55.120 [vtep-b frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//zebra.conf]
+13:06:55.120 [vtep-b frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//ripd.conf: No such file or directory, checking backup
+13:06:55.120 [vtep-b frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//ripd.conf]
+13:06:55.120 [vtep-b frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//ripngd.conf: No such file or directory, checking backup
+13:06:55.120 [vtep-b frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//ripngd.conf]
+13:06:55.120 [vtep-b frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//staticd.conf: No such file or directory, checking backup
+13:06:55.120 [vtep-b frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//staticd.conf]
+13:06:55.120 [vtep-b frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//mgmtd.conf: No such file or directory, checking backup
+13:06:55.120 [vtep-b frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//mgmtd.conf]
+13:06:55.120 [vtep-b frr]   MGMTD: [G7SRG-ASAYW] mgmtd: finished reading config files
+13:06:55.120 [vtep-b frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: mgmtd registers with mgmtd (client-id: 0)
+13:06:55.120 [vtep-b frr]   ZEBRA: [SAPXX-HP5B5][EC 4043309108] Extended Error: failed to retrieve link settings
+13:06:55.120 [vtep-b frr]   ZEBRA: [WVJCK-PPMGD][EC 4043309093] generic-netlink-cmd (NS 0) error: Operation not supported, type=(23), seq=3, pid=43
+13:06:55.120 [vtep-b frr]   ZEBRA: [QBKSZ-0KHCW][EC 4043309138] Disabling MPLS support (no kernel support)
+13:06:55.120 [vtep-b frr]   ZEBRA: [T83RR-8SM5G] zebra 10.7.1 starting: vty@2601
+13:06:55.120 [vtep-b frr]   ZEBRA: [SWBGA-5162C][EC 100663342] nb_op_ys_finalize_node_info: list entry lookup failed
+13:06:55.120 [vtep-b frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: zebra registers with mgmtd (client-id: 1)
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: zebra_grout_connect: connected, monitoring route/nexthop events
+13:06:55.121 [vtep-b frr]   ZEBRA: [SWBGA-5162C][EC 100663342] nb_op_ys_finalize_node_info: list entry lookup failed
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: dplane_grout_connect: connected, monitoring iface/ip events
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: grout_sync_addrs: vrf 1
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: grout_sync_nhs: vrf 1
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: grout_sync_routes: vrf 1
+13:06:55.121 [vtep-b frr]   BGP: [T83RR-8SM5G] bgpd 10.7.1 starting: vty@2605, bgp@<all>:179
+13:06:55.121 [vtep-b frr]   ZEBRA: GROUT: grout_sync_poll_marker: sync marker observed after 1 poll(s) (50 ms)
+13:06:55.121 [vtep-b frr]   ZEBRA: [K55SV-YMF8X] Sweeping the RIB for stale routes...
+13:06:55.121 [vtep-b frr]   STATIC: [T83RR-8SM5G] staticd 10.7.1 starting: vty@2616
+13:06:55.121 [vtep-b frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: staticd registers with mgmtd (client-id: 2)
+13:06:55.121 [vtep-b frr]   ZEBRA: [V98V0-MTWPF] client 19 says hello and bids fair to announce only static routes vrf=0
+13:06:55.121 [vtep-b frr]   MGMTD: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.121 [vtep-b frr]   MGMTD: [G6NKK-8C6DV] end_config: VTY:0x55af3807add0, pending SET-CFG: 1
+13:06:55.121 [vtep-b frr]   BGP: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.121 [vtep-b frr]   BGP: [G6NKK-8C6DV] end_config: VTY:0x55a38038cf70, pending SET-CFG: 0
+13:06:55.121 [vtep-b frr]   ZEBRA: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.121 [vtep-b frr]   ZEBRA: [G6NKK-8C6DV] end_config: VTY:0x5647b9ab3590, pending SET-CFG: 0
+13:06:55.121 [vtep-b frr]   STATIC: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.121 [vtep-b frr]   STATIC: [G6NKK-8C6DV] end_config: VTY:0x55ac42d8eea0, pending SET-CFG: 0
+13:06:55.121 [vtep-b frr]   BGP: [Z1RP6-0X3QJ] Creating Default VRF, AS 65000
+13:06:55.122 [vtep-b frr]   BGP: [GNTN9-G7K6J] BGP-LS: Module initialized for instance VRF default
+13:06:55.122 [vtep-b frr]   BGP: [ZZKY3-FX5JH] bgp_get: Registering BGP instance VRF default to zebra
+13:06:55.132 [vtep-a frr]   MGMTD: [T83RR-8SM5G] mgmtd 10.7.1 starting: vty@2623
+13:06:55.132 [vtep-a frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//zebra.conf: No such file or directory, checking backup
+13:06:55.132 [vtep-a frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//zebra.conf]
+13:06:55.133 [vtep-a frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//ripd.conf: No such file or directory, checking backup
+13:06:55.133 [vtep-a frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//ripd.conf]
+13:06:55.133 [vtep-a frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//ripngd.conf: No such file or directory, checking backup
+13:06:55.133 [vtep-a frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//ripngd.conf]
+13:06:55.133 [vtep-a frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//staticd.conf: No such file or directory, checking backup
+13:06:55.133 [vtep-a frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//staticd.conf]
+13:06:55.133 [vtep-a frr]   MGMTD: [RQT05-4D0H5][EC 100663319] vty_open_config: failed to open configuration file /etc/frr//mgmtd.conf: No such file or directory, checking backup
+13:06:55.133 [vtep-a frr]   MGMTD: [VDWX6-W8CNF][EC 100663304] vty_open_config: can't open configuration file [/etc/frr//mgmtd.conf]
+13:06:55.133 [vtep-a frr]   MGMTD: [G7SRG-ASAYW] mgmtd: finished reading config files
+13:06:55.133 [vtep-a frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: mgmtd registers with mgmtd (client-id: 0)
+13:06:55.133 [vtep-a frr]   ZEBRA: [SAPXX-HP5B5][EC 4043309108] Extended Error: failed to retrieve link settings
+13:06:55.133 [vtep-a frr]   ZEBRA: [WVJCK-PPMGD][EC 4043309093] generic-netlink-cmd (NS 0) error: Operation not supported, type=(23), seq=3, pid=44
+13:06:55.133 [vtep-a frr]   ZEBRA: [QBKSZ-0KHCW][EC 4043309138] Disabling MPLS support (no kernel support)
+13:06:55.133 [vtep-a frr]   ZEBRA: [T83RR-8SM5G] zebra 10.7.1 starting: vty@2601
+13:06:55.133 [vtep-a frr]   ZEBRA: [SWBGA-5162C][EC 100663342] nb_op_ys_finalize_node_info: list entry lookup failed
+13:06:55.133 [vtep-a frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: zebra registers with mgmtd (client-id: 1)
+13:06:55.133 [vtep-a frr]   ZEBRA: GROUT: zebra_grout_connect: connected, monitoring route/nexthop events
+13:06:55.134 [vtep-a frr]   ZEBRA: [SWBGA-5162C][EC 100663342] nb_op_ys_finalize_node_info: list entry lookup failed
+13:06:55.134 [vtep-a frr]   ZEBRA: GROUT: dplane_grout_connect: connected, monitoring iface/ip events
+13:06:55.134 [vtep-a frr]   ZEBRA: GROUT: grout_sync_addrs: vrf 1
+13:06:55.134 [vtep-a frr]   ZEBRA: GROUT: grout_sync_nhs: vrf 1
+13:06:55.134 [vtep-a frr]   ZEBRA: GROUT: grout_sync_routes: vrf 1
+13:06:55.134 [vtep-a frr]   BGP: [T83RR-8SM5G] bgpd 10.7.1 starting: vty@2605, bgp@<all>:179
+13:06:55.134 [vtep-a frr]   STATIC: [T83RR-8SM5G] staticd 10.7.1 starting: vty@2616
+13:06:55.134 [vtep-a frr]   MGMTD: [TKR4Z-MFN07] Backend daemon: staticd registers with mgmtd (client-id: 2)
+13:06:55.134 [vtep-a frr]   ZEBRA: GROUT: grout_sync_poll_marker: sync marker observed after 1 poll(s) (50 ms)
+13:06:55.134 [vtep-a frr]   ZEBRA: [K55SV-YMF8X] Sweeping the RIB for stale routes...
+13:06:55.134 [vtep-a frr]   MGMTD: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.134 [vtep-a frr]   MGMTD: [G6NKK-8C6DV] end_config: VTY:0x560d939dddd0, pending SET-CFG: 1
+13:06:55.134 [vtep-a frr]   ZEBRA: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.134 [vtep-a frr]   ZEBRA: [G6NKK-8C6DV] end_config: VTY:0x56251b6aeec0, pending SET-CFG: 0
+13:06:55.134 [vtep-a frr]   BGP: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.134 [vtep-a frr]   BGP: [G6NKK-8C6DV] end_config: VTY:0x558965b8bf70, pending SET-CFG: 0
+13:06:55.134 [vtep-a frr]   STATIC: [VTVCM-Y2NW3] Configuration Read in Took: 00:00:00
+13:06:55.134 [vtep-a frr]   STATIC: [G6NKK-8C6DV] end_config: VTY:0x55c9f2678e10, pending SET-CFG: 0
+13:06:55.134 [vtep-a frr]   BGP: [Z1RP6-0X3QJ] Creating Default VRF, AS 65000
+13:06:55.134 [vtep-a frr]   BGP: [GNTN9-G7K6J] BGP-LS: Module initialized for instance VRF default
+13:06:55.134 [vtep-a frr]   BGP: [ZZKY3-FX5JH] bgp_get: Registering BGP instance VRF default to zebra
+13:06:55.260 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > ff:ff:ff:ff:ff:ff / ARP request who has 172.16.0.2? tell 172.16.0.1, (pkt_len=42)
+13:06:55.261 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > ff:ff:ff:ff:ff:ff / ARP request who has 172.16.0.2? tell 172.16.0.1, (pkt_len=42)
+13:06:55.261 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / ARP reply 172.16.0.2 is at 96:70:b3:ca:96:2f, (pkt_len=42)
+13:06:55.261 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / ARP reply 172.16.0.2 is at 96:70:b3:ca:96:2f, (pkt_len=42)
+13:06:55.261 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x3740 flags=S, (pkt_len=74)
+13:06:55.261 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x3740 flags=S, (pkt_len=74)
+13:06:55.261 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xc3fe flags=SA, (pkt_len=74)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x3740 flags=S, (pkt_len=74)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xc3fe flags=SA, (pkt_len=74)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xc3fe flags=SA, (pkt_len=74)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf114 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf114 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf587 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf114 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xf0a6 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf587 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xf0a6 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf587 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xf0a6 flags=A, (pkt_len=66)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xab50 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xab50 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf03a flags=A, (pkt_len=66)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xab50 flags=PA, (pkt_len=175)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf03a flags=A, (pkt_len=66)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xf03a flags=A, (pkt_len=66)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xec0b flags=PA, (pkt_len=85)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xec0b flags=PA, (pkt_len=85)
+13:06:55.262 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xec0c flags=PA, (pkt_len=85)
+13:06:55.262 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xec0c flags=PA, (pkt_len=85)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xec0b flags=PA, (pkt_len=85)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xbdad flags=S, (pkt_len=74)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xbdad flags=S, (pkt_len=74)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xec0c flags=PA, (pkt_len=85)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xbdad flags=S, (pkt_len=74)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xb273 flags=SA, (pkt_len=74)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xb273 flags=SA, (pkt_len=74)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xb273 flags=SA, (pkt_len=74)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf8b flags=A, (pkt_len=66)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf8b flags=A, (pkt_len=66)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf8b flags=A, (pkt_len=66)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xe3fd flags=PA, (pkt_len=175)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xe3fd flags=PA, (pkt_len=175)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 179 > 49622 cksum=0xe3fd flags=PA, (pkt_len=175)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1e flags=A, (pkt_len=66)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1e flags=A, (pkt_len=66)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1e flags=A, (pkt_len=66)
+13:06:55.263 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1a flags=RA, (pkt_len=66)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1a flags=RA, (pkt_len=66)
+13:06:55.263 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 49622 > 179 cksum=0xdf1a flags=RA, (pkt_len=66)
+13:06:55.303 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xefea flags=A, (pkt_len=66)
+13:06:55.303 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xefea flags=A, (pkt_len=66)
+13:06:55.303 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xefeb flags=A, (pkt_len=66)
+13:06:55.303 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xefea flags=A, (pkt_len=66)
+13:06:55.303 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xefeb flags=A, (pkt_len=66)
+13:06:55.303 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xefeb flags=A, (pkt_len=66)
+13:06:55.719 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:ff02 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:55.719 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:ff02 > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:ff:02, (pkt_len=70)
+13:06:55.720 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:55.720 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:01 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:06:55.720 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:01 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:06:55.720 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:06:55.820 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::1:ff53:b102
+13:06:55.820 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff01::1
+13:06:55.820 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::1
+13:06:55.821 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff01::2
+13:06:55.821 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::2
+13:06:55.821 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff05::2
+13:06:55.822 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::5
+13:06:55.822 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::6
+13:06:55.823 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::8
+13:06:55.823 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::1:ff32:2a59
+13:06:55.823 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff01::1
+13:06:55.823 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::1
+13:06:55.824 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff01::2
+13:06:55.824 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::2
+13:06:55.825 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff05::2
+13:06:55.825 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::5
+13:06:55.826 [vtep-b grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::16
+13:06:55.827 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::6
+13:06:55.827 [script]       Created interface 3
+13:06:55.827 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::8
+13:06:55.827 [vtep-b grout] NOTICE: TRACE: [drop bridge_flood_drop] 1 packets
+13:06:55.827 [vtep-a grout] INFO: ADDRESS: mcast6_addr_add: br100: joining multicast group ff02::16
+13:06:55.828 [script]       Created interface 3
+13:06:55.828 [vtep-a grout] NOTICE: TRACE: [drop bridge_flood_drop] 1 packets
+13:06:56.063 [script]       Created interface 4
+13:06:56.120 [vtep-b frr]   ZEBRA: [V98V0-MTWPF] client 41 says hello and bids fair to announce only bgp routes vrf=0
+13:06:56.120 [vtep-b frr]   BGP: [VE0JD-7ZESQ] Registering VRF default
+13:06:56.120 [vtep-b frr]   ZEBRA: [V98V0-MTWPF] client 51 says hello and bids fair to announce only vnc routes vrf=0
+13:06:56.120 [vtep-b frr]   ZEBRA: [V98V0-MTWPF] client 47 says hello and bids fair to announce only bgp routes vrf=0
+13:06:56.120 [vtep-b frr]   ZEBRA: [WW9KY-0R9YA] bfd_client_register msg from client bgp: length=4
+13:06:56.120 [vtep-b frr]   ZEBRA: [Z4VCE-J6P8Z] EVPN VRF default(0) VNI Adv enabled, currently disabled, flood control 0
+13:06:56.120 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF default
+13:06:56.120 [vtep-b frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.120 [vtep-b frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.120 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p0
+13:06:56.120 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr 172.16.0.2/24
+13:06:56.120 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr fe80::9470:b3ff:feca:962f/64
+13:06:56.120 [vtep-b frr]   BGP: [KGTKH-FVHEW] Rx Router Id update VRF 0 Id 172.16.0.2/32
+13:06:56.120 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF default
+13:06:56.120 [vtep-b frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.121 [vtep-b frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.121 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p0
+13:06:56.121 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr 172.16.0.2/24
+13:06:56.121 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr fe80::9470:b3ff:feca:962f/64
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_fdb_read_ctx: bridge=0 iface=0 vlan=0 vni=0 mac=00:00:00:00:00:00
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_client_foreach: GR_FDB_LIST: success
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_read_ctx: iface=0 ip=(null)
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_client_foreach: GR_NH_LIST: success
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_NEW
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=2 172.16.0.1 32:96:30:4e:2a:11
+13:06:56.121 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:56.121 [vtep-b frr]   BGP: [HXW3G-K1M2A] sendmsg_zebra_rnh: sending cmd ZEBRA_NEXTHOP_REGISTER for 172.16.0.1/32 (vrf VRF default)
+13:06:56.121 [vtep-b frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 1, SAFI 1, no Graceful Restart communication, returning
+13:06:56.121 [vtep-b frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 2, SAFI 1, no Graceful Restart communication, returning
+13:06:56.122 [vtep-b frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 3, SAFI 5, no Graceful Restart communication, returning
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_IP6_ROUTE_ADD
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_route6_change: add fe80::4484:fbff:fe53:b102/64 origin link nh_id 0 route_vrf 1 nh_vrf 1
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_route_change: link route, skip
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface br100 id=3 cp_id=5
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin INTERNAL
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: nexthop without ID, skip
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IP6_ADDR_ADD
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_interface_addr6_change: add fe80::4484:fbff:fe53:b102/64 iface 3
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:56.122 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface br100 id=3 cp_id=5
+13:06:56.122 [vtep-b frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD br100 vrf default(0)
+13:06:56.122 [vtep-b frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD fe80::4484:fbff:fe53:b102/64 on br100 vrf default(0)
+13:06:56.122 [vtep-b frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP br100 vrf default(0)
+13:06:56.122 [vtep-b frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD fe80::4484:fbff:fe53:b102/64 on br100 vrf default(0)
+13:06:56.122 [vtep-b frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:56.122 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.122 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.122 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.122 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.122 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF br100
+13:06:56.122 [vtep-b frr]   BGP: [TPJB2-AQ2TG] Processing EVPN MAC interface change on peer 172.16.0.1 
+13:06:56.122 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr fe80::4484:fbff:fe53:b102/64
+13:06:56.123 [vtep-b frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF br100
+13:06:56.123 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr fe80::4484:fbff:fe53:b102/64
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add fe80::/64 origin link nh_id 5 vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add fe80::/64 origin link nh_id 5 vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_IP_ROUTE_ADD
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_route4_change: add 10.0.0.252/24 origin link nh_id 0 route_vrf 1 nh_vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_route_change: link route, skip
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IP_ADDR_ADD
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_interface_addr4_change: add 10.0.0.252/24 iface 3
+13:06:56.123 [vtep-b frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD 10.0.0.252/24 on br100 vrf default(0)
+13:06:56.123 [vtep-b frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr 10.0.0.252/24
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_nexthop: add nh_id 10 origin zebra
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_nexthop: nh_id 10 type L3
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_NH_ADD: success
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.0/24 origin link nh_id 10 vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.0/24 origin link nh_id 10 vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.252/32 origin link nh_id 10 vrf 1
+13:06:56.123 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.124 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.252/32 origin link nh_id 10 vrf 1
+13:06:56.124 [vtep-b frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.132 [vtep-a frr]   ZEBRA: [V98V0-MTWPF] client 35 says hello and bids fair to announce only bgp routes vrf=0
+13:06:56.132 [vtep-a frr]   BGP: [VE0JD-7ZESQ] Registering VRF default
+13:06:56.132 [vtep-a frr]   ZEBRA: [V98V0-MTWPF] client 41 says hello and bids fair to announce only bgp routes vrf=0
+13:06:56.133 [vtep-a frr]   ZEBRA: [WW9KY-0R9YA] bfd_client_register msg from client bgp: length=4
+13:06:56.133 [vtep-a frr]   ZEBRA: [Z4VCE-J6P8Z] EVPN VRF default(0) VNI Adv enabled, currently disabled, flood control 0
+13:06:56.133 [vtep-a frr]   ZEBRA: [V98V0-MTWPF] client 45 says hello and bids fair to announce only vnc routes vrf=0
+13:06:56.133 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF default
+13:06:56.133 [vtep-a frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.133 [vtep-a frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.133 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p0
+13:06:56.133 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr 172.16.0.1/24
+13:06:56.133 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr fe80::3096:30ff:fe4e:2a11/64
+13:06:56.133 [vtep-a frr]   BGP: [KGTKH-FVHEW] Rx Router Id update VRF 0 Id 172.16.0.1/32
+13:06:56.133 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF default
+13:06:56.133 [vtep-a frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.133 [vtep-a frr]   ZEBRA: [WMBNH-V6XN6] Unable to find specified Interface for default
+13:06:56.133 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p0
+13:06:56.133 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr 172.16.0.1/24
+13:06:56.133 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF p0 addr fe80::3096:30ff:fe4e:2a11/64
+13:06:56.133 [vtep-a frr]   ZEBRA: GROUT: grout_fdb_read_ctx: bridge=0 iface=0 vlan=0 vni=0 mac=00:00:00:00:00:00
+13:06:56.133 [vtep-a frr]   ZEBRA: GROUT: grout_client_foreach: GR_FDB_LIST: success
+13:06:56.133 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_read_ctx: iface=0 ip=(null)
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_client_foreach: GR_NH_LIST: success
+13:06:56.134 [vtep-a frr]   ZEBRA: [V98V0-MTWPF] client 53 says hello and bids fair to announce only static routes vrf=0
+13:06:56.134 [vtep-a frr]   BGP: [HXW3G-K1M2A] sendmsg_zebra_rnh: sending cmd ZEBRA_NEXTHOP_REGISTER for 172.16.0.2/32 (vrf VRF default)
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_NEW
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=2 172.16.0.2 96:70:b3:ca:96:2f
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:56.134 [vtep-a frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 1, SAFI 1, no Graceful Restart communication, returning
+13:06:56.134 [vtep-a frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 2, SAFI 1, no Graceful Restart communication, returning
+13:06:56.134 [vtep-a frr]   ZEBRA: [HD26F-0QXYQ] GR zread_client_capabilities: Client bgp route update complete for AFI 3, SAFI 5, no Graceful Restart communication, returning
+13:06:56.134 [vtep-a frr]   BGP: [H4B4J-DCW2R][EC 33554455] 172.16.0.2 [Error] bgp_read_packet error: Connection reset by peer
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:56.134 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_IP6_ROUTE_ADD
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_route6_change: add fe80::5cc0:3cff:fe32:2a59/64 origin link nh_id 0 route_vrf 1 nh_vrf 1
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_route_change: link route, skip
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface br100 id=3 cp_id=5
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin INTERNAL
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: nexthop without ID, skip
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IP6_ADDR_ADD
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_interface_addr6_change: add fe80::5cc0:3cff:fe32:2a59/64 iface 3
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:56.135 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface br100 id=3 cp_id=5
+13:06:56.135 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF br100
+13:06:56.135 [vtep-a frr]   BGP: [TPJB2-AQ2TG] Processing EVPN MAC interface change on peer 172.16.0.2 
+13:06:56.135 [vtep-a frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD br100 vrf default(0)
+13:06:56.135 [vtep-a frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD fe80::5cc0:3cff:fe32:2a59/64 on br100 vrf default(0)
+13:06:56.135 [vtep-a frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP br100 vrf default(0)
+13:06:56.136 [vtep-a frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD fe80::5cc0:3cff:fe32:2a59/64 on br100 vrf default(0)
+13:06:56.136 [vtep-a frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:56.136 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.136 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.136 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.136 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.136 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr fe80::5cc0:3cff:fe32:2a59/64
+13:06:56.136 [vtep-a frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF br100
+13:06:56.136 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr fe80::5cc0:3cff:fe32:2a59/64
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add fe80::/64 origin link nh_id 5 vrf 1
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add fe80::/64 origin link nh_id 5 vrf 1
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IP_ADDR_ADD
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: grout_interface_addr4_change: add 10.0.0.251/24 iface 3
+13:06:56.136 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_IP_ROUTE_ADD
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_route4_change: add 10.0.0.251/24 origin link nh_id 0 route_vrf 1 nh_vrf 1
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_route_change: link route, skip
+13:06:56.137 [vtep-a frr]   ZEBRA: [NBGDS-5ZDQ9] MESSAGE: ZEBRA_INTERFACE_ADDRESS_ADD 10.0.0.251/24 on br100 vrf default(0)
+13:06:56.137 [vtep-a frr]   BGP: [HFMHR-E3VMR] Rx Intf address add VRF default IF br100 addr 10.0.0.251/24
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_nexthop: add nh_id 10 origin zebra
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_nexthop: nh_id 10 type L3
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_NH_ADD: success
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.0/24 origin link nh_id 10 vrf 1
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.0/24 origin link nh_id 10 vrf 1
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.251/32 origin link nh_id 10 vrf 1
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: add 10.0.0.251/32 origin link nh_id 10 vrf 1
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_add_del_route: non-frr origin, skip
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface vxlan100 id=4 cp_id=6
+13:06:56.137 [vtep-a frr]   ZEBRA: GROUT: grout_vxlan_disable_learning: disable fdb learning on bridged vxlan vxlan100
+13:06:56.138 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_IFACE_SET: success
+13:06:56.138 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:56.138 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface vxlan100 id=4 cp_id=6
+13:06:56.138 [vtep-a frr]   ZEBRA: GROUT: grout_vxlan_disable_learning: disable fdb learning on bridged vxlan vxlan100
+13:06:56.138 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_IFACE_SET: success
+13:06:56.138 [vtep-a frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD vxlan100 vrf default(0)
+13:06:56.138 [vtep-a frr]   ZEBRA: [KQDFN-PWGM2] Add L2-VNI 100 VRF default intf vxlan100(6) VLAN 0 local IP 172.16.0.1 mcast_grp 0.0.0.0 master 0
+13:06:56.138 [vtep-a frr]   ZEBRA: [H26JN-TJY1T] Update L2-VNI 100 intf vxlan100(6) VLAN 0 local IP 172.16.0.1 master 5 chg 0x2
+13:06:56.138 [vtep-a frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP vxlan100 vrf default(0)
+13:06:56.138 [vtep-a frr]   ZEBRA: [K61WJ-XQQ3X] Intf vxlan100(6) L2-VNI 100 is UP
+13:06:56.138 [vtep-a frr]   ZEBRA: [SS29C-ZC7S2] Send EVPN_ADD 100 172.16.0.1 tenant vrf default(0) SVI index 5 to bgp
+13:06:56.138 [vtep-a frr]   ZEBRA: [H5WMK-KQVJA] Reading MAC FDB and Neighbors for intf vxlan100(6) VNI 100 master 5
+13:06:56.138 [vtep-a frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:56.138 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.138 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.138 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.138 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:56.138 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF vxlan100
+13:06:56.138 [vtep-a frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF vxlan100
+13:06:56.139 [vtep-a frr]   BGP: [TV0XP-3WR0A] Rx VNI add VRF default VNI 100 tenant-vrf default SVI ifindex 5
+13:06:56.139 [vtep-a frr]   BGP: [KY18H-8FB8R] VRF UNKNOWN vni 100 flood mode 3 (global flood mode 0)
+13:06:56.139 [vtep-a frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-3 route evp [3]:[0]:[32]:[172.16.0.1] RMAC 00:00:00:00:00:00 nexthop 172.16.0.1 esi (null)
+13:06:56.139 [vtep-a frr]   BGP: [Y8DFR-M6PAJ] Scheduling L2VNI ADD to be processed later for VNI 100
+13:06:56.139 [vtep-a frr]   ZEBRA: [J7KAF-72ZD2] EVPN gateway macip Adv disabled on VNI 100, currently disabled
+13:06:56.139 [vtep-a frr]   ZEBRA: [KJP9G-QGA1D] EVPN SVI macip Adv disabled on VNI 100, currently disabled
+13:06:56.139 [vtep-a frr]   ZEBRA: GROUT: grout_fdb_read_ctx: bridge=3 iface=4 vlan=0 vni=0 mac=00:00:00:00:00:00
+13:06:56.139 [vtep-a frr]   ZEBRA: GROUT: grout_client_foreach: GR_FDB_LIST: success
+13:06:56.139 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_read_ctx: iface=5 ip=(null)
+13:06:56.139 [vtep-a frr]   ZEBRA: GROUT: grout_client_foreach: GR_NH_LIST: success
+13:06:56.139 [vtep-a frr]   BGP: [QFD5T-57760] install_uninstall_routes_for_vni: Total 1 L2VNI VPNs pending to be processed for remote route installation
+13:06:56.139 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[3]:[0]:[32]:[172.16.0.1]
+13:06:56.144 [script]       Created interface 4
+13:06:56.235 [vtep-a grout] NOTICE: PORT: port_configure: port net_tap1,iface=x-p1 TX queues limited to 1
+13:06:56.248 [vtep-a grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.256 [vtep-a grout] INFO: WORKER: port_plug: port 1 plugged
+13:06:56.266 [vtep-a grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.266 [vtep-a grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap1,iface=x-p1 txq 0 shared by 2 workers
+13:06:56.268 [vtep-a grout] WARN: GRAPH: worker_graph_new: [CPU 2] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.268 [vtep-a grout] WARN: GRAPH: worker_graph_new: [CPU 2] port net_tap1,iface=x-p1 txq 0 shared by 2 workers
+13:06:56.277 [script]       Created interface 5
+13:06:56.281 [vtep-a grout] NOTICE: TRACE: [rx p1] f6:98:e4:01:eb:b0 > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.282 [vtep-a grout] NOTICE: TRACE: [drop vxlan_flood_drop] 1 packets
+13:06:56.282 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.295 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:ff02 > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.295 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.313 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xde68 flags=PA, (pkt_len=196)
+13:06:56.314 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xde68 flags=PA, (pkt_len=196)
+13:06:56.314 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xde68 flags=PA, (pkt_len=196)
+13:06:56.314 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > ff:ff:ff:ff:ff:ff / ARP request who has 172.16.0.1? tell 172.16.0.2, (pkt_len=42)
+13:06:56.314 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > ff:ff:ff:ff:ff:ff / ARP request who has 172.16.0.1? tell 172.16.0.2, (pkt_len=42)
+13:06:56.314 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / ARP reply 172.16.0.1 is at 32:96:30:4e:2a:11, (pkt_len=42)
+13:06:56.315 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / ARP reply 172.16.0.1 is at 32:96:30:4e:2a:11, (pkt_len=42)
+13:06:56.315 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe75a flags=A, (pkt_len=66)
+13:06:56.315 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe75a flags=A, (pkt_len=66)
+13:06:56.315 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe75a flags=A, (pkt_len=66)
+13:06:56.333 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x5ea3 flags=PA, (pkt_len=171)
+13:06:56.333 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x5ea3 flags=PA, (pkt_len=171)
+13:06:56.333 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe6ca flags=A, (pkt_len=66)
+13:06:56.333 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x5ea3 flags=PA, (pkt_len=171)
+13:06:56.333 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe6ca flags=A, (pkt_len=66)
+13:06:56.333 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe6ca flags=A, (pkt_len=66)
+13:06:56.352 [vtep-b grout] NOTICE: PORT: port_configure: port net_tap1,iface=x-p1 TX queues limited to 1
+13:06:56.357 [vtep-a grout] INFO: PORT: link_event_cb: p1: link status up
+13:06:56.362 [vtep-b grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.369 [vtep-b grout] INFO: WORKER: port_plug: port 1 plugged
+13:06:56.378 [vtep-b grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.378 [vtep-b grout] WARN: GRAPH: worker_graph_new: [CPU 1] port net_tap1,iface=x-p1 txq 0 shared by 2 workers
+13:06:56.379 [vtep-b grout] WARN: GRAPH: worker_graph_new: [CPU 2] port net_tap0,iface=x-p0 txq 0 shared by 2 workers
+13:06:56.379 [vtep-b grout] WARN: GRAPH: worker_graph_new: [CPU 2] port net_tap1,iface=x-p1 txq 0 shared by 2 workers
+13:06:56.387 [script]       Created interface 5
+13:06:56.387 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xd642 flags=PA, (pkt_len=196)
+13:06:56.388 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xd642 flags=PA, (pkt_len=196)
+13:06:56.388 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xd642 flags=PA, (pkt_len=196)
+13:06:56.388 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe5f3 flags=A, (pkt_len=66)
+13:06:56.388 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe5f3 flags=A, (pkt_len=66)
+13:06:56.388 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe5f3 flags=A, (pkt_len=66)
+13:06:56.389 [vtep-b grout] NOTICE: TRACE: [rx p1] 9e:31:a0:9d:1d:6f > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.389 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.390 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 9e:31:a0:9d:1d:6f > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.390 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 9e:31:a0:9d:1d:6f > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.390 [vtep-a grout] NOTICE: TRACE: [tx p1] 9e:31:a0:9d:1d:6f > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.390 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.440 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x696b flags=PA, (pkt_len=171)
+13:06:56.440 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x696b flags=PA, (pkt_len=171)
+13:06:56.441 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x696b flags=PA, (pkt_len=171)
+13:06:56.441 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe509 flags=A, (pkt_len=66)
+13:06:56.441 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe509 flags=A, (pkt_len=66)
+13:06:56.441 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe509 flags=A, (pkt_len=66)
+13:06:56.552 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.552 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.552 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.552 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.552 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.552 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.603 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x9d87 flags=PA, (pkt_len=171)
+13:06:56.603 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x9d87 flags=PA, (pkt_len=171)
+13:06:56.603 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x9d87 flags=PA, (pkt_len=171)
+13:06:56.644 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe330 flags=A, (pkt_len=66)
+13:06:56.645 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe330 flags=A, (pkt_len=66)
+13:06:56.645 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe330 flags=A, (pkt_len=66)
+13:06:56.653 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.653 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.653 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.653 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:56.653 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:56.653 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:56.654 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x9a45 flags=PA, (pkt_len=171)
+13:06:56.654 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x9a45 flags=PA, (pkt_len=171)
+13:06:56.655 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe28a flags=A, (pkt_len=66)
+13:06:56.655 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x9a45 flags=PA, (pkt_len=171)
+13:06:56.655 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe28a flags=A, (pkt_len=66)
+13:06:56.655 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xe28a flags=A, (pkt_len=66)
+13:06:56.770 [script]       ==> VIP 10.0.0.10 on host-a (02:00:00:00:00:0a)
+13:06:56.823 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:ff:00:00:0b / IPv6 :: > ff02::1:ff00:b ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:b? / Option type=14 len=8(1), (pkt_len=86)
+13:06:56.823 [vtep-b grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:56.823 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:ff:00:00:0b / IPv6 :: > ff02::1:ff00:b ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:b? / Option type=14 len=8(1), (pkt_len=136)
+13:06:56.823 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:ff:00:00:0b / IPv6 :: > ff02::1:ff00:b ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:b? / Option type=14 len=8(1), (pkt_len=136)
+13:06:56.824 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:ff:00:00:0b / IPv6 :: > ff02::1:ff00:b ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:b? / Option type=14 len=8(1), (pkt_len=86)
+13:06:56.824 [vtep-a grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:56.825 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > ff:ff:ff:ff:ff:ff / ARP request who has 10.0.0.251? tell 10.0.0.10, (pkt_len=42)
+13:06:56.825 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > ff:ff:ff:ff:ff:ff / ARP request who has 10.0.0.251? tell 10.0.0.10, (pkt_len=92)
+13:06:56.825 [vtep-a grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 02:00:00:00:00:0a / ARP reply 10.0.0.251 is at 5e:c0:3c:32:2a:59, (pkt_len=42)
+13:06:56.825 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 5e:c0:3c:32:2a:59 / IP 10.0.0.10 > 10.0.0.251 ttl=64 proto=ICMP(1) / ICMP echo request id=9924 seq=1, (pkt_len=98)
+13:06:56.825 [vtep-a grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 02:00:00:00:00:0a / IP 10.0.0.251 > 10.0.0.10 ttl=64 proto=ICMP(1) / ICMP echo reply id=9924 seq=1, (pkt_len=98)
+13:06:56.826 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > ff:ff:ff:ff:ff:ff / ARP request who has 10.0.0.251? tell 10.0.0.10, (pkt_len=92)
+13:06:56.826 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > ff:ff:ff:ff:ff:ff / ARP request who has 10.0.0.251? tell 10.0.0.10, (pkt_len=42)
+13:06:56.826 [vtep-b grout] NOTICE: TRACE: [drop arp_input_request_drop] 1 packets
+13:06:56.876 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x8897 flags=PA, (pkt_len=175)
+13:06:56.876 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x8897 flags=PA, (pkt_len=175)
+13:06:56.876 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x8897 flags=PA, (pkt_len=175)
+13:06:56.876 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe062 flags=A, (pkt_len=66)
+13:06:56.877 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe062 flags=A, (pkt_len=66)
+13:06:56.877 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xe062 flags=A, (pkt_len=66)
+13:06:56.919 [script]       ==> VIP moves to host-b (02:00:00:00:00:0b)
+13:06:57.012 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:57.012 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:57.012 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:57.012 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:57.039 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.040 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.040 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.040 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.040 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.040 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.063 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x69da flags=PA, (pkt_len=135)
+13:06:57.063 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x69da flags=PA, (pkt_len=135)
+13:06:57.063 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0x69da flags=PA, (pkt_len=135)
+13:06:57.063 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xdea7 flags=A, (pkt_len=66)
+13:06:57.063 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xdea7 flags=A, (pkt_len=66)
+13:06:57.063 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0xdea7 flags=A, (pkt_len=66)
+13:06:57.119 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:57.119 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface vxlan100 id=4 cp_id=6
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: grout_vxlan_disable_learning: disable fdb learning on bridged vxlan vxlan100
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_IFACE_SET: success
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface vxlan100 id=4 cp_id=6
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: grout_vxlan_disable_learning: disable fdb learning on bridged vxlan vxlan100
+13:06:57.120 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_IFACE_SET: success
+13:06:57.120 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF vxlan100
+13:06:57.120 [vtep-b frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD vxlan100 vrf default(0)
+13:06:57.120 [vtep-b frr]   ZEBRA: [KQDFN-PWGM2] Add L2-VNI 100 VRF default intf vxlan100(6) VLAN 0 local IP 172.16.0.2 mcast_grp 0.0.0.0 master 0
+13:06:57.120 [vtep-b frr]   ZEBRA: [H26JN-TJY1T] Update L2-VNI 100 intf vxlan100(6) VLAN 0 local IP 172.16.0.2 master 5 chg 0x2
+13:06:57.120 [vtep-b frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP vxlan100 vrf default(0)
+13:06:57.120 [vtep-b frr]   ZEBRA: [K61WJ-XQQ3X] Intf vxlan100(6) L2-VNI 100 is UP
+13:06:57.120 [vtep-b frr]   ZEBRA: [SS29C-ZC7S2] Send EVPN_ADD 100 172.16.0.2 tenant vrf default(0) SVI index 5 to bgp
+13:06:57.120 [vtep-b frr]   ZEBRA: [H5WMK-KQVJA] Reading MAC FDB and Neighbors for intf vxlan100(6) VNI 100 master 5
+13:06:57.120 [vtep-b frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:57.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.121 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.121 [vtep-b frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF vxlan100
+13:06:57.121 [vtep-b frr]   BGP: [TV0XP-3WR0A] Rx VNI add VRF default VNI 100 tenant-vrf default SVI ifindex 5
+13:06:57.121 [vtep-b frr]   BGP: [KY18H-8FB8R] VRF UNKNOWN vni 100 flood mode 3 (global flood mode 0)
+13:06:57.121 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-3 route evp [3]:[0]:[32]:[172.16.0.2] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi (null)
+13:06:57.121 [vtep-b frr]   BGP: [Y8DFR-M6PAJ] Scheduling L2VNI ADD to be processed later for VNI 100
+13:06:57.121 [vtep-b frr]   ZEBRA: [J7KAF-72ZD2] EVPN gateway macip Adv disabled on VNI 100, currently disabled
+13:06:57.121 [vtep-b frr]   ZEBRA: [KJP9G-QGA1D] EVPN SVI macip Adv disabled on VNI 100, currently disabled
+13:06:57.121 [vtep-b frr]   ZEBRA: GROUT: grout_fdb_read_ctx: bridge=3 iface=4 vlan=0 vni=0 mac=00:00:00:00:00:00
+13:06:57.121 [vtep-b frr]   ZEBRA: GROUT: grout_client_foreach: GR_FDB_LIST: success
+13:06:57.121 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_read_ctx: iface=5 ip=(null)
+13:06:57.121 [vtep-b frr]   ZEBRA: GROUT: grout_client_foreach: GR_NH_LIST: success
+13:06:57.121 [vtep-b frr]   BGP: [QFD5T-57760] install_uninstall_routes_for_vni: Total 1 L2VNI VPNs pending to be processed for remote route installation
+13:06:57.121 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[3]:[0]:[32]:[172.16.0.2]
+13:06:57.121 [vtep-b frr]   BGP: [XXWBM-V772F] 172.16.0.1(f6d947d6df0e) rcvd UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity RT:65000:100 ET:8, pmsi tnltype 6, path 
+13:06:57.121 [vtep-b frr]   BGP: [YCKEM-GB33T] 172.16.0.1(f6d947d6df0e) rcvd RD 172.16.0.1:2 [3]:[0]:[32]:[172.16.0.1] l2vpn evpn
+13:06:57.121 [vtep-b frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [3]:[0]:[32]:[172.16.0.1] route in VNI 100 IP/MAC table
+13:06:57.121 [vtep-b frr]   BGP: [M59KS-A3ZXZ] bgp_update_receive_eor: rcvd End-of-RIB for L2VPN EVPN from 172.16.0.1 in vrf default
+13:06:57.121 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [3]:[0]:[32]:[172.16.0.1](VRF default) with dest 0x55a3803a6970 and flags 0x400 to zebra
+13:06:57.122 [vtep-b frr]   BGP: [VANZX-EVEQ3] Tx ADD Remote VTEP, VNI 100 (flood control 0) remote VTEP 172.16.0.1
+13:06:57.122 [vtep-b frr]   ZEBRA: [MD63W-5C5NE] Recv VTEP ADD 172.16.0.1 VNI 100 flood 0 from bgp
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=2 172.16.0.1 32:96:30:4e:2a:11
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:57.122 [vtep-b frr]   ZEBRA: [KDFJQ-YQ3KP] Install 172.16.0.1 into flood list for VNI 100 intf vxlan100(6)
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_vxlan_flood_update_ctx: add 172.16.0.1 vni=100 vrf=1
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FLOOD_ADD: success
+13:06:57.122 [vtep-b frr]   BGP: [XXWBM-V772F] 172.16.0.1(f6d947d6df0e) rcvd UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:57.122 [vtep-b frr]   BGP: [YCKEM-GB33T] 172.16.0.1(f6d947d6df0e) rcvd RD 172.16.0.1:2 [2]:[0]:[48]:[f6:98:e4:01:eb:b0] label 100 l2vpn evpn
+13:06:57.122 [vtep-b frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[f6:98:e4:01:eb:b0] route in VNI 100 IP/MAC table
+13:06:57.122 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[f6:98:e4:01:eb:b0](VRF default) with dest 0x55a3803a6fe0 and flags 0x400 to zebra
+13:06:57.122 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC f6:98:e4:01:eb:b0 IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.122 [vtep-b frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC f6:98:e4:01:eb:b0 flags 0x0 seq 0 VTEP 172.16.0.1 ESI - from bgp
+13:06:57.122 [vtep-b frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC f6:98:e4:01:eb:b0 flags None 
+13:06:57.122 [vtep-b frr]   ZEBRA: [S7Q3Q-N2C38] Processing neighbors on remote MAC f6:98:e4:01:eb:b0 ADD, VNI 100
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_macfdb_update_ctx: add bridge=4 iface=4 mac=f6:98:e4:01:eb:b0 vlan=0 vtep=172.16.0.1
+13:06:57.122 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FDB_ADD: success
+13:06:57.123 [vtep-b frr]   BGP: [K9G3A-CJ5QQ] u1:s1 announcing routes upon coalesce timer expiry(1100 ms)
+13:06:57.123 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[3]:[0]:[32]:[172.16.0.2], selected=0x55a3803a6280
+13:06:57.123 [vtep-b frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.1 queue UPDATE [3]:[0]:[32]:[172.16.0.2], afi=l2vpn, safi=evpn
+13:06:57.123 [vtep-b frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity ET:8 RT:65000:100, pmsi tnltype 6, path 
+13:06:57.123 [vtep-b frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.123 [vtep-b frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.2:2 [3]:[0]:[32]:[172.16.0.2] label 100 l2vpn evpn
+13:06:57.123 [vtep-b frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 101 (max message len: 65535) numpfx 1
+13:06:57.123 [vtep-b frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.1 send UPDATE w/ nexthop 172.16.0.2
+13:06:57.123 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[3]:[0]:[32]:[172.16.0.1]
+13:06:57.123 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[3]:[0]:[32]:[172.16.0.1], selected=0x55a3803a6760
+13:06:57.123 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[f6:98:e4:01:eb:b0]
+13:06:57.123 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[f6:98:e4:01:eb:b0], selected=0x55a3803a6e60
+13:06:57.123 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:57.123 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface p1 id=5 cp_id=8
+13:06:57.123 [vtep-b frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD p1 vrf default(0)
+13:06:57.123 [vtep-b frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p1
+13:06:57.123 [vtep-b frr]   BGP: [TPJB2-AQ2TG] Processing EVPN MAC interface change on peer 172.16.0.1 
+13:06:57.123 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:57.123 [vtep-b frr]   ZEBRA: GROUT: grout_macfdb_change: add bridge=3 iface=5 mac=9e:31:a0:9d:1d:6f vlan=0 vtep=(null)
+13:06:57.123 [vtep-b frr]   ZEBRA: [KD28G-VHTMW] ADD MAC 9e:31:a0:9d:1d:6f intf p1(8) VID 0 -> VNI 100
+13:06:57.124 [vtep-b frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 9e:31:a0:9d:1d:6f flags None 
+13:06:57.124 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 9e:31:a0:9d:1d:6f IP (null) seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.124 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 9e:31:a0:9d:1d:6f IP (null) VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.124 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[9e:31:a0:9d:1d:6f] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:06:57.124 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[9e:31:a0:9d:1d:6f]
+13:06:57.124 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[9e:31:a0:9d:1d:6f], selected=0x55a3803a79e0
+13:06:57.124 [vtep-b frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.1 queue UPDATE [2]:[0]:[48]:[9e:31:a0:9d:1d:6f], afi=l2vpn, safi=evpn
+13:06:57.124 [vtep-b frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:57.124 [vtep-b frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.124 [vtep-b frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.2:2 [2]:[0]:[48]:[9e:31:a0:9d:1d:6f] label 100 l2vpn evpn
+13:06:57.124 [vtep-b frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 105 (max message len: 65535) numpfx 1
+13:06:57.124 [vtep-b frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.1 send UPDATE w/ nexthop 172.16.0.2
+13:06:57.124 [vtep-b frr]   BGP: [XXWBM-V772F] 172.16.0.1(f6d947d6df0e) rcvd UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:57.124 [vtep-b frr]   BGP: [YCKEM-GB33T] 172.16.0.1(f6d947d6df0e) rcvd RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a] label 100 l2vpn evpn
+13:06:57.124 [vtep-b frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[02:00:00:00:00:0a] route in VNI 100 IP/MAC table
+13:06:57.124 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[02:00:00:00:00:0a](VRF default) with dest 0x55a3803a7f80 and flags 0x400 to zebra
+13:06:57.124 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0a IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.124 [vtep-b frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0a flags 0x0 seq 0 VTEP 172.16.0.1 ESI - from bgp
+13:06:57.124 [vtep-b frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 02:00:00:00:00:0a flags None 
+13:06:57.124 [vtep-b frr]   ZEBRA: [S7Q3Q-N2C38] Processing neighbors on remote MAC 02:00:00:00:00:0a ADD, VNI 100
+13:06:57.124 [vtep-b frr]   ZEBRA: GROUT: grout_macfdb_update_ctx: add bridge=4 iface=4 mac=02:00:00:00:00:0a vlan=0 vtep=172.16.0.1
+13:06:57.124 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FDB_ADD: success
+13:06:57.124 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:57.124 [vtep-b frr]   ZEBRA: GROUT: grout_macfdb_change: add bridge=3 iface=5 mac=02:00:00:00:00:0b vlan=0 vtep=(null)
+13:06:57.124 [vtep-b frr]   ZEBRA: [KD28G-VHTMW] ADD MAC 02:00:00:00:00:0b intf p1(8) VID 0 -> VNI 100
+13:06:57.125 [vtep-b frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 02:00:00:00:00:0b flags None 
+13:06:57.125 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0b IP (null) seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.125 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0b IP (null) VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.125 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0b] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:06:57.125 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]
+13:06:57.125 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0a], selected=0x55a3803a7dd0
+13:06:57.125 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0b]
+13:06:57.125 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0b], selected=0x55a38039c1a0
+13:06:57.125 [vtep-b frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.1 queue UPDATE [2]:[0]:[48]:[02:00:00:00:00:0b], afi=l2vpn, safi=evpn
+13:06:57.125 [vtep-b frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:57.125 [vtep-b frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.125 [vtep-b frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.2:2 [2]:[0]:[48]:[02:00:00:00:00:0b] label 100 l2vpn evpn
+13:06:57.125 [vtep-b frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 105 (max message len: 65535) numpfx 1
+13:06:57.125 [vtep-b frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.1 send UPDATE w/ nexthop 172.16.0.2
+13:06:57.125 [vtep-b frr]   BGP: [XXWBM-V772F] 172.16.0.1(f6d947d6df0e) rcvd UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:57.125 [vtep-b frr]   BGP: [YCKEM-GB33T] 172.16.0.1(f6d947d6df0e) rcvd RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] label 100 l2vpn evpn
+13:06:57.125 [vtep-b frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] route in VNI 100 IP/MAC table
+13:06:57.125 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[02:00:00:00:00:0a](VRF default) with dest 0x55a3803a7f80 and flags 0x400 to zebra
+13:06:57.125 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0a IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.125 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[00:00:00:00:00:00]:[32]:[10.0.0.10](VRF default) with dest 0x55a38039c840 and flags 0x400 to zebra
+13:06:57.125 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0a IP 10.0.0.10 flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.125 [vtep-b frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0a flags 0x0 seq 0 VTEP 172.16.0.1 ESI - from bgp
+13:06:57.125 [vtep-b frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0a IP 10.0.0.10 flags 0x0 seq 0 VTEP 172.16.0.1 ESI - from bgp
+13:06:57.125 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_update_ctx: cache rmac vrf=1 10.0.0.10 02:00:00:00:00:0a
+13:06:57.125 [vtep-b frr]   ZEBRA: GROUT: zebra2origin: unhandled protocol 0, defaulting to GR_NH_ORIGIN_ZEBRA
+13:06:57.125 [vtep-b frr]   ZEBRA: GROUT: neigh_install_nexthop: install remote nh iface=3 10.0.0.10 02:00:00:00:00:0a
+13:06:57.125 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_NH_ADD: success
+13:06:57.126 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10]
+13:06:57.126 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10], selected=0x55a38039c4a0
+13:06:57.126 [vtep-b frr]   BGP: [PAPP6-VDAWM] 172.16.0.1(f6d947d6df0e) rcvd UPDATE about RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] label 0 l2vpn evpn -- withdrawn
+13:06:57.126 [vtep-b frr]   BGP: [K7P35-81YTJ] default (0): Uninstalling EVPN [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] route from VNI 100 IP/MAC table
+13:06:57.126 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP withdrawing evpn route [2]:[0]:[48]:[00:00:00:00:00:00]:[32]:[10.0.0.10](VRF default) with dest 0x55a38039c840 and flags 0x800 to zebra
+13:06:57.126 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx DEL MACIP, VNI 100 MAC 02:00:00:00:00:0a IP 10.0.0.10 flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.126 [vtep-b frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[02:00:00:00:00:0a](VRF default) with dest 0x55a3803a7f80 and flags 0x400 to zebra
+13:06:57.126 [vtep-b frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0a IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.1 esi -
+13:06:57.126 [vtep-b frr]   ZEBRA: [NHW41-EZAHC] Recv MACIP DEL VNI 100 MAC 02:00:00:00:00:0a IP 10.0.0.10 Remote VTEP 172.16.0.1 from bgp
+13:06:57.126 [vtep-b frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0a flags 0x0 seq 0 VTEP 172.16.0.1 ESI - from bgp
+13:06:57.126 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_update_ctx: uncache rmac vrf=1 10.0.0.10
+13:06:57.126 [vtep-b frr]   ZEBRA: GROUT: neigh_delete_nexthop: delete remote nh iface=3 10.0.0.10
+13:06:57.126 [vtep-b frr]   ZEBRA: GROUT: grout_client_send_recv: GR_NH_DEL: success
+13:06:57.126 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10]
+13:06:57.132 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_ADD
+13:06:57.132 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface p1 id=5 cp_id=8
+13:06:57.132 [vtep-a frr]   ZEBRA: [R0MNE-C165S] MESSAGE: ZEBRA_INTERFACE_ADD p1 vrf default(0)
+13:06:57.133 [vtep-a frr]   BGP: [R28N5-6MEFQ] Rx Intf add VRF default IF p1
+13:06:57.133 [vtep-a frr]   BGP: [TPJB2-AQ2TG] Processing EVPN MAC interface change on peer 172.16.0.2 
+13:06:57.133 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:57.133 [vtep-a frr]   ZEBRA: GROUT: grout_macfdb_change: add bridge=3 iface=5 mac=f6:98:e4:01:eb:b0 vlan=0 vtep=(null)
+13:06:57.133 [vtep-a frr]   ZEBRA: [KD28G-VHTMW] ADD MAC f6:98:e4:01:eb:b0 intf p1(8) VID 0 -> VNI 100
+13:06:57.133 [vtep-a frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC f6:98:e4:01:eb:b0 flags None 
+13:06:57.133 [vtep-a frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC f6:98:e4:01:eb:b0 IP (null) seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.133 [vtep-a frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC f6:98:e4:01:eb:b0 IP (null) VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.133 [vtep-a frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[f6:98:e4:01:eb:b0] RMAC 00:00:00:00:00:00 nexthop 172.16.0.1 esi 00:00:00:00:00:00:00:00:00:00
+13:06:57.133 [vtep-a frr]   BGP: [K9G3A-CJ5QQ] u1:s1 announcing routes upon coalesce timer expiry(1050 ms)
+13:06:57.133 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[3]:[0]:[32]:[172.16.0.1], selected=0x558965ba4ad0
+13:06:57.133 [vtep-a frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.2 queue UPDATE [3]:[0]:[32]:[172.16.0.1], afi=l2vpn, safi=evpn
+13:06:57.133 [vtep-a frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity ET:8 RT:65000:100, pmsi tnltype 6, path 
+13:06:57.133 [vtep-a frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.133 [vtep-a frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.1:2 [3]:[0]:[32]:[172.16.0.1] label 100 l2vpn evpn
+13:06:57.133 [vtep-a frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 101 (max message len: 65535) numpfx 1
+13:06:57.133 [vtep-a frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.2 send UPDATE w/ nexthop 172.16.0.1
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=2 172.16.0.2 96:70:b3:ca:96:2f
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:57.134 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[f6:98:e4:01:eb:b0]
+13:06:57.134 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[f6:98:e4:01:eb:b0], selected=0x558965ba52d0
+13:06:57.134 [vtep-a frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.2 queue UPDATE [2]:[0]:[48]:[f6:98:e4:01:eb:b0], afi=l2vpn, safi=evpn
+13:06:57.134 [vtep-a frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:57.134 [vtep-a frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.134 [vtep-a frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.1:2 [2]:[0]:[48]:[f6:98:e4:01:eb:b0] label 100 l2vpn evpn
+13:06:57.134 [vtep-a frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 105 (max message len: 65535) numpfx 1
+13:06:57.134 [vtep-a frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.2 send UPDATE w/ nexthop 172.16.0.1
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:57.134 [vtep-a frr]   ZEBRA: GROUT: grout_link_change: add iface p1 id=5 cp_id=8
+13:06:57.134 [vtep-a frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP p1 vrf default(0)
+13:06:57.134 [vtep-a frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:57.134 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.134 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.134 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.134 [vtep-a frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:57.134 [vtep-a frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF p1
+13:06:57.134 [vtep-a frr]   BGP: [XXWBM-V772F] 172.16.0.2(0ccb55ba25ba) rcvd UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity RT:65000:100 ET:8, pmsi tnltype 6, path 
+13:06:57.134 [vtep-a frr]   BGP: [YCKEM-GB33T] 172.16.0.2(0ccb55ba25ba) rcvd RD 172.16.0.2:2 [3]:[0]:[32]:[172.16.0.2] l2vpn evpn
+13:06:57.134 [vtep-a frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [3]:[0]:[32]:[172.16.0.2] route in VNI 100 IP/MAC table
+13:06:57.134 [vtep-a frr]   BGP: [M59KS-A3ZXZ] bgp_update_receive_eor: rcvd End-of-RIB for L2VPN EVPN from 172.16.0.2 in vrf default
+13:06:57.135 [vtep-a frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [3]:[0]:[32]:[172.16.0.2](VRF default) with dest 0x558965ba5c90 and flags 0x400 to zebra
+13:06:57.135 [vtep-a frr]   BGP: [VANZX-EVEQ3] Tx ADD Remote VTEP, VNI 100 (flood control 0) remote VTEP 172.16.0.2
+13:06:57.135 [vtep-a frr]   ZEBRA: [MD63W-5C5NE] Recv VTEP ADD 172.16.0.2 VNI 100 flood 0 from bgp
+13:06:57.135 [vtep-a frr]   ZEBRA: [KDFJQ-YQ3KP] Install 172.16.0.2 into flood list for VNI 100 intf vxlan100(6)
+13:06:57.135 [vtep-a frr]   ZEBRA: GROUT: grout_vxlan_flood_update_ctx: add 172.16.0.2 vni=100 vrf=1
+13:06:57.135 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FLOOD_ADD: success
+13:06:57.135 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[3]:[0]:[32]:[172.16.0.2]
+13:06:57.135 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[3]:[0]:[32]:[172.16.0.2], selected=0x558965ba5a80
+13:06:57.135 [vtep-a frr]   BGP: [XXWBM-V772F] 172.16.0.2(0ccb55ba25ba) rcvd UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:57.135 [vtep-a frr]   BGP: [YCKEM-GB33T] 172.16.0.2(0ccb55ba25ba) rcvd RD 172.16.0.2:2 [2]:[0]:[48]:[9e:31:a0:9d:1d:6f] label 100 l2vpn evpn
+13:06:57.135 [vtep-a frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[9e:31:a0:9d:1d:6f] route in VNI 100 IP/MAC table
+13:06:57.135 [vtep-a frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[9e:31:a0:9d:1d:6f](VRF default) with dest 0x558965ba6330 and flags 0x400 to zebra
+13:06:57.135 [vtep-a frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 9e:31:a0:9d:1d:6f IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.2 esi -
+13:06:57.135 [vtep-a frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 9e:31:a0:9d:1d:6f flags 0x0 seq 0 VTEP 172.16.0.2 ESI - from bgp
+13:06:57.135 [vtep-a frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 9e:31:a0:9d:1d:6f flags None 
+13:06:57.135 [vtep-a frr]   ZEBRA: [S7Q3Q-N2C38] Processing neighbors on remote MAC 9e:31:a0:9d:1d:6f ADD, VNI 100
+13:06:57.135 [vtep-a frr]   ZEBRA: GROUT: grout_macfdb_update_ctx: add bridge=4 iface=4 mac=9e:31:a0:9d:1d:6f vlan=0 vtep=172.16.0.2
+13:06:57.135 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FDB_ADD: success
+13:06:57.135 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[9e:31:a0:9d:1d:6f]
+13:06:57.135 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[9e:31:a0:9d:1d:6f], selected=0x558965ba6180
+13:06:57.136 [vtep-a frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_FDB_ADD
+13:06:57.136 [vtep-a frr]   ZEBRA: GROUT: grout_macfdb_change: add bridge=3 iface=5 mac=02:00:00:00:00:0a vlan=0 vtep=(null)
+13:06:57.136 [vtep-a frr]   ZEBRA: [KD28G-VHTMW] ADD MAC 02:00:00:00:00:0a intf p1(8) VID 0 -> VNI 100
+13:06:57.136 [vtep-a frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 02:00:00:00:00:0a flags None 
+13:06:57.136 [vtep-a frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0a IP (null) seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.136 [vtep-a frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0a IP (null) VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.136 [vtep-a frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0a] RMAC 00:00:00:00:00:00 nexthop 172.16.0.1 esi 00:00:00:00:00:00:00:00:00:00
+13:06:57.136 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]
+13:06:57.136 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0a], selected=0x558965ba6990
+13:06:57.136 [vtep-a frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.2 queue UPDATE [2]:[0]:[48]:[02:00:00:00:00:0a], afi=l2vpn, safi=evpn
+13:06:57.136 [vtep-a frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:57.136 [vtep-a frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.136 [vtep-a frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a] label 100 l2vpn evpn
+13:06:57.136 [vtep-a frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 105 (max message len: 65535) numpfx 1
+13:06:57.136 [vtep-a frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.2 send UPDATE w/ nexthop 172.16.0.1
+13:06:57.136 [vtep-a frr]   BGP: [XXWBM-V772F] 172.16.0.2(0ccb55ba25ba) rcvd UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:57.136 [vtep-a frr]   BGP: [YCKEM-GB33T] 172.16.0.2(0ccb55ba25ba) rcvd RD 172.16.0.2:2 [2]:[0]:[48]:[02:00:00:00:00:0b] label 100 l2vpn evpn
+13:06:57.136 [vtep-a frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[02:00:00:00:00:0b] route in VNI 100 IP/MAC table
+13:06:57.137 [vtep-a frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[02:00:00:00:00:0b](VRF default) with dest 0x558965c20b30 and flags 0x400 to zebra
+13:06:57.137 [vtep-a frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0b IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.2 esi -
+13:06:57.137 [vtep-a frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0b flags 0x0 seq 0 VTEP 172.16.0.2 ESI - from bgp
+13:06:57.137 [vtep-a frr]   ZEBRA: [JWQ3J-TKSAT] zebra_evpn_mac_add: MAC 02:00:00:00:00:0b flags None 
+13:06:57.137 [vtep-a frr]   ZEBRA: [S7Q3Q-N2C38] Processing neighbors on remote MAC 02:00:00:00:00:0b ADD, VNI 100
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: grout_macfdb_update_ctx: add bridge=4 iface=4 mac=02:00:00:00:00:0b vlan=0 vtep=172.16.0.2
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_FDB_ADD: success
+13:06:57.137 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0b]
+13:06:57.137 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0b], selected=0x558965ba6cd0
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_NEW
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0a
+13:06:57.137 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:57.137 [vtep-a frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0a intf br100(5) state 0x2 -> L2-VNI 100
+13:06:57.137 [vtep-a frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0a IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.137 [vtep-a frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0a IP 10.0.0.10 VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.138 [vtep-a frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] RMAC 00:00:00:00:00:00 nexthop 172.16.0.1 esi 00:00:00:00:00:00:00:00:00:00
+13:06:57.138 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10]
+13:06:57.138 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10], selected=0x558965c21130
+13:06:57.138 [vtep-a frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.2 queue UPDATE [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10], afi=l2vpn, safi=evpn
+13:06:57.138 [vtep-a frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.1, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:57.138 [vtep-a frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:57.138 [vtep-a frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] label 100 l2vpn evpn
+13:06:57.138 [vtep-a frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 109 (max message len: 65535) numpfx 1
+13:06:57.138 [vtep-a frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.2 send UPDATE w/ nexthop 172.16.0.1
+13:06:57.138 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:57.138 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:57.138 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:06:57.138 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:57.138 [vtep-a frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:06:57.138 [vtep-a frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Del f None  state 1 MAC 02:00:00:00:00:0a IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:06:57.138 [vtep-a frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Del f 0x0 MAC 02:00:00:00:00:0a IP 10.0.0.10 VNI 100 seq 0 state 1 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:57.139 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10]
+13:06:57.139 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10], selected=0x0
+13:06:57.139 [vtep-a frr]   BGP: [XFG9S-ZT5JH] 172.16.0.2 queue UPDATE (withdraw) [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10], afi=l2vpn, safi=evpn
+13:06:57.139 [vtep-a frr]   BGP: [QYC2K-N0CET] u1:s1 send MP_UNREACH for afi/safi l2vpn/evpn
+13:06:57.139 [vtep-a frr]   BGP: [WHJ94-YXNE1] u1:s1 send UPDATE RD 172.16.0.1:2 [2]:[0]:[48]:[02:00:00:00:00:0a]:[32]:[10.0.0.10] l2vpn evpn -- unreachable
+13:06:57.139 [vtep-a frr]   BGP: [G259R-NCBEJ] u1:s1 send UPDATE (withdraw) len 69 numpfx 1
+13:06:57.191 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:ff:00:00:0a / IPv6 :: > ff02::1:ff00:a ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:a? / Option type=14 len=8(1), (pkt_len=86)
+13:06:57.191 [vtep-a grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:57.191 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:ff:00:00:0a / IPv6 :: > ff02::1:ff00:a ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:a? / Option type=14 len=8(1), (pkt_len=136)
+13:06:57.191 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:ff:00:00:0a / IPv6 :: > ff02::1:ff00:a ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:a? / Option type=14 len=8(1), (pkt_len=136)
+13:06:57.191 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:ff:00:00:0a / IPv6 :: > ff02::1:ff00:a ttl=255 proto=ICMPv6(58) / ICMPv6 neigh solicit who has fe80::ff:fe00:a? / Option type=14 len=8(1), (pkt_len=86)
+13:06:57.191 [vtep-b grout] NOTICE: TRACE: [drop ip6_input_not_member] 1 packets
+13:06:57.255 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.255 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.255 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.255 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.255 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.255 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 :: > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.632 [vtep-b grout] INFO: PORT: link_event_cb: p1: link status up
+13:06:57.703 [vtep-a grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:01 > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:ff01 > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:ff:01, (pkt_len=70)
+13:06:57.703 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:01 / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=32:96:30:4e:2a:11, (pkt_len=78)
+13:06:57.703 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 33:33:00:00:00:01 / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=32:96:30:4e:2a:11, (pkt_len=78)
+13:06:57.704 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IPv6 fe80::3096:30ff:fe4e:2a11 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=32:96:30:4e:2a:11, (pkt_len=78)
+13:06:57.831 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.831 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:b > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0b, (pkt_len=70)
+13:06:57.831 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.832 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.832 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:b > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0b, (pkt_len=120)
+13:06:57.832 [vtep-b grout] NOTICE: TRACE: [tx p1] 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:57.832 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=128)
+13:06:57.833 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:57.833 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:b > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0b, (pkt_len=120)
+13:06:57.833 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=128)
+13:06:57.833 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:57.833 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:b > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0b, (pkt_len=70)
+13:06:57.834 [vtep-a grout] NOTICE: TRACE: [tx p1] 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:57.834 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:57.834 [vtep-a grout] NOTICE: TRACE: [cp tx br100] 5e:c0:3c:32:2a:59 > 5e:c0:3c:32:2a:59 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:57.834 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=128)
+13:06:57.834 [vtep-a grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:57.834 [vtep-b grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:57.834 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=128)
+13:06:57.834 [vtep-b grout] NOTICE: TRACE: [cp tx br100] 46:84:fb:53:b1:02 > 46:84:fb:53:b1:02 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:58.012 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:58.012 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:58.012 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:58.013 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:58.063 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x7fa8 flags=PA, (pkt_len=175)
+13:06:58.063 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x7fa8 flags=PA, (pkt_len=175)
+13:06:58.063 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=255 proto=TCP(6) / TCP 179 > 44352 cksum=0x7fa8 flags=PA, (pkt_len=175)
+13:06:58.064 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xd66b flags=A, (pkt_len=66)
+13:06:58.064 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xd66b flags=A, (pkt_len=66)
+13:06:58.064 [vtep-b grout] NOTICE: TRACE: [cp tx p0] 96:70:b3:ca:96:2f > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=255 proto=TCP(6) / TCP 44352 > 179 cksum=0xd66b flags=A, (pkt_len=66)
+13:06:58.119 [vtep-b frr]   ZEBRA: GROUT: dplane_read_notifications: GR_EVENT_IFACE_STATUS_UP
+13:06:58.120 [vtep-b frr]   ZEBRA: GROUT: grout_link_change: add iface p1 id=5 cp_id=8
+13:06:58.120 [vtep-b frr]   ZEBRA: [V6YM8-PV4KB] MESSAGE: ZEBRA_INTERFACE_UP p1 vrf default(0)
+13:06:58.120 [vtep-b frr]   ZEBRA: [M8JMF-J6PZV] rib_update_handle_vrf_all: Handling VRF (ALL) event RIB_UPDATE_KERNEL
+13:06:58.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:58.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv4 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:58.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:58.120 [vtep-b frr]   ZEBRA: [QR5K4-A1079] rib_update_table: IPv6 VRF default Table 0 event RIB_UPDATE_KERNEL Route type: kernel
+13:06:58.120 [vtep-b frr]   BGP: [ZY0S2-0SEH9] Rx Intf up VRF default IF p1
+13:06:58.120 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_NEW
+13:06:58.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:58.120 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:06:58.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:58.120 [vtep-b frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:06:58.120 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0b IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:06:58.120 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0b IP 10.0.0.10 VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:58.120 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:06:58.120 [vtep-b frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10]
+13:06:58.121 [vtep-b frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10], selected=0x55a38039c450
+13:06:58.121 [vtep-b frr]   BGP: [K8G9R-Y5Z2W] 172.16.0.1 queue UPDATE [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10], afi=l2vpn, safi=evpn
+13:06:58.121 [vtep-b frr]   BGP: [TN0HX-6G1RR] u1:s1 send UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity ET:8 RT:65000:100, path 
+13:06:58.121 [vtep-b frr]   BGP: [H06SA-0JAPR] u1:s1 send MP_REACH for afi/safi l2vpn/evpn
+13:06:58.121 [vtep-b frr]   BGP: [HVRWP-5R9NQ] u1:s1 send UPDATE RD 172.16.0.2:2 [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] label 100 l2vpn evpn
+13:06:58.121 [vtep-b frr]   BGP: [WEV7K-2GAQ5] u1:s1 send UPDATE len 109 (max message len: 65535) numpfx 1
+13:06:58.121 [vtep-b frr]   BGP: [MBFVT-8GSC6] u1:s1 172.16.0.1 send UPDATE w/ nexthop 172.16.0.2
+13:06:58.133 [vtep-a frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:58.133 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:58.133 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:06:58.133 [vtep-a frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:58.133 [vtep-a frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:06:58.133 [vtep-a frr]   BGP: [XXWBM-V772F] 172.16.0.2(0ccb55ba25ba) rcvd UPDATE w/ attr: nexthop 172.16.0.2, localpref 100, extcommunity RT:65000:100 ET:8, path 
+13:06:58.133 [vtep-a frr]   BGP: [YCKEM-GB33T] 172.16.0.2(0ccb55ba25ba) rcvd RD 172.16.0.2:2 [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] label 100 l2vpn evpn
+13:06:58.133 [vtep-a frr]   BGP: [WTJQB-H1EZQ] default (0): Installing EVPN [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] route in VNI 100 IP/MAC table
+13:06:58.133 [vtep-a frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[02:00:00:00:00:0b](VRF default) with dest 0x558965c20b30 and flags 0x400 to zebra
+13:06:58.133 [vtep-a frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0b IP (null) flags 0x0 seq 0 remote VTEP 172.16.0.2 esi -
+13:06:58.134 [vtep-a frr]   BGP: [KPK7M-B9FAF] BGP announcing evpn route [2]:[0]:[48]:[00:00:00:00:00:00]:[32]:[10.0.0.10](VRF default) with dest 0x558965c213e0 and flags 0x400 to zebra
+13:06:58.134 [vtep-a frr]   BGP: [PY8JJ-TE0HM] Tx ADD MACIP, VNI 100 MAC 02:00:00:00:00:0b IP 10.0.0.10 flags 0x0 seq 0 remote VTEP 172.16.0.2 esi -
+13:06:58.134 [vtep-a frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0b flags 0x0 seq 0 VTEP 172.16.0.2 ESI - from bgp
+13:06:58.134 [vtep-a frr]   ZEBRA: [MC1ES-GPQXP] Recv MACIP ADD VNI 100 MAC 02:00:00:00:00:0b IP 10.0.0.10 flags 0x0 seq 0 VTEP 172.16.0.2 ESI - from bgp
+13:06:58.134 [vtep-a frr]   ZEBRA: GROUT: grout_neigh_update_ctx: cache rmac vrf=1 10.0.0.10 02:00:00:00:00:0b
+13:06:58.134 [vtep-a frr]   ZEBRA: GROUT: zebra2origin: unhandled protocol 0, defaulting to GR_NH_ORIGIN_ZEBRA
+13:06:58.134 [vtep-a frr]   ZEBRA: GROUT: neigh_install_nexthop: install remote nh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:06:58.134 [vtep-a frr]   ZEBRA: GROUT: grout_client_send_recv: GR_NH_ADD: success
+13:06:58.134 [vtep-a frr]   BGP: [Z38CW-7NYWG] group_announce_route_walkcb: afi=l2vpn, safi=evpn, p=[2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10]
+13:06:58.134 [vtep-a frr]   BGP: [T5JFA-13199] subgroup_process_announce_selected: p=[2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10], selected=0x558965c20fe0
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:a > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0a, (pkt_len=70)
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:58.215 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.215 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:a > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0a, (pkt_len=120)
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:a > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0a, (pkt_len=120)
+13:06:58.215 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=128)
+13:06:58.215 [vtep-a grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:58.215 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.216 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=128)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:a > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:00:0a, (pkt_len=70)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [tx p1] 5e:c0:3c:32:2a:59 > 33:33:00:00:00:01 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:58.216 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=128)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:58.216 [vtep-a grout] NOTICE: TRACE: [tx p1] 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [cp tx br100] 46:84:fb:53:b1:02 > 46:84:fb:53:b1:02 / IPv6 fe80::5cc0:3cff:fe32:2a59 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=5e:c0:3c:32:2a:59, (pkt_len=78)
+13:06:58.216 [vtep-a grout] NOTICE: TRACE: [cp tx br100] 5e:c0:3c:32:2a:59 > 5e:c0:3c:32:2a:59 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [tx p1] 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=78)
+13:06:58.216 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 46:84:fb:53:b1:02 > 33:33:00:00:00:01 / IPv6 fe80::4484:fbff:fe53:b102 > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=46:84:fb:53:b1:02, (pkt_len=128)
+13:06:58.471 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.471 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:58.471 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.471 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.471 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:b > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.472 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:58.984 [vtep-a grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.984 [vtep-a grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:58.984 [vtep-b grout] NOTICE: TRACE: [rx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.984 [vtep-a grout] NOTICE: TRACE: [tx p0] 32:96:30:4e:2a:11 > 96:70:b3:ca:96:2f / IP 172.16.0.1 > 172.16.0.2 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=140)
+13:06:58.984 [vtep-b grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0a > 33:33:00:00:00:16 / IPv6 fe80::ff:fe00:a > ff02::16 ttl=1 proto=HOPOPT(0) / ICMPv6 type=143 code=0, (pkt_len=90)
+13:06:58.984 [vtep-b grout] NOTICE: TRACE: [drop icmp6_input_unsupported] 1 packets
+13:06:59.013 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:59.013 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:59.013 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:06:59.013 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:06:59.120 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:06:59.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:06:59.120 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:06:59.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:06:59.120 [vtep-b frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:06:59.120 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0b IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:06:59.120 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0b IP 10.0.0.10 VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:06:59.120 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:07:00.013 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:07:00.013 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:07:00.013 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:07:00.013 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:07:00.120 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:07:00.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:07:00.120 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:07:00.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:07:00.120 [vtep-b frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:07:00.120 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0b IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:07:00.120 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0b IP 10.0.0.10 VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:07:00.120 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:07:00.519 [vtep-b grout] NOTICE: TRACE: [rx p0] 02:00:00:00:ff:02 > 33:33:00:00:00:02 / IPv6 fe80::ff:fe00:ff02 > ff02::2 ttl=255 proto=ICMPv6(58) / ICMPv6 router solicit / Option src_lladdr=02:00:00:00:ff:02, (pkt_len=70)
+13:07:00.519 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:01 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:07:00.520 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 33:33:00:00:00:01 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:07:00.520 [vtep-a grout] NOTICE: TRACE: [cp tx p0] 32:96:30:4e:2a:11 > 32:96:30:4e:2a:11 / IPv6 fe80::9470:b3ff:feca:962f > ff02::1 ttl=255 proto=ICMPv6(58) / ICMPv6 router advert / Option src_lladdr=96:70:b3:ca:96:2f, (pkt_len=78)
+13:07:01.013 [vtep-b grout] NOTICE: TRACE: [rx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:07:01.013 [vtep-b grout] NOTICE: TRACE: [tx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:07:01.013 [vtep-a grout] NOTICE: TRACE: [rx p0] 96:70:b3:ca:96:2f > 32:96:30:4e:2a:11 / IP 172.16.0.2 > 172.16.0.1 ttl=64 proto=UDP(17) / UDP 49152 > 4789 cksum=0000 / VXLAN vni=100 / Ethernet 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=92)
+13:07:01.014 [vtep-a grout] NOTICE: TRACE: [tx p1] 02:00:00:00:00:0b > ff:ff:ff:ff:ff:ff / ARP announce 10.0.0.10 is at 02:00:00:00:00:0b, (pkt_len=42)
+13:07:01.120 [vtep-b frr]   ZEBRA: GROUT: zebra_read_notifications: GR_EVENT_NEXTHOP_UPDATE
+13:07:01.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: add nh_id 0 origin learn
+13:07:01.120 [vtep-b frr]   ZEBRA: GROUT: grout_neigh_notify: add neigh iface=3 10.0.0.10 02:00:00:00:00:0b
+13:07:01.120 [vtep-b frr]   ZEBRA: GROUT: grout_nexthop_change: dynamic neighbor learn, skip
+13:07:01.120 [vtep-b frr]   ZEBRA: [J1Q9Y-TFAYN] Add/Update neighbor 10.0.0.10 MAC 02:00:00:00:00:0b intf br100(5) state 0x2 -> L2-VNI 100
+13:07:01.120 [vtep-b frr]   ZEBRA: [RWQPR-6BEC9] Send MACIP Add f None  state 1 MAC 02:00:00:00:00:0b IP 10.0.0.10 seq 0 L2-VNI 100 ESI - to bgp
+13:07:01.120 [vtep-b frr]   BGP: [JSYCM-MV07M] 0:Recv MACIP Add f 0x0 MAC 02:00:00:00:00:0b IP 10.0.0.10 VNI 100 seq 0 state 0 ESI 00:00:00:00:00:00:00:00:00:00
+13:07:01.120 [vtep-b frr]   BGP: [GVN0H-BX2CV] VRF None vni 100 type-2 route evp [2]:[0]:[48]:[02:00:00:00:00:0b]:[32]:[10.0.0.10] RMAC 00:00:00:00:00:00 nexthop 172.16.0.2 esi 00:00:00:00:00:00:00:00:00:00
+13:07:01.230 [script]       ==> vtep-a: main  1   zebra   br100  L3    family=ipv4 addr=10.0.0.10 state=reachable mac=02:00:00:00:00:0b flags=remote neigh
+13:07:01.317 [script]       ==> vtep-b: main      learn   br100  L3    family=ipv4 addr=10.0.0.10 state=reachable mac=02:00:00:00:00:0b flags=neigh
+13:07:01.317 [script]       ==> PASS: vtep-a knows 10.0.0.10 is at 02:00:00:00:00:0b
+13:07:01.625 [vtep-a grout] Error: container has already been removed
+13:07:01.869 [vtep-b grout] Error: container has already been removed
