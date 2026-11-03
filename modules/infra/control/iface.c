@@ -676,6 +676,17 @@ int iface_set_up_down(struct iface *iface, bool up) {
 	return 0;
 }
 
+int iface_vlan_filter(struct iface *iface, uint16_t vlan_id, bool on) {
+	const struct iface_type *type = iface_type_get(iface->type);
+
+	assert(type != NULL);
+	// hardware vlan filtering is optional, vlan filtering is also done in software
+	if (type->vlan_filter == NULL)
+		return 0;
+
+	return type->vlan_filter(iface, vlan_id, on);
+}
+
 int iface_set_promisc(struct iface *iface, bool enabled) {
 	const struct iface_type *type;
 	int ret;

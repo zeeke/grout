@@ -13,6 +13,7 @@
 #include "port.h"
 #include "rcu.h"
 #include "vec.h"
+#include "vlan.h"
 #include "vrf.h"
 #include "worker.h"
 
@@ -158,6 +159,8 @@ int port_configure(struct iface_info_port *p, uint16_t n_txq_min) {
 		conf.rxmode.mq_mode = RTE_ETH_MQ_RX_NONE;
 	else
 		conf.rxmode.mq_mode = RTE_ETH_MQ_RX_RSS;
+	if (gr_config.vlan_filter)
+		conf.rxmode.offloads |= RTE_ETH_RX_OFFLOAD_VLAN_FILTER;
 	conf.rxmode.offloads &= info.rx_offload_capa;
 	conf.txmode.offloads &= info.tx_offload_capa;
 
@@ -327,6 +330,19 @@ int port_allmulticast_enable(struct iface *iface) {
 	return 0;
 }
 
+static int port_vlan_filter(struct iface *iface, uint16_t vlan_id, bool on) {
+	struct iface_info_port *p = iface_info_port(iface);
+	int ret;
+
+	if (!(p->rx_offloads & RTE_ETH_RX_OFFLOAD_VLAN_FILTER))
+		return 0;
+
+	if ((ret = rte_eth_dev_vlan_filter(p->port_id, vlan_id, on)) < 0)
+		return errno_log(-ret, "rte_eth_dev_vlan_filter");
+
+	return 0;
+}
+
 static int iface_port_reconfig(
 	struct iface *iface,
 	uint64_t set_attrs,
@@ -411,6 +427,16 @@ static int iface_port_reconfig(
 
 	p->started = true;
 	worker_rearm_all(); // let workers (re)arm now that the port is started
+
+	if (needs_configure) {
+		// a port reset clears the hardware vlan filter
+		vec_foreach (const struct iface *s, iface->subinterfaces) {
+			if (s->type != GR_IFACE_TYPE_VLAN)
+				continue;
+			if ((ret = port_vlan_filter(iface, iface_info_vlan(s)->vlan_id, true)) < 0)
+				return ret;
+		}
+	}
 
 	return 0;
 }
@@ -1183,6 +1209,7 @@ static const struct iface_type iface_type_port = {
 	.set_mtu = port_mtu_set,
 	.set_up_down = port_up_down,
 	.set_promisc = port_promisc_set,
+	.vlan_filter = port_vlan_filter,
 	.to_api = port_to_api,
 	.metrics_collect = port_metrics_collect,
 };

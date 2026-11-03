@@ -54,6 +54,12 @@ GROUT_OVERRIDE_RP_FILTER=true
 # event (default: false).
 #GROUT_SKIP_ROUTE_EVENTS_ON_IFACE_DOWN=false
 
+# Register the VLAN IDs of VLAN sub-interfaces in the hardware VLAN filter of
+# their parent port. Required by some NICs (e.g. SR-IOV VFs) to receive tagged
+# traffic. Depending on the driver, other traffic may then be dropped
+# (default: false).
+#GROUT_VLAN_FILTER=false
+
 # Maximum Transmission Unit (default: 1800).
 #GROUT_MAX_MTU=1800
 
