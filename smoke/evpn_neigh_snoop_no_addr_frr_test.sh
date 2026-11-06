@@ -33,6 +33,10 @@ while ! vtysh -c "show evpn" | grep -q "L2 VNIs"; do
 	attempts=$((attempts + 1))
 done
 
+# The VXLAN local VTEP address must be owned by grout.
+create_interface p1
+set_ip_address p1 172.16.0.1/24
+
 grcli interface add bridge br0 neigh_suppress on neigh_snoop on
 grcli interface add vxlan vni100 vni 100 local 172.16.0.1 domain br0
 
